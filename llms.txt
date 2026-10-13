@@ -1,0 +1,22 @@
+# ZungiDill
+
+> ZungiDill is a phone app for people who want to fix mistakes on their own credit report themselves. You open your free credit report in the app, answer one question per account (not mine, I do not recognize it, mine but something is wrong, or mine and right), and ZungiDill writes the dispute letters for you to send to the credit bureaus. It is not a credit repair company. It has no account and never asks for a Social Security number. Your report stays on your phone. Made by Numerita LLC in Sheridan, Wyoming.
+
+- Available now on Android through Google Play: https://play.google.com/store/apps/details?id=com.numerita.zungidil
+- iPhone version is coming to the App Store.
+- Checking your report and drafting letters is free. You pay only when a letter is ready to print, save or send, either one letter at a time or with a monthly plan. Current prices are on the Terms page.
+- Works only with your own credit report. A report in another person's name is stopped.
+- Where to get a free report: AnnualCreditReport.com, the official site.
+
+## Pages
+
+- [Home](https://zungidill.com/): What ZungiDill does, how it works and common questions
+- [Support](https://zungidill.com/support): Getting your report, sending letters, purchases, cancelling and deleting your data
+- [Terms of Use](https://zungidill.com/terms): Prices, subscriptions, refunds and your responsibilities
+- [Privacy Policy](https://zungidill.com/privacy): What stays on your phone and what we never collect
+- [Legal](https://zungidill.com/legal): Disclosures and your rights
+
+## Contact
+
+- Email: hola.numerita@gmail.com
+- Phone: (682) 247-7649
