@@ -172,3 +172,37 @@ iframe.tally{display:block;border:0;width:100%;margin-top:8px}
 iframe.tally{margin-top:4px}
 .fallback{margin-top:2px;font-size:12.5px}
 @media (max-width:900px){.forms{grid-template-columns:1fr}}
+/* tighten */
+section.first{padding:40px 0 48px}
+.hero{align-items:start}
+.hero>div:first-child{padding-top:36px}
+.phone{width:min(268px,72vw)}
+.qwrap{display:grid;grid-template-columns:.8fr 1.6fr;gap:40px;align-items:start}
+.qwrap .sh{margin-bottom:0;position:sticky;top:90px}
+.cta{background:var(--ysoft);border-radius:16px;padding:22px 26px;margin-top:32px}
+.cta p{margin-top:6px}
+.cta .stores{margin-top:14px}
+@media (max-width:900px){.qwrap{grid-template-columns:1fr;gap:20px}.qwrap .sh{position:static}.hero>div:first-child{padding-top:0}}
+.doc ul+p{margin-top:12px}
+/* learn */
+.crumbs{font-size:14px;color:var(--muted);margin-bottom:14px}
+.crumbs a{color:var(--muted);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.answer p{color:var(--ink);font-size:17px}
+pre.letter{white-space:pre-wrap;background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;font:15px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#2A2A30;margin-top:10px}
+.doc th{background:#F1EEE6;font-weight:600;font-size:14px}
+.doc table{font-size:15px}
+.doc ol.list{padding-left:22px;display:grid;gap:8px;margin:8px 0 0}
+ol.sources{padding-left:22px;display:grid;gap:6px;font-size:15px}
+.cards{list-style:none;padding:0;margin:14px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.cards a{display:block;height:100%;background:#fff;border-radius:14px;padding:16px 18px;text-decoration:none;border:1px solid transparent}
+.cards a:hover{border-color:var(--ink)}
+.cards b{display:block;font-family:var(--head);font-size:16.5px;line-height:1.25}
+.cards span{display:block;margin-top:6px;color:var(--ink2);font-size:14.5px}
+.related{margin-top:40px}
+.related .cards{grid-template-columns:1fr}
+.hub{margin-top:28px}
+.qlinks{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:6px}
+.qlinks a{font-weight:600}
+footer .grid{grid-template-columns:1.2fr 1fr 1fr 1fr}
+@media (max-width:900px){.cards{grid-template-columns:1fr}footer .grid{grid-template-columns:1fr 1fr}}
+.doc ul.cards{padding-left:0;display:grid;gap:12px}.doc .cta h3{margin-top:0}.doc .cards li{color:inherit}

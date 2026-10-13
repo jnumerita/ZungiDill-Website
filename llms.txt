@@ -8,9 +8,22 @@
 - Works only with your own credit report. A report in another person's name is stopped.
 - Where to get a free report: AnnualCreditReport.com, the official site.
 
+## Guides
+
+- [How to fix a mistake on your credit report](https://zungidill.com/guide): The full step by step guide to disputing credit report errors yourself, for free
+- [Credit report mistakes to look for](https://zungidill.com/learn/mistakes): The most common credit report mistakes are wrong personal details, accounts that belong to someone else, late payments you paid on time, wrong balances or limits, the same debt listed twice and wrong dates. Check each account on all three reports, because a mistake can show on one and not the others.
+- [Credit dispute letter: a free sample you can copy](https://zungidill.com/learn/dispute-letter): A credit dispute letter tells a credit bureau which item on your report is wrong, why it is wrong and what you want done. Send one to each bureau that shows the mistake, add copies of your proof and keep a copy for yourself. The bureau usually has 30 days to look into it.
+- [How to get a collection off your credit report](https://zungidill.com/learn/collections): If a collection is wrong, dispute it with the credit bureaus and ask the collector to prove the debt. If it cannot be verified, it has to come off. If it is yours and correct, it can stay for about seven and a half years from the first missed payment that led to it, but you can still ask the collector to remove it.
+- [Accounts on your credit report that are not yours](https://zungidill.com/learn/not-mine): If an account on your report is not yours, first figure out if it is a mix up or identity theft. For identity theft, report it at IdentityTheft.gov, then send that report to each credit bureau and ask them to block the accounts. They must block them within four business days. For a mix up, send a regular dispute.
+- [How long things stay on your credit report](https://zungidill.com/learn/how-long): Most negative items, like late payments, collections and charge offs, can stay on your credit report for seven years. Bankruptcy can stay for ten. Hard credit checks stay for two years. When the time is up, the item should come off on its own, and if it does not, you can dispute it.
+- [Goodwill letter for a late payment: a free sample](https://zungidill.com/learn/goodwill-letter): A goodwill letter asks a lender to remove a late payment that really happened, as a favor. They do not have to say yes. It works best when the late payment was a one time slip, your account is current now and the rest of your history is good. It costs nothing to ask.
+- [Car loan with bad credit: check your report before you shop](https://zungidill.com/learn/car-loan): Before you shop for a car with bad credit, get your free credit reports and dispute anything wrong, then get preapproved by a bank or credit union so you know your rate before you walk in. A mistake on your report can cost you a higher rate for the whole loan.
+- [Credit repair companies: what they can and cannot do](https://zungidill.com/learn/credit-repair): A credit repair company can only do what you can do yourself for free: dispute mistakes on your credit report. By law it cannot charge you before the work is done, it has to give you a written contract, and you can cancel within three business days. Nobody can remove true information from your report.
+
 ## Pages
 
 - [Home](https://zungidill.com/): What ZungiDill does, how it works and common questions
+- [About](https://zungidill.com/about): Who makes ZungiDill and how the guides are checked
 - [Support](https://zungidill.com/support): Getting your report, sending letters, purchases, cancelling and deleting your data
 - [Terms of Use](https://zungidill.com/terms): Prices, subscriptions, refunds and your responsibilities
 - [Privacy Policy](https://zungidill.com/privacy): What stays on your phone and what we never collect
@@ -20,3 +33,7 @@
 
 - Email: hola.numerita@gmail.com
 - Phone: (682) 247-7649
+
+## Full text
+
+- [All guides as plain text](https://zungidill.com/llms-full.txt)

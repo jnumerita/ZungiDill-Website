@@ -38,6 +38,7 @@ def page(slug, title, desc, body, current=''):
 <meta name="twitter:image" content="{SITE}/img/og.png">{'{NOINDEX}' if slug in ('thanks','404') else ''}
 <meta name="theme-color" content="#F6F5F0">
 <link rel="icon" href="/img/logo.png">
+<link rel="preload" href="/fonts/Poppins-Bold.woff" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
@@ -48,6 +49,7 @@ def page(slug, title, desc, body, current=''):
     <nav aria-label="Main">
       <ul>
         {nav('/#how', 'How it works', 'how')}
+        {nav('/learn/', 'Learn', 'learn')}
         {nav('/#questions', 'Questions', 'q', 'hide-sm')}
         {nav('/support', 'Support', 'support')}
         {nav('/#contact', 'Contact', 'contact')}
@@ -66,6 +68,18 @@ def page(slug, title, desc, body, current=''):
         <p style="margin-top:14px;color:#D8D6D0">Made by Numerita LLC, Sheridan, Wyoming.</p>
       </div>
       <div>
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="/guide">How to fix a mistake</a></li>
+          <li><a href="/learn/dispute-letter">Dispute letter sample</a></li>
+          <li><a href="/learn/collections">Collections</a></li>
+          <li><a href="/learn/not-mine">Accounts that are not yours</a></li>
+          <li><a href="/learn/mistakes">Mistakes to look for</a></li>
+          <li><a href="/learn/how-long">How long items stay</a></li>
+          <li><a href="/learn/">All guides</a></li>
+        </ul>
+      </div>
+      <div>
         <h4>Legal</h4>
         <ul>
           <li><a href="/terms">Terms of Use</a></li>
@@ -78,6 +92,7 @@ def page(slug, title, desc, body, current=''):
         <h4>Help</h4>
         <ul>
           <li><a href="/support">Support</a></li>
+          <li><a href="/about">About</a></li>
           <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
           <li><a href="tel:{PHONE_TEL}">{PHONE}</a></li>
           <li style="color:var(--muted)">We reply within two business days.</li>
@@ -154,13 +169,16 @@ def index():
 </section>
 
 <section id="questions" class="alt" aria-labelledby="q-h">
-  <div class="wrap narrow">
-    <div class="sh"><h2 id="q-h">Questions</h2></div>
+  <div class="wrap qwrap">
+    <div class="sh"><h2 id="q-h">Questions</h2><p>Want the whole picture?</p><ul class="qlinks"><li><a href="/guide">Step by step guide</a></li><li><a href="/learn/dispute-letter">Free dispute letter sample</a></li><li><a href="/learn/collections">Collections</a></li><li><a href="/learn/">All guides</a></li></ul></div>
     <div class="qa">
+      <details class="q"><summary>How do I fix a mistake on my credit report?</summary><div><p>Get your free report, find the item that is wrong, and send the credit bureau a letter that says what is wrong and why, with copies of any proof. ZungiDill writes that letter from your taps and keeps track of the answer.</p></div></details>
       <details class="q"><summary>Is this credit repair?</summary><div><p>No. Nobody does it for you, and nobody charges you every month for promises. ZungiDill is a tool you use yourself. You decide what is wrong and you send your own letters.</p></div></details>
       <details class="q"><summary>Where do I get my credit report?</summary><div><p>Free at AnnualCreditReport.com, the official site. Save it as a PDF and open it in ZungiDill. The <a href="/support">Support page</a> walks you through it.</p></div></details>
       <details class="q"><summary>What does it cost?</summary><div><p>Checking your report and drafting letters is free. You pay only when a letter is ready to print, save or send, one at a time or with a monthly plan. You see the price before you pay. <a href="/terms#prices">See prices</a></p></div></details>
       <details class="q"><summary>Can I use it for someone else?</summary><div><p>No. ZungiDill is for your own credit report only. A report in another name is stopped and not used.</p></div></details>
+      <details class="q"><summary>Will disputing hurt my score?</summary><div><p>No. Asking a credit bureau to check a mistake does not lower your score.</p></div></details>
+      <details class="q"><summary>What if they cannot prove it?</summary><div><p>If the company that reported the item cannot show it is right, it has to be fixed or taken off your report.</p></div></details>
       <details class="q"><summary>What if the item is mine and it is right?</summary><div><p>ZungiDill will not tell you to call it wrong. It shows you what you can do instead, like a goodwill letter asking a lender to remove a late payment that really happened.</p></div></details>
     </div>
   </div>
@@ -171,19 +189,18 @@ def index():
     <div class="sh">
       <h2 id="contact-h">Talk to a real person</h2>
       <p>A person reads every message and replies within two business days. You can also email <a href="mailto:{EMAIL}">{EMAIL}</a> or call <a href="tel:{PHONE_TEL}">{PHONE}</a>.</p>
-      <p class="fine" style="margin-top:8px">Please do not send your Social Security number, full account numbers or your credit report.</p>
     </div>
     <div class="forms">
       <div class="panel">
         <h3>Send us a message</h3>
         <iframe class="tally" data-tally-src="https://tally.so/embed/Zj479y?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" width="100%" height="300" frameborder="0" marginheight="0" marginwidth="0" title="Send us a message"></iframe>
-        <p class="fine fallback">Form not showing? <a href="https://tally.so/r/Zj479y" target="_blank" rel="noopener">Open it here</a></p>
+        <noscript><p class="fine"><a href="https://tally.so/r/Zj479y">Open the form</a></p></noscript>
       </div>
       <div class="panel" id="notify">
         <h3>iPhone is coming</h3>
-        <p class="fine" style="margin-top:4px">We will email you once, when it is out. <a href="/privacy#launch-list">Privacy</a></p>
         <iframe class="tally" data-tally-src="https://tally.so/embed/VLR6RJ?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" width="100%" height="150" frameborder="0" marginheight="0" marginwidth="0" title="iPhone launch list"></iframe>
-        <p class="fine fallback">Form not showing? <a href="https://tally.so/r/VLR6RJ" target="_blank" rel="noopener">Open it here</a></p>
+        <noscript><p class="fine"><a href="https://tally.so/r/VLR6RJ">Open the form</a></p></noscript>
+        <p class="fine"><a href="/privacy#launch-list">How we use your email</a></p>
       </div>
     </div>
   </div>
@@ -191,7 +208,7 @@ def index():
 <script src="https://tally.so/widgets/embed.js" async></script>
 <script src="/js/forms.js" defer></script>
 """
-    return page('index', 'ZungiDill: Fix Your Credit Report Yourself',
+    return page('index', 'Fix Your Credit Report Yourself | ZungiDill Dispute App',
         'Tired of hearing no? ZungiDill helps you check your credit report free on your phone and send your own dispute letters. No account, no Social Security number.', body)
 
 def doc(title, meta, toc, content):
@@ -246,7 +263,7 @@ def support():
 <h2 id="help">Still need help?</h2>
 <p>Email <a href="mailto:{EMAIL}">{EMAIL}</a>, or call <a href="tel:{PHONE_TEL}">{PHONE}</a>.</p>
 '''
-    return page('support', 'Support · ZungiDill', 'Help with ZungiDill: getting your report, letters, purchases, cancelling and your data.', doc('Support', 'Real answers from a real person.', toc, c), 'support')
+    return page('support', 'ZungiDill Support: Reports, Letters and Purchases', 'Help with ZungiDill: getting your free credit report, importing it, sending your letters, purchases, cancelling a plan and deleting your data.', doc('Support', 'Real answers from a real person.', toc, c), 'support')
 
 def terms():
     toc = [('what','What ZungiDill is'),('results','No guarantee of results'),('you','Your responsibilities'),('rights','Your free rights'),('prices','Prices and purchases'),('info','Your information'),('other','Other services'),('license','License and use'),('disclaimers','Disclaimers'),('liability','Limitation of liability'),('apple',"Apple's terms"),('google',"Google Play's terms"),('law','Governing law'),('changes','Changes'),('contact','Contact')]
@@ -294,7 +311,7 @@ def terms():
 <h2 id="contact">Contact</h2>
 <p>Numerita LLC, Sheridan, Wyoming<br>Email <a href="mailto:{EMAIL}">{EMAIL}</a><br>Phone <a href="tel:{PHONE_TEL}">{PHONE}</a></p>
 '''
-    return page('terms', 'Terms of Use · ZungiDill', 'The terms for using ZungiDill, including prices, subscriptions, refunds and your responsibilities.', doc('Terms of Use', 'Effective ' + EFFECTIVE, toc, c))
+    return page('terms', 'Terms of Use | ZungiDill', 'The ZungiDill Terms of Use: what the app does and does not do, prices, subscriptions, refunds, cancelling, and your part when you send letters.', doc('Terms of Use', 'Effective ' + EFFECTIVE, toc, c))
 
 def privacy():
     toc = [('never','What the app never asks for'),('phone','What stays on your phone'),('report','Your report and replies'),('diagnostics','Diagnostics on Android'),('reminders','Reminders'),('purchases','Purchases'),('links','Links to other sites'),('launch-list','The iPhone launch list'),('contact','Messages you send us'),('website','This website'),('delete','Deleting your information'),('rights','Your privacy rights'),('children','Children'),('security','Security'),('changes','Changes'),('reach','Contact')]
@@ -321,7 +338,7 @@ def privacy():
 <h2 id="contact">Messages you send us</h2>
 <p>When you use our contact form, email or call us, we receive your email address or phone number and what you tell us. The contact form is run by Tally (Tally BV), which stores what you enter and sends it to us. We use this only to answer you. We delete messages within twelve months of your last contact, or sooner if you ask. Please do not send your Social Security number, full account numbers or your credit report.</p>
 <h2 id="website">This website</h2>
-<p>This website has no ads, no analytics and no tracking cookies. Cloudflare, Inc., our website host, processes technical information like IP addresses and browser type to deliver pages and prevent abuse.</p>
+<p>This website has no ads and no tracking cookies. We use Cloudflare Web Analytics to count page visits. It does not use cookies or local storage and does not follow you across sites or over time. Cloudflare, Inc., our website host, processes technical information like IP addresses and browser type to deliver pages and prevent abuse.</p>
 <h2 id="delete">Deleting your information</h2>
 <p>In the app: tap Erase everything on the More tab, or delete the app. We cannot see, restore or delete app data for you because we never have it. For the launch list, messages or emails: email <a href="mailto:{EMAIL}">{EMAIL}</a> and we will delete it within 30 days.</p>
 <h2 id="rights">Your privacy rights</h2>
@@ -335,7 +352,7 @@ def privacy():
 <h2 id="reach">Contact</h2>
 <p>Numerita LLC, Sheridan, Wyoming<br>Email <a href="mailto:{EMAIL}">{EMAIL}</a><br>Phone <a href="tel:{PHONE_TEL}">{PHONE}</a></p>
 '''
-    return page('privacy', 'Privacy Policy · ZungiDill', 'How ZungiDill handles your information: it stays on your phone, with no account and no server.', doc('Privacy Policy', 'Effective ' + EFFECTIVE, toc, c))
+    return page('privacy', 'Privacy Policy | ZungiDill', 'How ZungiDill handles your information: your report stays on your phone, there is no account, we never ask for your Social Security number and never sell data.', doc('Privacy Policy', 'Effective ' + EFFECTIVE, toc, c))
 
 def legal():
     c = f'''
@@ -362,7 +379,89 @@ def legal():
 <h2 id="contact">Contact</h2>
 <p>Numerita LLC, Sheridan, Wyoming<br>Email <a href="mailto:{EMAIL}">{EMAIL}</a><br>Phone <a href="tel:{PHONE_TEL}">{PHONE}</a></p>
 '''
-    return page('legal', 'Legal · ZungiDill', 'ZungiDill disclosures, your rights, affiliate disclosure and how to delete your data.', doc('Legal', 'Terms, privacy, disclosures and your data.', [], c))
+    return page('legal', 'Legal Disclosures | ZungiDill', 'ZungiDill legal disclosures: not a credit repair company or a law firm, your rights, our affiliate disclosure and how to delete your data.', doc('Legal', 'Terms, privacy, disclosures and your data.', [], c))
+
+def guide():
+    toc = [('reports','Get your free reports'),('look','Look for what is wrong'),('theft','If someone used your name'),('send','Send your dispute'),('next','What happens next'),('stays','If they say it stays'),('right','If it is yours and it is right'),('repair','About credit repair companies'),('sources','Where this comes from')]
+    c = f'''
+<div class="short"><h2>The short version</h2><ul><li>Get your free reports from all three credit bureaus.</li><li>Find what is wrong and write down why.</li><li>Send a dispute to each bureau that shows it, with copies of your proof.</li><li>They usually have 30 days to check it, and they must send you the results in writing.</li></ul></div>
+<h2 id="reports">Get your free reports</h2>
+<p>Go to <a href="https://www.annualcreditreport.com">AnnualCreditReport.com</a>, the official site. Your reports from Equifax, Experian and TransUnion are free there every week. Get all three, because a mistake can show on one and not the others.</p>
+<h2 id="look">Look for what is wrong</h2>
+<ul><li>An account you never opened</li><li>A late payment you paid on time</li><li>A balance or credit limit that is wrong</li><li>The same account listed twice with a balance owed on both</li><li>An old debt that should have dropped off</li><li>A name, address or employer that is not yours</li></ul>
+<p>Write down each item and what is wrong with it. Find any proof you have, like a bank statement, a receipt or a letter.</p>
+<h2 id="theft">If someone used your name</h2>
+<p>If someone else opened an account in your name, report it at <a href="https://www.identitytheft.gov">IdentityTheft.gov</a> first. Send that report to the credit bureaus with proof of who you are and ask them to block the accounts. They must block them within four business days, which is faster than a regular dispute.</p>
+<h2 id="send">Send your dispute</h2>
+<p>Dispute with each credit bureau that shows the mistake. You can do it online, by phone or by mail. Mail gives you the best record.</p>
+<ul><li>Say who you are and which item is wrong.</li><li>Say what is wrong and why.</li><li>Ask them to fix it or take it off.</li><li>Add copies of your proof. Never send originals.</li><li>Keep a copy of everything you send.</li></ul>
+<p>If you mail it, use certified mail with a return receipt, so you can prove the day it arrived. You can also dispute with the company that reported the item, like the bank or the collection agency.</p>
+<h2 id="next">What happens next</h2>
+<p>The credit bureau sends your dispute and your proof to the company that reported the item. The bureau usually has 30 days to finish. If that company cannot show the item is right, it has to be fixed or taken off.</p>
+<p>The bureau must send you the results in writing. If anything changed, you also get a free copy of your report.</p>
+<h2 id="stays">If they say it stays</h2>
+<ul><li>Ask the credit bureau how they checked it.</li><li>Send new proof if you find more.</li><li>Dispute with the company that reported it.</li><li>Ask the bureau to add a short statement about your dispute to your report.</li><li>File a complaint with the Consumer Financial Protection Bureau at <a href="https://www.consumerfinance.gov/complaint/">consumerfinance.gov/complaint</a>.</li></ul>
+<h2 id="right">If it is yours and it is right</h2>
+<p>A dispute is for mistakes. It will not take off something that is true, and anyone who promises that is not being straight with you. Most late payments and collections drop off after seven years. Bankruptcy can stay for ten.</p>
+<p>You can still write a goodwill letter asking the lender to remove a late payment that really happened. Some lenders say yes, mostly when the rest of your history is good.</p>
+<h2 id="repair">About credit repair companies</h2>
+<p>You do not need to pay anyone to dispute for you. Everything they do, you can do yourself for free. By law, a credit repair company cannot charge you before it finishes the work it promised. If one asks for money up front, walk away.</p>
+<div class="cta"><h3>Do it from your phone</h3><p>ZungiDill walks you through every step above. Open your report, tap what is wrong, and it writes the letter and reminds you when the answer is due.</p><div class="stores"><a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="176" height="52"></a></div></div>
+<h2 id="sources">Where this comes from</h2>
+<ul><li><a href="https://consumer.ftc.gov/articles/disputing-errors-your-credit-reports">Federal Trade Commission: Disputing errors on your credit reports</a></li><li><a href="https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-an-error-on-my-credit-report-en-314/">Consumer Financial Protection Bureau: How do I dispute an error on my credit report?</a></li><li><a href="https://www.identitytheft.gov">IdentityTheft.gov</a></li><li><a href="https://www.annualcreditreport.com">AnnualCreditReport.com</a></li></ul>
+<p class="fine" style="margin-top:16px">This guide is general information, not legal advice.</p>
+'''
+    return page('guide', 'How to Fix Your Credit Report Yourself | ZungiDill', 'A free do it yourself guide to fixing mistakes on your credit report: get your reports, spot errors, send your dispute and know what happens next.', doc('How to fix a mistake on your credit report', 'Updated ' + L.UPDATED + ' · Checked against official FTC and CFPB sources', toc, c), 'learn')
+
+import learn as L
+LBY={a['slug']:a for a in L.ARTICLES}
+def src_list(keys):
+    return '<ol class="sources">'+''.join(f'<li><a href="{L.SRC[k][1]}">{L.SRC[k][0]}</a></li>' for k in keys)+'</ol>'
+CTA='<div class="cta"><h3>Do it from your phone</h3><p>Open your report in ZungiDill, tap what is wrong, and it writes the letter and reminds you when the answer is due.</p><div class="stores"><a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="176" height="52" loading="lazy"></a></div></div>'
+def article(a):
+    toc=[(i,h) for i,h,_ in a['sections']]+[('faq','Common questions'),('sources','Sources')]
+    body=''.join(f'<h2 id="{i}">{h}</h2>\n{html}\n' for i,h,html in a['sections'])
+    faq='<h2 id="faq">Common questions</h2>\n'+''.join(f'<h3>{q}</h3><p>{ans}</p>\n' for q,ans in a['faqs'])
+    rel=''.join(f'<li><a href="/learn/{r}"><b>{LBY[r]["title"]}</b><span>{LBY[r]["card"]}</span></a></li>' for r in a['related'])
+    t='<nav class="toc" aria-label="On this page"><b>On this page</b><ol>'+''.join(f'<li><a href="#{x}">{l}</a></li>' for x,l in toc)+'</ol></nav>'
+    c=f"""<div class="doc art"><div class="wrap narrow">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">›</span> <a href="/learn/">Learn</a> <span aria-hidden="true">›</span> <span>{a['title']}</span></nav>
+<h1>{a['title']}</h1>
+<p class="meta">Updated {L.UPDATED} · Checked against official sources</p>
+<div class="short answer"><h2>The quick answer</h2><p>{a['answer']}</p></div>
+{t}
+{body}{faq}{CTA}
+<h2 id="sources">Sources</h2>
+{src_list(a['sources'])}
+<p class="fine" style="margin-top:14px">General information, not legal advice.</p>
+<div class="related"><h2>Keep reading</h2><ul class="cards">{rel}</ul></div>
+</div></div>"""
+    return page('learn/'+a['slug'], a['seo'], a['desc'], c, 'learn')
+def learn_hub():
+    items=[('/guide','How to fix a mistake on your credit report','The full step by step guide. Start here.')]+[(f"/learn/{a['slug']}",a['title'],a['card']) for a in L.ARTICLES]
+    cards=''.join(f'<li><a href="{u}"><b>{t}</b><span>{d}</span></a></li>' for u,t,d in items)
+    c=f"""<div class="doc"><div class="wrap">
+<div class="narrow" style="padding:0"><h1>Learn</h1>
+<p class="lede" style="margin-top:14px">Plain answers about fixing your credit report yourself, for free. Every guide is checked against federal law and official pages from the FTC and the CFPB, and each one lists its sources.</p></div>
+<ul class="cards hub">{cards}</ul>
+<p class="fine" style="margin-top:24px">Updated {L.UPDATED}. General information, not legal advice.</p>
+</div></div>"""
+    return page('learn/', 'Free Credit Report Guides: Do It Yourself | ZungiDill', 'Free plain language guides to fixing your credit report yourself: dispute letters, collections, identity theft, late payments and car loans.', c, 'learn')
+
+def about():
+    c = f"""<div class="doc"><div class="wrap narrow">
+<h1>About ZungiDill</h1>
+<p class="lede" style="margin-top:16px">ZungiDill is a phone app made by Numerita LLC, a small software company in Sheridan, Wyoming. It helps you check your own credit report and send your own dispute letters, without paying anyone every month.</p>
+<h2 id="why">Why it exists</h2>
+<p>Credit repair companies charge every month for letters you have the right to send yourself, and most people never see what was sent. ZungiDill puts that work in your hands. You read every letter, and you decide what goes out.</p>
+<h2 id="honest">How the app stays honest</h2>
+<ul><li>Your report stays on your phone. We never see it.</li><li>There is no account, and the app never asks for your Social Security number.</li><li>It only works with your own credit report.</li><li>It will not tell you to call something wrong when it is right.</li></ul>
+<h2 id="guides">How we write our guides</h2>
+<p>Every page in <a href="/learn/">Learn</a> is checked against federal law and official pages from the Federal Trade Commission and the Consumer Financial Protection Bureau. Each one lists its sources and the date it was last checked, and we update them when the rules change. They are general information, not legal advice.</p>
+<h2 id="reach">Reach us</h2>
+<p>Numerita LLC, Sheridan, Wyoming<br>Email <a href="mailto:{EMAIL}">{EMAIL}</a><br>Phone <a href="tel:{PHONE_TEL}">{PHONE}</a></p>
+</div></div>"""
+    return page('about', 'About ZungiDill and Numerita LLC', 'ZungiDill is a do it yourself credit report app from Numerita LLC in Wyoming. Why we built it, how the app protects you and how we check our guides.', c)
 
 def thanks():
     c = f'''<div class="doc"><div class="wrap narrow" style="text-align:left"><h1>Got it. Thank you.</h1><p class="lede" style="margin-top:20px">Your message reached us. A real person will get back to you within two business days. If you joined the iPhone list, you will hear from us once, when the app is out.</p><p style="margin-top:28px"><a class="btn" href="/">Back to ZungiDill</a></p></div></div>'''
@@ -372,7 +471,7 @@ def notfound():
     c = f'''<div class="doc"><div class="wrap narrow"><h1>That page is not here.</h1><p class="lede" style="margin-top:20px">The link may be old. Everything you need is one tap away.</p><p style="margin-top:28px"><a class="btn" href="/">Go to the home page</a></p></div></div>'''
     return page('404', 'Page not found · ZungiDill', 'Page not found.', c)
 
-files = {'index.html': index(), 'support.html': support(), 'terms.html': terms(), 'privacy.html': privacy(), 'legal.html': legal(), 'thanks.html': thanks(), '404.html': notfound()}
+files = {'index.html': index(), 'guide.html': guide(), 'learn/index.html': learn_hub(), **{f"learn/{a['slug']}.html": article(a) for a in L.ARTICLES}, 'support.html': support(), 'about.html': about(), 'terms.html': terms(), 'privacy.html': privacy(), 'legal.html': legal(), 'thanks.html': thanks(), '404.html': notfound()}
 def rel(html):
     def fix(m):
         attr,path=m.group(1),m.group(2)
@@ -382,42 +481,64 @@ def rel(html):
         else:target=base+'.html'
         return f'{attr}="{target}'+('#'+frag if frag else '')+'"'
     return re.sub(r'(href|src|action)="/(?!/)([^"]*)"',fix,html)
-files={k:(v if k=='404.html' else rel(v)) for k,v in files.items()}
+
 import json, html as _h
 PLAY='https://play.google.com/store/apps/details?id=com.numerita.zungidil'
 def strip(x): return _h.unescape(re.sub(r'<[^>]+>','',x)).strip()
 def ld(obj): return '<script type="application/ld+json">'+json.dumps(obj,ensure_ascii=False,separators=(',',':'))+'</script>'
 org={'@type':'Organization','@id':SITE+'/#org','name':'Numerita LLC','url':SITE+'/','logo':SITE+'/img/logo.png','email':EMAIL,
      'telephone':'+1-682-247-7649','address':{'@type':'PostalAddress','addressLocality':'Sheridan','addressRegion':'WY','addressCountry':'US'},
-     'contactPoint':{'@type':'ContactPoint','contactType':'customer support','email':EMAIL,'telephone':'+1-682-247-7649','availableLanguage':'English'}}
+     'sameAs':[PLAY],'contactPoint':{'@type':'ContactPoint','contactType':'customer support','email':EMAIL,'telephone':'+1-682-247-7649','availableLanguage':'English'}}
 web={'@type':'WebSite','@id':SITE+'/#site','name':'ZungiDill','url':SITE+'/','publisher':{'@id':SITE+'/#org'},'inLanguage':'en-US'}
 app={'@type':'MobileApplication','@id':SITE+'/#app','name':'ZungiDill','operatingSystem':'Android','applicationCategory':'FinanceApplication',
      'description':'Check your own credit report on your phone, mark what is wrong, and send your own dispute letters. No account and no Social Security number.',
-     'url':SITE+'/','downloadUrl':PLAY,'installUrl':PLAY,'publisher':{'@id':SITE+'/#org'},'image':SITE+'/img/og.png'}
+     'url':SITE+'/','downloadUrl':PLAY,'installUrl':PLAY,'publisher':{'@id':SITE+'/#org'},'image':SITE+'/img/og.png','offers':{'@type':'Offer','price':'0','priceCurrency':'USD'}}
 qa=re.findall(r'<details class="q"><summary>(.*?)</summary><div>(.*?)</div></details>',files['index.html'],re.S)
 faq={'@type':'FAQPage','@id':SITE+'/#faq','mainEntity':[{'@type':'Question','name':strip(q),'acceptedAnswer':{'@type':'Answer','text':strip(a)}} for q,a in qa]}
 assert len(qa)>=3
 home=ld({'@context':'https://schema.org','@graph':[org,web,app,faq]})
-names={'support.html':'Support','terms.html':'Terms of Use','privacy.html':'Privacy Policy','legal.html':'Legal'}
+def crumbs(items): return {'@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':i+1,'name':n,'item':u} for i,(n,u) in enumerate(items)]}
+def faqld(pairs): return {'@type':'FAQPage','mainEntity':[{'@type':'Question','name':strip(q),'acceptedAnswer':{'@type':'Answer','text':strip(a)}} for q,a in pairs]}
+def artld(url,headline,desc,cites,about):
+    return {'@type':'Article','@id':url+'#article','headline':headline,'description':desc,'datePublished':L.UPDATED_ISO,'dateModified':L.UPDATED_ISO,
+      'author':{'@id':SITE+'/#org'},'publisher':{'@id':SITE+'/#org'},'mainEntityOfPage':url,'image':SITE+'/img/og.png','inLanguage':'en-US',
+      'isPartOf':{'@id':SITE+'/#site'},'about':about,'citation':cites}
+names={'about.html':'About ZungiDill','support.html':'Support','terms.html':'Terms of Use','privacy.html':'Privacy Policy','legal.html':'Legal'}
 for k in list(files):
-    v=files[k]
+    v=files[k]; g=None
     if k=='index.html': v=v.replace('</head>',home+'\n</head>',1)
+    elif k=='guide.html':
+        u=SITE+'/guide'
+        cites=[L.SRC[x][1] for x in ('ftc_dispute','cfpb_dispute','idt','acr','fcra_1681i','fcra_1681c2','croa_1679b')]
+        g=[artld(u,'How to fix a mistake on your credit report','A plain step by step guide to disputing a mistake on your credit report yourself, for free.',cites,'Disputing credit report errors'),
+           crumbs([('Home',SITE+'/'),('Learn',SITE+'/learn/'),('How to fix a mistake on your credit report',u)])]
+    elif k=='learn/index.html':
+        u=SITE+'/learn/'
+        g=[{'@type':'CollectionPage','@id':u,'name':'Learn','url':u,'isPartOf':{'@id':SITE+'/#site'},'publisher':{'@id':SITE+'/#org'},
+            'mainEntity':{'@type':'ItemList','itemListElement':[{'@type':'ListItem','position':1,'url':SITE+'/guide'}]+[{'@type':'ListItem','position':i+2,'url':f"{SITE}/learn/{a['slug']}"} for i,a in enumerate(L.ARTICLES)]}},
+           crumbs([('Home',SITE+'/'),('Learn',u)])]
+    elif k.startswith('learn/'):
+        a=LBY[k[6:-5]]; u=f"{SITE}/learn/{a['slug']}"
+        g=[artld(u,a['title'],a['desc'],[L.SRC[x][1] for x in a['sources']],a['title']),
+           crumbs([('Home',SITE+'/'),('Learn',SITE+'/learn/'),(a['title'],u)]), faqld(a['faqs'])]
     elif k in names:
         slug=k[:-5]
-        v=v.replace('</head>',ld({'@context':'https://schema.org','@type':'WebPage','name':names[k],'url':f'{SITE}/{slug}','isPartOf':{'@id':SITE+'/#site'},
-          'publisher':{'@id':SITE+'/#org'},'breadcrumb':{'@type':'BreadcrumbList','itemListElement':[
-          {'@type':'ListItem','position':1,'name':'Home','item':SITE+'/'},{'@type':'ListItem','position':2,'name':names[k],'item':f'{SITE}/{slug}'}]}})+'\n</head>',1)
+        g=[{'@type':'WebPage','name':names[k],'url':f'{SITE}/{slug}','isPartOf':{'@id':SITE+'/#site'},'publisher':{'@id':SITE+'/#org'}},
+           crumbs([('Home',SITE+'/'),(names[k],f'{SITE}/{slug}')])]
+    if g: v=v.replace('</head>',ld({'@context':'https://schema.org','@graph':g})+'\n</head>',1)
     v=v.replace('{NOINDEX}','\n<meta name="robots" content="noindex">')
     files[k]=v
 
 for name, html in files.items():
     if re.search('[–—]', html):
         raise SystemExit('dash found in ' + name)
+    (OUT / name).parent.mkdir(parents=True, exist_ok=True)
     (OUT / name).write_text(html, encoding='utf-8')
-pages=['/','/support','/terms','/privacy','/legal']
+pages=['/','/guide','/learn/']+[f"/learn/{a['slug']}" for a in L.ARTICLES]+['/about','/support','/terms','/privacy','/legal']
 (OUT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{SITE}{u}</loc><lastmod>{LASTMOD}</lastmod></url>\n' for u in pages)+'</urlset>\n',encoding='utf-8')
 bots=['GPTBot','OAI-SearchBot','ChatGPT-User','PerplexityBot','Perplexity-User','ClaudeBot','Claude-SearchBot','Claude-User','Google-Extended','Applebot-Extended','Bingbot','Googlebot']
 (OUT/'robots.txt').write_text('User-agent: *\nAllow: /\n\n'+''.join(f'User-agent: {b}\nAllow: /\n\n' for b in bots)+f'Sitemap: {SITE}/sitemap.xml\n',encoding='utf-8')
+GUIDES="\n".join([f"- [How to fix a mistake on your credit report]({SITE}/guide): The full step by step guide to disputing credit report errors yourself, for free"]+[f"- [{x['title']}]({SITE}/learn/{x['slug']}): {x['answer']}" for x in L.ARTICLES])
 llms=f"""# ZungiDill
 
 > ZungiDill is a phone app for people who want to fix mistakes on their own credit report themselves. You open your free credit report in the app, answer one question per account (not mine, I do not recognize it, mine but something is wrong, or mine and right), and ZungiDill writes the dispute letters for you to send to the credit bureaus. It is not a credit repair company. It has no account and never asks for a Social Security number. Your report stays on your phone. Made by Numerita LLC in Sheridan, Wyoming.
@@ -428,9 +549,14 @@ llms=f"""# ZungiDill
 - Works only with your own credit report. A report in another person's name is stopped.
 - Where to get a free report: AnnualCreditReport.com, the official site.
 
+## Guides
+
+{GUIDES}
+
 ## Pages
 
 - [Home]({SITE}/): What ZungiDill does, how it works and common questions
+- [About]({SITE}/about): Who makes ZungiDill and how the guides are checked
 - [Support]({SITE}/support): Getting your report, sending letters, purchases, cancelling and deleting your data
 - [Terms of Use]({SITE}/terms): Prices, subscriptions, refunds and your responsibilities
 - [Privacy Policy]({SITE}/privacy): What stays on your phone and what we never collect
@@ -441,7 +567,18 @@ llms=f"""# ZungiDill
 - Email: {EMAIL}
 - Phone: {PHONE}
 """
-(OUT/'llms.txt').write_text(llms,encoding='utf-8')
-for n in ('sitemap.xml','robots.txt','llms.txt'):
+(OUT/'llms.txt').write_text(llms+f"\n## Full text\n\n- [All guides as plain text]({SITE}/llms-full.txt)\n",encoding='utf-8')
+def plain(h):
+    h=re.sub(r'<(script|nav|style)[^>]*>.*?</\1>','',h,flags=re.S)
+    h=re.sub(r'<h1[^>]*>(.*?)</h1>',r'\n# \1\n',h,flags=re.S); h=re.sub(r'<h2[^>]*>(.*?)</h2>',r'\n## \1\n',h,flags=re.S); h=re.sub(r'<h3[^>]*>(.*?)</h3>',r'\n### \1\n',h,flags=re.S)
+    h=re.sub(r'<li[^>]*>',r'\n- ',h); h=re.sub(r'<tr[^>]*>',r'\n',h); h=re.sub(r'</t[dh]>',' | ',h); h=re.sub(r'<(p|br|pre|div)[^>]*>',r'\n',h)
+    h=_h.unescape(re.sub(r'<[^>]+>','',h)); h=re.sub(r'[ \t]+\n','\n',h); return re.sub(r'\n{3,}','\n\n',h).strip()
+full=['# ZungiDill guides, full text\n\nSource: '+SITE+'/learn/ . Updated '+L.UPDATED_ISO+'. General information, not legal advice.']
+for k in ['guide.html']+[f"learn/{x['slug']}.html" for x in L.ARTICLES]:
+    m=re.search(r'<main id="main">(.*?)</main>',files[k],re.S)
+    url=SITE+'/'+k[:-5]
+    full.append('URL: '+url+'\n\n'+plain(m.group(1).split('<div class="related">')[0]))
+(OUT/'llms-full.txt').write_text('\n\n---\n\n'.join(full)+'\n',encoding='utf-8')
+for n in ('sitemap.xml','robots.txt','llms.txt','llms-full.txt'):
     if re.search('[–—]',(OUT/n).read_text()): raise SystemExit('dash in '+n)
 print('built', ', '.join(files), '+ sitemap.xml robots.txt llms.txt')

@@ -4,3 +4,5 @@ wrangler.jsonc
 .assetsignore
 build.py
 README-website.txt
+learn.py
+__pycache__
