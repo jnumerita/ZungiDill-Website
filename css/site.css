@@ -40,7 +40,7 @@ nav a:hover,nav a[aria-current=page]{color:var(--ink)}
 .stores img{height:52px;width:auto}
 
 /* sections */
-section{padding:72px 0}
+section{padding:60px 0}
 section.alt{background:#fff}
 section.first{border-top:0;padding:56px 0 64px}
 .sh{max-width:640px;margin-bottom:32px}
@@ -163,3 +163,12 @@ footer .logo img{height:30px;width:auto}
 .short ul{margin:0;padding-left:20px;display:grid;gap:6px}
 .short li{color:var(--ink)!important}
 .doc h2{padding-top:8px}
+iframe.tally{display:block;border:0;width:100%;margin-top:8px}
+.fallback{margin-top:6px}
+.forms{display:grid;grid-template-columns:1.25fr 1fr;gap:20px;align-items:start}
+.forms .panel{padding:20px 22px}
+.forms .panel+.panel{margin-top:0}
+#contact .sh{margin-bottom:22px;max-width:720px}
+iframe.tally{margin-top:4px}
+.fallback{margin-top:2px;font-size:12.5px}
+@media (max-width:900px){.forms{grid-template-columns:1fr}}
