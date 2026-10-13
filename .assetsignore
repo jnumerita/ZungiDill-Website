@@ -1,0 +1,6 @@
+.git
+.github
+wrangler.jsonc
+.assetsignore
+build.py
+README-website.txt

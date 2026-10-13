@@ -7,15 +7,7 @@ EVERYTHING IS IN THIS ZIP
 TO LOOK AT IT ON YOUR COMPUTER
    Unzip, open the folder, double click index.html. Every page and link works from the folder.
 
-TO PUT IT LIVE
-   Netlify > your site > Deploys > drag this unzipped folder onto the box at the bottom.
-
-FORMS (Netlify > Forms, after the first deploy)
-   "contact": Form notifications > Add notification > Email > hola.numerita@gmail.com
-   "waitlist": the iPhone list.
-
-LINKS TO USE IN THE STORES (they work once this folder is live on Netlify)
-   Privacy Policy:  https://zungidill.netlify.app/privacy.html
-   Terms of Use:    https://zungidill.netlify.app/terms.html
-   Support:         https://zungidill.netlify.app/support.html
-   Website:         https://zungidill.netlify.app/
+TO PUT IT LIVE (Cloudflare, from GitHub)
+   Push this folder to github.com/jnumerita/ZungiDill-Website with the push script.
+   Cloudflare builds the site from the repo every time you push.
+   wrangler.jsonc and .assetsignore are Cloudflare settings. Keep them in the repo.
