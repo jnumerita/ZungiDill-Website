@@ -251,3 +251,25 @@ section.first .hero>div:first-child{padding:56px 0}
 .ndone{font-size:15.5px;line-height:1.5;color:var(--ink2)}
 .ndone b{color:#067647;display:block;font-size:17px;margin-bottom:2px}
 .nbtn:disabled{opacity:.7;cursor:default}
+/* scrolling screen wall */
+.wall .c1,.wall .c2,.wall .c3{margin-top:0}
+.wall .col{height:100%;overflow:visible}
+.wall .track{display:flex;flex-direction:column;gap:28px;animation:zdscroll 46s linear infinite;will-change:transform;backface-visibility:hidden;transform:translate3d(0,0,0)}
+.wall .c2 .track{animation-direction:reverse;animation-duration:54s}
+.wall .c3 .track{animation-duration:50s;animation-delay:-18s}
+.wall .c1 .track{animation-delay:-8s}
+.wall:hover .track{animation-play-state:paused}
+@keyframes zdscroll{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,calc(-50% - 14px),0)}}
+@media (max-width:900px){.wall .track{gap:16px}@keyframes zdscroll{from{transform:translateY(0)}to{transform:translateY(calc(-50% - 8px))}}}
+@media (prefers-reduced-motion:reduce){.wall .track{animation:none}}
+/* scrolling screen wall */
+.wall .c1,.wall .c2,.wall .c3{margin-top:0}
+.wall .track{display:flex;flex-direction:column;gap:28px;animation:zdscroll 46s linear infinite;will-change:transform;backface-visibility:hidden;transform:translate3d(0,0,0)}
+.wall .c2 .track{animation-direction:reverse;animation-duration:54s}
+.wall .c3 .track{animation-duration:50s;animation-delay:-18s}
+.wall .c1 .track{animation-delay:-8s}
+.wall:hover .track{animation-play-state:paused}
+@keyframes zdscroll{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,calc(-50% - 14px),0)}}
+@media (max-width:900px){.wall .track{gap:16px;animation-name:zdscroll2}}
+@keyframes zdscroll2{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,calc(-50% - 8px),0)}}
+@media (prefers-reduced-motion:reduce){.wall .track{animation:none}}
