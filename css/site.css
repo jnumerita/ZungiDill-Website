@@ -246,3 +246,8 @@ section.first .hero>div:first-child{padding:56px 0}
 .ncheck{flex-wrap:nowrap;align-items:flex-start}
 .ncheck input{margin-top:2px;flex:none}
 @media (max-width:420px){.nrow input{flex:none;width:100%}}
+.nmsg{margin-top:8px;font-size:13.5px;color:#B42318}
+.nmsg a{color:#B42318}
+.ndone{font-size:15.5px;line-height:1.5;color:var(--ink2)}
+.ndone b{color:#067647;display:block;font-size:17px;margin-bottom:2px}
+.nbtn:disabled{opacity:.7;cursor:default}

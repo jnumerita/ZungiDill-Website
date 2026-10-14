@@ -141,6 +141,7 @@ def index():
       <form class="notify" id="notify" action="https://tally.so/r/VLR6RJ" method="get" target="_blank" rel="noopener">
         <label for="nemail"><b>Get notified when ZungiDill is on the App Store</b></label>
         <div class="nrow"><input id="nemail" name="email" type="email" placeholder="Your email" autocomplete="email" required><button class="nbtn" type="submit">Notify me</button></div>
+        <p class="nmsg" role="status" aria-live="polite" hidden></p>
         <label class="ncheck"><input type="checkbox" required><span>Email me once when the iPhone app is available. Nothing else. <a href="/privacy#launch-list">Privacy</a></span></label>
       </form>
       <ul class="ticks"><li>Free to check</li><li>No account</li><li>No Social Security number</li><li>Stays on your phone</li><li>No monthly plan required</li></ul>
@@ -206,6 +207,7 @@ def index():
 </section>
 <script src="https://tally.so/widgets/embed.js" async></script>
 <script src="/js/forms.js" defer></script>
+<script src="/js/notify.js" defer></script>
 """
     return page('index', 'Fix Your Credit Report Yourself | ZungiDill Dispute App',
         'Tired of hearing no? ZungiDill helps you check your credit report free on your phone and send your own dispute letters. No account, no Social Security number.', body)
@@ -333,7 +335,7 @@ def privacy():
 <h2 id="links">Links to other sites</h2>
 <p>The app links to sites such as AnnualCreditReport.com, the credit bureaus, IdentityTheft.gov, the CFPB, OptOutPrescreen.com and SmartCredit. Their own privacy policies apply. Nothing you enter in ZungiDill is passed to them. SmartCredit is an optional affiliate: Numerita LLC may earn a commission through the link, and no user information is shared with SmartCredit.</p>
 <h2 id="launch-list">The iPhone launch list</h2>
-<p>The sign up form is run by Tally (Tally BV), which stores the email address you enter and sends it to us. We keep your email address and the date you signed up. We use it only to email you when the iPhone app launches. It is never sold, rented, shared or added to another list. We delete the list after the launch email goes out. To be removed sooner, email <a href="mailto:{EMAIL}">{EMAIL}</a> from the address you signed up with, or reply to the launch email.</p>
+<p>When you sign up on our website, your email address is sent to us by FormSubmit, an email delivery service. If you use our Tally form instead, Tally (Tally BV) stores it and sends it to us. We keep your email address and the date you signed up. We use it only to email you when the iPhone app launches. It is never sold, rented, shared or added to another list. We delete the list after the launch email goes out. To be removed sooner, email <a href="mailto:{EMAIL}">{EMAIL}</a> from the address you signed up with, or reply to the launch email.</p>
 <h2 id="contact">Messages you send us</h2>
 <p>When you use our contact form, email or call us, we receive your email address or phone number and what you tell us. The contact form is run by Tally (Tally BV), which stores what you enter and sends it to us. We use this only to answer you. We delete messages within twelve months of your last contact, or sooner if you ask. Please do not send your Social Security number, full account numbers or your credit report.</p>
 <h2 id="website">This website</h2>
@@ -528,6 +530,20 @@ for k in list(files):
     v=v.replace('{NOINDEX}','\n<meta name="robots" content="noindex">')
     files[k]=v
 
+import hashlib
+_vh={}
+def _ver(path):
+    if path not in _vh:
+        fp=OUT/path
+        _vh[path]=hashlib.md5(fp.read_bytes()).hexdigest()[:8] if fp.exists() else None
+    return _vh[path]
+def bust(html):
+    def f(m):
+        attr,path=m.group(1),m.group(2)
+        v=_ver(path)
+        return f'{attr}="/{path}?v={v}"' if v else m.group(0)
+    return re.sub(r'(src|href)="/((?:css|js|img|fonts)/[^"?#]+)"',f,html)
+files={k:bust(v) for k,v in files.items()}
 for name, html in files.items():
     if re.search('[–—]', html):
         raise SystemExit('dash found in ' + name)
