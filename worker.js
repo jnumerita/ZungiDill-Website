@@ -59,6 +59,8 @@ function periodEnd(sub) {
   return ((item && item.current_period_end) || sub.current_period_end || 0) * 1000;
 }
 const ACTIVE = { active: 1, trialing: 1 };
+function newKey() { const a = new Uint8Array(24); crypto.getRandomValues(a); return Array.from(a, b => b.toString(16).padStart(2, '0')).join(''); }
+function keyOk(sub, k) { const want = sub.metadata && sub.metadata.zd_key; if (!want || typeof k !== 'string' || k.length !== want.length) return false; let d = 0; for (let i = 0; i < k.length; i++) d |= k.charCodeAt(i) ^ want.charCodeAt(i); return d === 0; }
 const okId = (s, p) => typeof s === 'string' && s.startsWith(p) && /^[A-Za-z0-9_]{8,255}$/.test(s);
 
 async function api(request, env, url) {
@@ -98,7 +100,7 @@ async function api(request, env, url) {
       params = {
         ...common, mode: 'subscription',
         line_items: { 0: { quantity: 1, price_data: { currency: 'usd', unit_amount: MONTHLY, recurring: { interval: 'month' }, product_data: { name: 'ZungiDill Monthly', description: 'One round each month: a letter to each credit bureau, plus company letters.' } } } },
-        subscription_data: { description: 'ZungiDill Monthly', metadata: { app: 'zungidill-web' } }
+        subscription_data: { description: 'ZungiDill Monthly', metadata: { app: 'zungidill-web', zd_key: newKey() } }
       };
       if (b.intro !== false) params.discounts = { 0: { coupon: await ensureIntroCoupon(env) } };
       else params.allow_promotion_codes = 'true';
@@ -115,7 +117,7 @@ async function api(request, env, url) {
     if (s.mode === 'subscription') {
       const sub = s.subscription;
       if (!sub || !ACTIVE[sub.status]) return json({ error: 'not paid' }, 402);
-      return json({ kind: 'sub', sub: sub.id, expires: periodEnd(sub) });
+      return json({ kind: 'sub', sub: sub.id, key: (sub.metadata && sub.metadata.zd_key) || '', expires: periodEnd(sub) });
     }
     if (s.payment_status !== 'paid' || !s.payment_intent) return json({ error: 'not paid' }, 402);
     const pi = s.payment_intent;
@@ -129,7 +131,7 @@ async function api(request, env, url) {
     if (!okId(id, 'sub_')) return json({ error: 'bad request' }, 400);
     try {
       const sub = await stripe(env, 'GET', '/subscriptions/' + encodeURIComponent(id));
-      if (!sub.metadata || sub.metadata.app !== 'zungidill-web') return json({ active: false });
+      if (!sub.metadata || sub.metadata.app !== 'zungidill-web' || !keyOk(sub, url.searchParams.get('key'))) return json({ active: false });
       return json({ active: !!ACTIVE[sub.status], expires: periodEnd(sub), cancelAt: (sub.cancel_at || 0) * 1000 });
     } catch (e) { if (e.status === 404) return json({ active: false }); throw e; }
   }
@@ -138,7 +140,7 @@ async function api(request, env, url) {
     const id = url.searchParams.get('sub');
     if (!okId(id, 'sub_')) return json({ error: 'bad request' }, 400);
     const sub = await stripe(env, 'GET', '/subscriptions/' + encodeURIComponent(id));
-    if (!sub.metadata || sub.metadata.app !== 'zungidill-web') return json({ error: 'not found' }, 404);
+    if (!sub.metadata || sub.metadata.app !== 'zungidill-web' || !keyOk(sub, url.searchParams.get('key'))) return json({ error: 'not found' }, 404);
     const p = await stripe(env, 'POST', '/billing_portal/sessions', { customer: sub.customer, return_url: new URL('/app/', url.origin).href });
     return json({ url: p.url });
   }

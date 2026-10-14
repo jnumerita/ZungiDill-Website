@@ -285,7 +285,8 @@ h1.large{font-size:34px;line-height:40px;font-weight:800;letter-spacing:-.03em;m
 .cost .cl{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid var(--line);font-size:15px;line-height:20px}
 .cost .cl:first-of-type{border-top:0}
 .cost .cl b{text-align:right;white-space:nowrap}
-.cost .cl b.free{background:linear-gradient(transparent 52%,rgba(247,206,62,.75) 52%);padding:0 3px}
+.cost .cl b.free{color:var(--green);background:rgba(30,127,82,.1);border-radius:6px;padding:1px 8px;font-weight:700}
+.cost .cl.wrap{flex-wrap:wrap}.cost .cl.wrap b{white-space:normal;text-align:right;flex:1 1 auto}
 .inc{margin:10px 0 0;padding:0;list-style:none}
 .inc li{position:relative;padding:0 0 0 18px;margin:6px 0;font-size:15px;line-height:20px;color:var(--ink2)}
 .inc li:before{content:"";position:absolute;left:2px;top:8px;width:7px;height:7px;border-radius:2px;background:var(--brand)}
@@ -1341,7 +1342,7 @@ function webPrices(){
 }
 function webCheckSub(){
   var id=S.web&&S.web.sub;if(!id)return Promise.resolve();
-  return api('sub?id='+encodeURIComponent(id)).then(function(r){
+  return api('sub?id='+encodeURIComponent(id)+'&key='+encodeURIComponent(S.web.key||'')).then(function(r){
     var was=subActive();
     S.sub=r.active?{active:true,expires:r.expires||0,checked:Date.now()}:{active:false,expires:0,checked:Date.now()};
     if(was!==subActive())render();else save();
@@ -1365,7 +1366,7 @@ function webReturn(){
   api('verify?session_id='+encodeURIComponent(sid)).then(function(r){
     S.web=S.web||{};
     if(r.kind==='sub'){
-      S.web.sub=r.sub;S.web.introUsed=true;S.paidEver=true;
+      S.web.sub=r.sub;S.web.key=r.key||'';S.web.introUsed=true;S.paidEver=true;
       S.sub={active:true,expires:r.expires||0,checked:Date.now()};
       if(S.screen==='plans'){S.plansSeen=true;S.screen='app'}
       T.scrollY.letters=0;hap.ok();render();toast('ZungiDill Monthly is on');return;
@@ -1386,7 +1387,7 @@ function webPortal(){
   var id=S.web&&S.web.sub;
   if(!id){tell('Manage subscription','No ZungiDill Monthly subscription was started in this browser. If you subscribed somewhere else, email '+CFG.support+'.');return}
   toast('Opening your subscription');
-  api('portal?sub='+encodeURIComponent(id)+'&back='+encodeURIComponent(location.origin+location.pathname)).then(function(r){location.href=r.url})
+  api('portal?sub='+encodeURIComponent(id)+'&key='+encodeURIComponent(S.web.key||'')).then(function(r){location.href=r.url})
   .catch(function(){tell('Could not open','Check your connection and try again, or email '+CFG.support+'.')});
 }
 function webRestore(){
@@ -1835,7 +1836,7 @@ function costCard(){
     '<div class="cl"><span>Report review</span><b class="free">Free</b></div>'+
     '<div class="cl"><span>Letter drafting</span><b class="free">Free</b></div>'+
     '<div class="cl"><span>One letter, to print, save or send</span><b>'+priceHTML('letter')+'</b></div>'+
-    '<div class="cl"><span>ZungiDill Monthly</span><b>'+sub+'</b></div>'+
+    '<div class="cl wrap"><span style="flex:none">ZungiDill Monthly</span><b>'+sub+'</b></div>'+
     '<p class="fine" style="margin-top:8px">'+(launchOn('letter')?launchLine('letter')+' ':'')+'Reading a bureau’s reply and every follow-up letter are free. Monthly renews until you cancel.</p>'+
     (compareLine()?'<p class="fine" style="margin-top:6px;color:var(--ink2)">'+compareLine()+'</p>':'')+'</div>';
 }
@@ -2120,7 +2121,7 @@ function vTrack(){
     var h='<div class="sect">'+esc(lname(L))+'</div><div class="group">'+
       '<div class="cell" style="display:block"><div>'+status+'</div>'+
       '<p class="small" style="margin:8px 0 0;color:var(--ink2)">Covers '+L.items.map(function(i){return '<b>'+nm(i)+'</b>'}).join(', ')+'.</p></div>'+
-      '<div class="cell"><span style="flex:none;margin-right:10px">Tracking no.</span><input type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="USPS number, or online confirmation" aria-label="Tracking or confirmation number" data-trk="'+esc(L.id)+'" value="'+esc(t.tracking||'')+'" style="background:none;padding:0;min-height:0;border-radius:0;text-align:right;flex:1"></div>'+
+      '<div class="cell"><span style="flex:none;margin-right:10px">Tracking no.</span><input type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="USPS or confirmation no." aria-label="Tracking or confirmation number" data-trk="'+esc(L.id)+'" value="'+esc(t.tracking||'')+'" style="background:none;padding:0;min-height:0;border-radius:0;text-align:right;flex:1"></div>'+
       (uspsNo(t.tracking)?'<a class="cell chev" href="https://tools.usps.com/go/TrackConfirmAction?tLabels='+encodeURIComponent(uspsNo(t.tracking))+'" target="_blank" rel="noopener" style="color:var(--blue);text-decoration:none"><span class="grow">Check delivery on USPS</span></a>':'')+
       '<div class="cell"><span class="grow">Arrived on</span><input type="date" class="datepill'+(t.received?'':' empty')+'" placeholder="Add date" aria-label="Date it arrived" data-recv="'+esc(L.id)+'" value="'+esc(t.received||'')+'"></div>';
     if(!rec){
