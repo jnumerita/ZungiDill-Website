@@ -6,8 +6,8 @@ SITE = 'https://zungidill.com'
 EMAIL = 'hola.numerita@gmail.com'
 PHONE_TEL = '+16822477649'
 PHONE = '(682) 247-7649'
-EFFECTIVE = 'October 13, 2026'
-LASTMOD = '2026-10-13'
+EFFECTIVE = 'October 14, 2026'
+LASTMOD = '2026-10-14'
 
 def page(slug, title, desc, body, current=''):
     def nav(href, label, key, cls=''):
@@ -91,6 +91,7 @@ def page(slug, title, desc, body, current=''):
       <div>
         <h4>Help</h4>
         <ul>
+          <li><a href="/app/">Open the web app</a></li>
           <li><a href="/support">Support</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
@@ -136,7 +137,7 @@ def index():
       <p class="lede">You work hard and pay your way, a lot of times in cash. Still the answer is no, or yes with a payment that hurts. Sometimes what holds you back is a mistake on your credit report. ZungiDill helps you find it and fix it yourself.</p>
       <div class="stores">
         <a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="176" height="52"></a>
-        <a class="soon" href="#notify"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span><small>Coming soon on</small>App Store</span></a>
+        <a class="soon" href="/app/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span><small>On iPhone?</small>Open the web app</span></a>
       </div>
       <form class="notify" id="notify" action="https://tally.so/r/VLR6RJ" method="get" target="_blank" rel="noopener">
         <label for="nemail"><b>Get notified when ZungiDill is on the App Store</b></label>
@@ -249,7 +250,7 @@ def support():
 <table><tr><th scope="row">One letter</th><td>$4.99 launch price through December 31, 2026, then $9.99</td></tr><tr><th scope="row">ZungiDill Monthly</th><td>$19.99 a month for your first three months as a new subscriber, then $39.99 a month. A letter to each bureau every month, plus company, validation and goodwill letters.</td></tr><tr><th scope="row">Always free</th><td>The report review, letter drafts, reading a bureau's reply, and follow-up letters</td></tr></table>
 <p style="margin-top:12px">The app shows the exact price before you pay. Full price terms are in the <a href="/terms#prices">Terms of Use</a>.</p>
 <h3>How do I cancel ZungiDill Monthly?</h3>
-<ul><li><b>Android:</b> Google Play Store, your profile picture, Payments and subscriptions, Subscriptions, ZungiDill. Cancel before the renewal date.</li><li><b>iPhone:</b> Settings, your name, Subscriptions, ZungiDill. Cancel at least a day before the renewal date.</li></ul>
+<ul><li><b>Android:</b> Google Play Store, your profile picture, Payments and subscriptions, Subscriptions, ZungiDill. Cancel before the renewal date.</li><li><b>iPhone app:</b> Settings, your name, Subscriptions, ZungiDill. Cancel at least a day before the renewal date.</li><li><b>Web app:</b> More, then Manage or cancel subscription. Cancel before the renewal date.</li></ul>
 <h3>Restore a purchase on a new phone</h3>
 <p>ZungiDill Monthly is tied to your Google account or Apple ID. Open the More tab and tap Restore purchases. Single letters stay on the phone where you bought them. Need help? Email us your Google Play or App Store receipt.</p>
 <h3>Promo codes</h3>
@@ -286,11 +287,13 @@ def terms():
 <h3>One letter</h3>
 <p>A one-time purchase that unlocks one finished letter to print, save and share on the phone where you bought it. One letter covers every item you dispute at one bureau.</p>
 <h3>ZungiDill Monthly</h3>
-<ul><li>Each month includes one round: a letter to each credit bureau, plus letters to the companies that reported the items, debt validation letters and goodwill letters.</li><li>Payment is charged to your Google Play account or Apple ID when you confirm.</li><li>It renews every month at the price shown until you cancel.</li><li>iPhone: cancel at least 24 hours before the period ends. The renewal is charged within 24 hours before the end of the period.</li><li>Android: cancel before the renewal date in Google Play.</li><li>To cancel on Android: Play Store, your profile picture, Payments and subscriptions, Subscriptions. On iPhone: Settings, your name, Subscriptions.</li><li>Cancelling stops future renewals. You keep access until the paid period ends.</li></ul>
+<ul><li>Each month includes one round: a letter to each credit bureau, plus letters to the companies that reported the items, debt validation letters and goodwill letters.</li><li>In the apps, payment is charged to your Google Play account or Apple ID when you confirm. In the web app, payment is charged to your card through Stripe when you confirm.</li><li>It renews every month at the price shown until you cancel.</li><li>iPhone: cancel at least 24 hours before the period ends. The renewal is charged within 24 hours before the end of the period.</li><li>Android: cancel before the renewal date in Google Play.</li><li>To cancel on Android: Play Store, your profile picture, Payments and subscriptions, Subscriptions. On iPhone: Settings, your name, Subscriptions.</li><li>Cancelling stops future renewals. You keep access until the paid period ends.</li></ul>
+<h3>Buying in the web app</h3>
+<ul><li>The web app at zungidill.com/app takes payment through Stripe Checkout. You see the price before you pay.</li><li>A letter you buy in the web app unlocks in the browser on the device where you bought it.</li><li>To cancel ZungiDill Monthly in the web app: open More, then Manage or cancel subscription. Cancelling stops future renewals, and you keep access until the paid period ends.</li><li>The introductory price is for new subscribers.</li></ul>
 <h3>Launch prices, introductory prices and promo codes</h3>
 <p>Launch prices last for a limited time. Introductory prices, like the three month offer, are for new subscribers who have not subscribed before, one time per account, as decided by your store. The regular price applies after. Promo codes are redeemed through your store, which decides if a code is valid. Codes have no cash value, usually cannot be combined, and may expire.</p>
 <h3>Refunds</h3>
-<p>Google and Apple handle payments, receipts and refunds under their own terms: <a href="https://support.google.com/googleplay/answer/2479637">Google Play refunds</a>, <a href="https://reportaproblem.apple.com">Apple refunds</a>. Reading a bureau reply and follow-up letters are always free.</p>
+<p>In the apps, Google and Apple handle payments, receipts and refunds under their own terms: <a href="https://support.google.com/googleplay/answer/2479637">Google Play refunds</a>, <a href="https://reportaproblem.apple.com">Apple refunds</a>. For purchases in the web app, email <a href="mailto:{EMAIL}">{EMAIL}</a> with your Stripe receipt. We refund charges made in error and letters that did not unlock. Reading a bureau reply and follow-up letters are always free.</p>
 <h2 id="info">Your information</h2>
 <p>What you enter in the app is stored only on your phone. Numerita LLC does not have a copy. Deleting the app or erasing its data is permanent and cannot be undone. See the <a href="/privacy">Privacy Policy</a>.</p>
 <h2 id="other">Other services</h2>
@@ -331,7 +334,8 @@ def privacy():
 <h2 id="reminders">Reminders</h2>
 <p>Deadline and monthly reminders are scheduled on your phone as local notifications. Nothing is sent to a server.</p>
 <h2 id="purchases">Purchases</h2>
-<p>Google Play and the App Store handle all payments. Numerita LLC never receives your payment details. The app only checks with your store whether a purchase or subscription is active.</p>
+<p>In the Android and iPhone apps, Google Play and the App Store handle all payments. The app only checks with your store whether a purchase or subscription is active.</p>
+<p>In the web app at zungidill.com/app, payments are handled by Stripe, our payment processor. Stripe collects your card details and the email address for your receipt. Numerita LLC never receives your full card number. We can see in our Stripe account the email address, the amount, the date and whether a subscription is active, and we use this only to provide what you bought, answer billing questions and meet legal and tax duties. The web app keeps a reference to your purchase in your browser on your device so it can unlock your letters. <a href="https://stripe.com/privacy">Stripe Privacy Policy</a></p>
 <h2 id="links">Links to other sites</h2>
 <p>The app links to sites such as AnnualCreditReport.com, the credit bureaus, IdentityTheft.gov, the CFPB, OptOutPrescreen.com and SmartCredit. Their own privacy policies apply. Nothing you enter in ZungiDill is passed to them. SmartCredit is an optional affiliate: Numerita LLC may earn a commission through the link, and no user information is shared with SmartCredit.</p>
 <h2 id="launch-list">The iPhone launch list</h2>

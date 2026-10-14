@@ -1,0 +1,14 @@
+{
+  "name": "ZungiDill",
+  "short_name": "ZungiDill",
+  "description": "Check your credit report and send your own dispute letters.",
+  "start_url": "/app/",
+  "scope": "/app/",
+  "display": "standalone",
+  "background_color": "#F4F5F7",
+  "theme_color": "#F4F5F7",
+  "icons": [
+    {"src": "icon-180.png", "sizes": "180x180", "type": "image/png"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
+  ]
+}

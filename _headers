@@ -13,3 +13,10 @@
   Cache-Control: public, max-age=604800
 /js/*
   Cache-Control: public, max-age=86400
+
+/app/*
+  ! Content-Security-Policy
+  ! X-Frame-Options
+  ! Permissions-Policy
+  X-Frame-Options: SAMEORIGIN
+  Cache-Control: no-cache
