@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="color-scheme" content="light only">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: capacitor: https://localhost; font-src 'self' data:; connect-src 'self' data: blob: capacitor: https://localhost; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
-<title>ZungiDill App</title>
+<title>ZungiDill Web App | Fix credit report errors on iPhone</title>
 <meta name="theme-color" content="#f7ce3e">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="ZungiDill">
@@ -13,7 +13,15 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-180.png">
-<meta name="description" content="ZungiDill on the web. Check your credit report and send your own dispute letters. Works on iPhone in Safari.">
+<meta name="description" content="Use ZungiDill in your browser. Check your own credit report, mark what is wrong, and send your own dispute letters. Works on iPhone in Safari, no download.">
+<link rel="canonical" href="https://zungidill.com/app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ZungiDill">
+<meta property="og:title" content="ZungiDill web app: fix credit report errors on iPhone">
+<meta property="og:description" content="Check your own credit report and send your own dispute letters, right in Safari. No download.">
+<meta property="og:url" content="https://zungidill.com/app/">
+<meta property="og:image" content="https://zungidill.com/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
 <style>:root{color-scheme:light only}
 :root{
   --bg:#f2f2f7;--card:#fff;--ink:#000;--ink2:#3c3c43;--muted:#8a8a8e;--line:rgba(60,60,67,.18);
@@ -311,6 +319,10 @@ h1.large{font-size:34px;line-height:40px;font-weight:800;letter-spacing:-.03em;m
 .qc-item h2{font-size:24px;line-height:29px;font-weight:800;letter-spacing:-.025em;margin:6px 0 4px}
 .qc-item .meta{color:var(--ink2);font-size:15px;line-height:21px}
 .qc-top{display:flex;justify-content:space-between;align-items:center;margin:0 4px 10px;font-size:14px;color:var(--muted)}
+.lnk{border:0;background:none;padding:0;font:inherit;color:var(--blue);text-decoration:underline;cursor:pointer}
+.microw{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.michide{border:0;background:none;color:var(--muted);font:inherit;font-size:14px;padding:8px 2px;cursor:pointer}
+.mic.on{color:var(--red);text-decoration:none}
 .mic{display:flex;align-items:center;gap:8px;border:0;background:none;color:var(--ink);font:inherit;font-size:15px;font-weight:600;padding:8px 2px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 
 /* 1.10 logo style: sticker outlines, hard shadows, yellow and pink underline */
@@ -453,6 +465,9 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(247,206,62,.45
 .al-b .a{box-shadow:inset 0 1px 0 var(--line)}.al-b .a button+button{box-shadow:inset 1px 0 0 var(--line)}
 .toast{border:0;box-shadow:0 8px 24px rgba(0,0,0,.2)}
 input.datepill{border:1px solid #D6D5CF}
+.cell input[data-p],.cell input[data-rn],.cell input[data-trk]{border:0!important;border-radius:0!important;box-shadow:none!important;background:none!important;padding:0!important;min-height:0!important}
+.cell input[data-p]:focus,.cell input[data-rn]:focus,.cell input[data-trk]:focus{box-shadow:inset 0 -2px 0 var(--brand)!important}
+input[data-p=state]{text-transform:uppercase}
 input[data-trk]{border-bottom:1px solid #D6D5CF}
 .card .group,.card .opts{border-width:1px}
 .chev::after,.row::after{border-color:#9A9AA0}
@@ -560,7 +575,27 @@ h1.large{margin:6px 4px 14px}
   }catch(e){}
 })();
 </script>
-<style>html.framed-inner{--st:54px;--sb:20px}</style>
+<style>html.framed-inner{--st:54px;--sb:20px}
+/* 1.11 bank look: navy actions, white cards, gold only as a thin accent */
+.btn{background:#14243D!important;color:#fff!important;border:1px solid #14243D!important;box-shadow:none!important}
+.btn.alt{background:#fff!important;color:#14243D!important;border:1px solid #CBD2DC!important}
+.btn.plain{background:none!important;color:#14243D!important;border:0!important}
+.card.pop{background:#fff!important;border:1px solid var(--line)!important;border-left:4px solid #E9A514!important;box-shadow:0 1px 2px rgba(16,24,40,.06)!important}
+.card.pop .sect,.card.pop .small,.card.pop p{color:var(--ink2)!important}
+.card.pop p.big,.card.pop .big{color:var(--ink)!important}
+.tabs button[aria-current=page] svg{background:none!important;stroke:#14243D!important;padding:1px 0!important}
+.tabs button[aria-current=page]{color:#14243D!important;font-weight:700}
+.stats.sum .stat:nth-child(n){background:#fff!important;border-color:var(--line)!important}
+.stats.sum .stat:nth-child(1) b{color:#B45309!important}.stats.sum .stat:nth-child(2) b{color:#1D4ED8!important}.stats.sum .stat:nth-child(3) b{color:#067647!important}
+.pill.y{background:#EEF1F5!important;color:#14243D!important;border:0!important}
+.stepn{background:#EEF1F5!important;color:#14243D!important;border:0!important}
+.empty .ic{background:#EEF1F5!important;color:#14243D!important;border:0!important;box-shadow:none!important}
+.exbar{background:#F5F7FA!important;border:1px solid var(--line)!important}
+.climb .pbar{height:6px;border-radius:3px;background:#E6EAF0;margin:10px 0 14px;overflow:hidden}
+.climb .pbar i{display:block;height:100%;background:#14243D;border-radius:3px}
+.wsteps li::before{background:#EEF1F5!important;color:#14243D!important}
+.hl{background:none!important;color:#B45309!important;font-weight:600;padding:0!important}
+</style>
 <script>if(/[?&]f=1/.test(location.search))document.documentElement.className+=' framed-inner';</script>
 </head>
 <body>
@@ -575,7 +610,7 @@ var CFG={
   support:'hola.numerita@gmail.com',
   products:{letter:'com.numerita.zungidill.letter',sub:'com.numerita.zungidill.monthly'},
   fallback:{letter:{str:'$9.99',num:9.99},sub:{str:'$39.99',num:39.99}},
-  terms:'https://zungidill.com/terms.html',privacy:'https://zungidill.com/privacy.html',
+  terms:'https://zungidill.com/terms',privacy:'https://zungidill.com/privacy',
   version:'1.11',
   /* Free places to start. Shown on the plan screen. */
   creditUnions:'https://mapping.ncua.gov/',
@@ -592,10 +627,10 @@ var CFG={
   smartcredit:'https://www.smartcredit.com/join/?pid=52427',
   smartcreditEs:'https://www.smartcredito.com/?PID=52427',
   disputeOnline:{Equifax:'https://www.equifax.com/personal/credit-report-services/credit-dispute/',Experian:'https://www.experian.com/disputes/main.html',TransUnion:'https://www.transunion.com/credit-disputes/dispute-your-credit'},
-  fraudAlert:{Equifax:'https://www.equifax.com/personal/credit-report-services/credit-fraud-alerts/',Experian:'https://www.experian.com/fraud/center.html',TransUnion:'https://www.transunion.com/fraud-alerts'},
+  fraudAlert:{Equifax:'https://www.equifax.com/personal/credit-report-services/credit-fraud-alerts/',Experian:'https://www.experian.com/help/fraud-alert/',TransUnion:'https://www.transunion.com/fraud-alerts'},
   innovisFreeze:'https://www.innovis.com/personal/securityFreeze',
   optOut:'https://www.optoutprescreen.com/',
-  freeze:{Equifax:'https://www.equifax.com/personal/credit-report-services/credit-freeze/',Experian:'https://www.experian.com/freeze/center.html',TransUnion:'https://www.transunion.com/credit-freeze'}
+  freeze:{Equifax:'https://www.equifax.com/personal/credit-report-services/credit-freeze/',Experian:'https://www.experian.com/help/credit-freeze/',TransUnion:'https://www.transunion.com/credit-freeze'}
 };
 
 /* ---------- native bridge ---------- */
@@ -1228,7 +1263,7 @@ function roundNote(){
 /* What a full round costs here, next to what credit repair companies usually charge each month. */
 function compareLine(){
   if(!/^\$/.test(PRICE.letter.str))return '';
-  return 'A full round to all 3 bureaus here: 3 letters, '+money2(3*PRICE.letter.num)+' one time. Many credit repair companies charge $79 to $140 every month, some with a setup fee on top.';
+  return 'A full round to all 3 bureaus here: 3 letters, '+money2(3*PRICE.letter.num)+' one time.';
 }
 function lockedLetters(){return letters().filter(function(L){return payable(L)&&!isUnlocked(L)})}
 function grant(Ls,how,tx){
@@ -1399,6 +1434,26 @@ function webSubFine(){
     (introOn()?'New subscribers pay '+introTxt().replace('for your first','for the first')+'. The checkout page shows your exact price before you confirm. ':'')+
     'It renews automatically until you cancel. Payment is charged to your card through Stripe, our payment processor. Cancel anytime from More, then Manage or cancel subscription, before the renewal date. '+
     '<a href="'+CFG.terms+'" target="_blank" rel="noopener" style="color:var(--blue)">Terms of Use</a> · <a href="'+CFG.privacy+'" target="_blank" rel="noopener" style="color:var(--blue)">Privacy Policy</a>';
+}
+
+/* ---------- web: talk instead of typing (Safari speech recognition) ---------- */
+var MIC=null;
+function webMic(s){
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  var ta=s.body.querySelector('#qk_own'),btn=s.body.querySelector('[data-qk=mic]');
+  if(!SR||!ta||!btn)return false;
+  if(MIC){try{MIC.stop()}catch(e){}return true}
+  var label=btn.innerHTML,base=ta.value.replace(/\s+$/,''),heard='';
+  var r=new SR();r.lang='en-US';r.continuous=true;r.interimResults=true;MIC=r;
+  var done=function(){MIC=null;btn.innerHTML=label;btn.classList.remove('on');if(heard)ta.dispatchEvent(new Event('input',{bubbles:true}))};
+  r.onresult=function(e){var fin='',tmp='';for(var i=0;i<e.results.length;i++){var t=e.results[i][0].transcript;if(e.results[i].isFinal)fin+=t+' ';else tmp+=t}heard=(fin+tmp).trim();ta.value=(base?base+' ':'')+heard};
+  r.onerror=function(e){var c=e&&e.error;done();
+    if(c==='not-allowed'||c==='service-not-allowed')tell('Microphone is off','Open your iPhone Settings, tap Apps, then Safari, then Microphone, and choose Ask or Allow. Come back and tap Talk again. Or tap the box and use the mic key on your keyboard.');
+    else if(c!=='aborted'&&c!=='no-speech')toast('Could not hear that. Try again, or type it.')};
+  r.onend=done;
+  try{r.start()}catch(e){MIC=null;return false}
+  btn.classList.add('on');btn.textContent='Listening… tap to stop';try{hap.ok()}catch(e){}
+  return true;
 }
 
 /* ---------- output: PDF, copy ---------- */
@@ -1706,6 +1761,16 @@ function reportRows(its){
   }).join('')+'</div>';
 }
 /* Progress: real wins only (deleted or corrected items), never a score. */
+function vReports(full){
+  if(S.demo||!items().length)return '';
+  var have={};items().forEach(function(i){have[i.bureau]=(have[i.bureau]||0)+1});
+  var n=BUREAUS.filter(function(b){return have[b]}).length;
+  if(n>=3&&!full)return '';
+  return '<div class="sect">Your 3 reports · '+n+' of 3 added</div><div class="group">'+BUREAUS.map(function(b){
+    return have[b]?'<div class="cell"><span class="grow">'+b+'</span><span class="val" style="color:var(--green);font-weight:600">Added · '+plural(have[b],'item')+'</span></div>':
+      '<button class="cell chev" data-import-open="1"><span class="grow">'+b+'<span class="small" style="display:block;margin-top:2px;color:var(--muted)">Not added yet. Tap to bring it in.</span></span></button>'}).join('')+'</div>'+
+    (full?'<p class="foot">Missed something from a report? <button class="lnk" data-add-open="1">Add an item by hand</button>, or import the report again. Items you already have are not added twice.</p>':'<p class="foot">Lenders can check any of the three. Add the others when you have them.</p>');
+}
 function vProgress(){
   if(!items().length)return '';var ds=disputed();
   var b=D(),ls=letters().filter(tracked),st={};
@@ -1879,6 +1944,7 @@ function vHome(){
     ex.push('<button class="cell chev" data-ck="'+it.id+'"><span class="grow"><b style="font-weight:600">'+esc(nm)+'</b><span class="small" style="display:block;margin-top:3px;color:var(--ink2)">'+esc(it.bureau)+' · <span class="hl">'+esc(x.why)+'</span></span></span></button>');
   });
   if(ex.length)h+='<div class="sect">From your report</div><div class="group">'+ex.join('')+'</div><button class="btn alt" data-tab="report">See the full review</button>';
+  h+=vReports(false);
   var nd=nextDeadline();
   h+='<div class="sect">Next deadline</div><div class="group"><button class="cell chev" data-tab="track"><span class="grow">'+(nd?(new Date()>nd.date?'<b style="color:var(--red)">Overdue</b> · '+esc(nd.who)+' was due about '+fd(nd.date):'<b>'+fd(nd.date)+'</b> · '+esc(nd.who)):'<span style="color:var(--muted)">None yet. The clock starts when a bureau receives your letter.</span>')+'</span></button></div>';
   var lk=S.demo?0:lockedLetters().length;
@@ -1902,7 +1968,7 @@ function climbSVG(st,cur){
 }
 function climbCard(st,cur,viaQuick){
   var req=st.filter(function(x){return !x.opt}),dn=req.filter(function(x){return x.done}).length;
-  var h='<div class="climb"><div class="ct"><p class="kicker" style="margin:0">Your climb</p><span>'+dn+' of '+req.length+' done</span></div>'+climbSVG(st,cur);
+  var h='<div class="climb"><div class="ct"><p class="kicker" style="margin:0">Your climb</p><span>'+dn+' of '+req.length+' done</span></div>'+'<div class="pbar"><i style="width:'+Math.round(100*dn/Math.max(1,req.length))+'%"></i></div>';
   if(cur<0)return h+'<p class="big">Every step is done</p><p>Keep checking your free reports each month.</p></div>';
   var x=st[cur];
   return h+'<p class="big">'+x.t+'</p><p>'+(viaQuick?'The quick check above covers this step.':x.d)+'</p>'+(viaQuick?'':'<button class="btn" data-path="'+x.k+'">Continue</button>')+'</div>';
@@ -1953,7 +2019,7 @@ function vReport(){
     '<button class="btn plain" data-demo="on">See a worked example first</button>';
   }
   var nd=disputed().length,un=unanswered().length;
-  return vProgress()+(un?'<button class="btn" data-act="quick" style="margin:0 0 14px">Quick check · '+plural(un,'item')+' left</button>':'')+vPath()+vReview()+(nd?'<div class="group"><button class="cell chev" data-tab="disputes"><span class="grow">Your disputes</span><span class="val">'+nd+'</span></button></div>':'')+seg+
+  return vProgress()+(un?'<button class="btn" data-act="quick" style="margin:0 0 14px">Quick check · '+plural(un,'item')+' left</button>':'')+vPath()+vReports(true)+vReview()+(nd?'<div class="group"><button class="cell chev" data-tab="disputes"><span class="grow">Your disputes</span><span class="val">'+nd+'</span></button></div>':'')+seg+
     (its.length?'<p class="lede" style="margin-top:0">Tap an item to check it against your records.</p>'+reportRows(its):
       '<div class="empty"><b>No '+esc(S.bureau)+' items yet</b><span>Import your '+esc(S.bureau)+' report or add items by hand.</span></div>')+
     '<div class="btnrow"><button class="btn alt" data-import-open="1">Import PDF</button><button class="btn alt" data-add-open="1">Add by hand</button></div>'+
@@ -2121,7 +2187,7 @@ function vTrack(){
     var h='<div class="sect">'+esc(lname(L))+'</div><div class="group">'+
       '<div class="cell" style="display:block"><div>'+status+'</div>'+
       '<p class="small" style="margin:8px 0 0;color:var(--ink2)">Covers '+L.items.map(function(i){return '<b>'+nm(i)+'</b>'}).join(', ')+'.</p></div>'+
-      '<div class="cell"><span style="flex:none;margin-right:10px">Tracking no.</span><input type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="USPS or confirmation no." aria-label="Tracking or confirmation number" data-trk="'+esc(L.id)+'" value="'+esc(t.tracking||'')+'" style="background:none;padding:0;min-height:0;border-radius:0;text-align:right;flex:1"></div>'+
+      '<div class="cell"><span style="flex:none;margin-right:10px">Tracking no.</span><input type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="Optional" aria-label="Tracking or confirmation number" data-trk="'+esc(L.id)+'" value="'+esc(t.tracking||'')+'" style="background:none;padding:0;min-height:0;border-radius:0;text-align:right;flex:1"></div>'+
       (uspsNo(t.tracking)?'<a class="cell chev" href="https://tools.usps.com/go/TrackConfirmAction?tLabels='+encodeURIComponent(uspsNo(t.tracking))+'" target="_blank" rel="noopener" style="color:var(--blue);text-decoration:none"><span class="grow">Check delivery on USPS</span></a>':'')+
       '<div class="cell"><span class="grow">Arrived on</span><input type="date" class="datepill'+(t.received?'':' empty')+'" placeholder="Add date" aria-label="Date it arrived" data-recv="'+esc(L.id)+'" value="'+esc(t.received||'')+'"></div>';
     if(!rec){
@@ -2163,7 +2229,7 @@ function vMe(){
   function f(k,l,ph,t,extra){return '<div class="cell"><span style="width:92px;flex:none">'+l+'</span><input type="'+(t||'text')+'" data-p="'+k+'" value="'+esc(p[k])+'" placeholder="'+esc(ph)+'" autocomplete="off" aria-label="'+esc(l)+'" '+(extra||'')+' style="background:none;padding:0;min-height:0;border-radius:0"></div>'}
   var nUnl=Object.keys(S.unlock).length;
   return '<div class="sect">Printed on your letters</div><div class="group">'+
-    f('name','Name','Full legal name')+f('address','Street','Street and apartment')+f('city','City','City')+f('state','State','NV','text','maxlength="2" style="text-transform:uppercase;background:none;padding:0;min-height:0"')+f('zip','ZIP','89108','tel','maxlength="10"')+
+    f('name','Name','Full legal name')+f('address','Street','Street and apartment')+f('city','City','City')+f('state','State','NV','text','maxlength="2"')+f('zip','ZIP','89108','tel','maxlength="10"')+
   '</div><p class="foot">Only what a bureau needs to find your file. Your Social Security number and birth date are never asked for or kept. You write them by hand on the printed letter.</p>'+
   '<div class="sect">Report confirmation numbers</div><div class="group">'+BUREAUS.map(function(b){return '<div class="cell"><span style="width:92px;flex:none">'+b+'</span><input type="text" data-rn="'+b+'" value="'+esc((S.reportNo||{})[b]||'')+'" placeholder="Optional" aria-label="'+b+' report number" style="background:none;padding:0;min-height:0;border-radius:0"></div>'}).join('')+'</div>'+
   '<p class="foot">If your report shows a confirmation or file number, it goes at the top of that bureau’s letter.</p>'+
@@ -2208,8 +2274,8 @@ function mailSteps(L){
     L.type==='creditor'?['Fill in their address','If the address lines are blank, copy the dispute address from your report or the company\u2019s website.']:
       ['Circle each item on a copy of your report','Print the '+esc(L.who)+' report pages that show the '+(L.items.length===1?'item':'items')+', circle '+(L.items.length===1?'it':'each one')+', and put the copy in with the letter.'],
     ['Add copies of your ID and proof of address','A driver\u2019s license or state ID, and a recent utility bill or bank statement. Add any proof listed under Enclosed. Send copies, never originals.'],
-    ['Mail it certified with a return receipt','At the post office, ask for Certified Mail with a return receipt. It is about $11 a letter with postage, a little more if it is heavy. Keep the receipt with the tracking number and add it on the Track tab. The clock starts the day they receive it, which the tracking page or return receipt shows. Add that date too.'],
-    ['No printer?','Public libraries, the UPS Store and office supply stores print for a small fee per page. Save the PDF to your phone, then print it there.'+(L.type==='bureau'||L.type==='round2'?' Or dispute online instead, from this screen.':'')],
+    ['Mail it certified with a return receipt','At the post office, ask for Certified Mail with a return receipt. The post office tells you the cost. Keep the receipt with the tracking number and add it on the Track tab. The clock starts the day they receive it, which the tracking page or return receipt shows. Add that date too.'],
+    ['No printer?','Public libraries, the UPS Store and office supply stores can print it for you. Save the PDF to your phone, then print it there.'+(L.type==='bureau'||L.type==='round2'?' Or dispute online instead, from this screen.':'')],
     ['Keep a copy of everything','A copy of the signed letter and everything you sent. You will need it if you dispute again or file a complaint.']
   ];
   return '<div class="group">'+steps.map(function(s,k){return '<div class="cell" style="align-items:flex-start"><span class="stepn">'+(k+1)+'</span><span class="grow"><b style="font-weight:600">'+s[0]+'</b><br><span class="small" style="color:var(--ink2)">'+s[1]+'</span></span></div>'}).join('')+'</div>';
@@ -2504,7 +2570,7 @@ function ownExample(it){
   return 'Example: I closed this account in 2021 and paid it off. I have the payoff letter.';
 }
 function whatKeys(it){return (it.kind==='personal'?['spelling']:probsFor(it)).filter(function(k){return k!=='notmine'&&k!=='balance'&&k!=='other'})}
-function micHint(){return '<button class="mic" data-qk="mic" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Talk instead: use your keyboard’s mic</button>'}
+function micHint(){if(S.micOff)return '';return '<div class="microw"><button class="mic" data-qk="mic" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>'+(WEB&&(window.SpeechRecognition||window.webkitSpeechRecognition)?'Talk instead':'Talk instead: use your keyboard’s mic')+'</button><button class="michide" data-qk="michide" type="button">Hide</button></div>'}
 function openQuick(filter){
   if(S.demo&&!items().length)return;
   var queue=unanswered().filter(function(i){return !filter||filter(i)});
@@ -2528,6 +2594,8 @@ function openQuick(filter){
     if(a==='prob'){hap.pick();cur={k:b.getAttribute('data-k')};phase='how';draw();return}
     if(a==='how'){hap.pick();start(it,[cur.k],[+b.getAttribute('data-i')]);return}
     if(a==='full'){api.close();setTimeout(function(){S.bureau=it.bureau;render();openItem(it.id);T.draft.wrong=true;render()},260);return}
+    if(a==='michide'){S.micOff=true;save();var mr=s.body.querySelector('.microw');if(mr)mr.remove();var mn=s.body.querySelector('#qk_micnote');if(mn)mn.hidden=true;toast('Talk button hidden. Turn it back on in More.');return}
+    if(a==='mic'&&WEB&&webMic(s))return;
     if(a==='mic'){var ta=s.body.querySelector('#qk_own');if(ta){ta.focus();var n=s.body.querySelector('#qk_micnote');if(n)n.hidden=false}return}
     if(a==='use'){finish();return}
     if(a==='back'){phase=phase==='how'&&whatKeys(it).length>1?'what':'ask';if(phase==='ask')cur=null;draw();return}
@@ -2968,7 +3036,7 @@ function openImport(){
       '<div class="two" style="margin-top:8px"><div><select id="ir_kind'+i+'" aria-label="Kind" style="background-color:var(--bg)">'+['account','collection','inquiry','public'].map(function(k){return '<option value="'+k+'"'+(k===it.kind?' selected':'')+'>'+SUB[k]+'</option>'}).join('')+'</select></div>'+
       '<div style="flex:0 0 96px"><input type="tel" id="ir_acct'+i+'" value="'+esc(it.acct)+'" placeholder="Last 4" aria-label="Account" style="background:var(--bg)"></div></div>'+
       '<div class="two" style="margin-top:8px"><div><input type="text" id="ir_stat'+i+'" value="'+esc(it.status)+'" placeholder="Status" aria-label="Status" style="background:var(--bg)"></div><div style="flex:0 0 104px"><input type="text" id="ir_bal'+i+'" value="'+esc(it.balance)+'" placeholder="Balance" aria-label="Balance" style="background:var(--bg)"></div></div>'+
-      '<div class="two" style="margin-top:8px;align-items:center"><div><input type="date" id="ir_open'+i+'" value="'+esc(it.opened)+'" aria-label="Date" style="background:var(--bg)"></div><div><label class="opt" style="padding:8px 4px;background:none"><input type="checkbox" id="ir_neg'+i+'"'+(it.negative?' checked':'')+'> Negative</label></div></div>'+
+      '<div class="two" style="margin-top:8px;align-items:center"><div style="flex:1.6;min-width:0"><input type="date" id="ir_open'+i+'" value="'+esc(it.opened)+'" aria-label="Date" style="background:var(--bg)"></div><div><label class="opt" style="padding:8px 4px;background:none"><input type="checkbox" id="ir_neg'+i+'"'+(it.negative?' checked':'')+'> Negative</label></div></div>'+
       (it.kind==='inquiry'?'':'<label class="small" for="ir_bad'+i+'" style="display:block;margin:8px 2px 2px;color:var(--muted)">First missed payment (date of first delinquency)</label><input type="date" id="ir_bad'+i+'" value="'+esc(it.dateBad||'')+'" aria-label="First missed payment" style="background:var(--bg)">')+
       (it.history?'<p class="fine" style="margin:8px 2px 0">Payment line: '+esc(it.history)+'</p>':'')+'</div></div>';
   }
@@ -3304,6 +3372,7 @@ function vMore(){
     (CFG.smartcreditEs?'<a href="'+esc(CFG.smartcreditEs)+'" target="_blank" rel="noopener" style="display:block;text-align:center;margin-top:10px;color:var(--ink);font-size:15px">En español: SmartCredito</a>':'')+
     '<p class="fine" style="margin-top:10px">SmartCredit is a separate company with its own monthly price, shown on its site before you sign up. It is not part of ZungiDill Monthly. ZungiDill earns a commission if you join. Nothing you enter in ZungiDill is shared with SmartCredit.</p></div>';
   h+='<div class="sect">Your plan</div><div class="group"><button class="cell chev" data-tab="plan"><span class="grow">'+(S.goal?GOALS[S.goal].head:'What do you need? Car, house or card')+'<br><span class="small" style="color:var(--ink2)">Steps, timeline, card usage and bill reminders</span></span></button></div>';
+  h+='<div class="sect">Typing</div><div class="group"><div class="cell"><span class="grow">Show the Talk button<span class="small" style="display:block;margin-top:2px;color:var(--muted)">Say it in your own words instead of typing</span></span><span class="switch"><input type="checkbox" aria-label="Show the Talk button" data-micshow="1"'+(S.micOff?'':' checked')+'><i></i></span></div></div>';
   h+='<div class="sect">Free credit reports</div><div class="group">'+
     '<div class="cell"><span class="grow">Remind me every month</span><span class="switch"><input type="checkbox" aria-label="Monthly free report reminder" data-freerem="1"'+(S.freeRemind?' checked':'')+'><i></i></span></div>'+
     '<a class="cell chev" href="https://www.annualcreditreport.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none"><span class="grow">Open AnnualCreditReport.com</span></a></div>'+
@@ -3364,7 +3433,7 @@ function vBoost(noPlan){
     (CFG.smartcreditEs?'<a href="'+esc(CFG.smartcreditEs)+'" target="_blank" rel="noopener" style="display:block;text-align:center;margin-top:10px;color:var(--blue);font-size:15px">En espa\u00f1ol: SmartCredito</a>':'')+
     '<p class="fine" style="margin-top:10px"><b>Separate bill.</b> SmartCredit is its own company, not part of ZungiDill Monthly. It has its own monthly price, shown on its site before you sign up. ZungiDill earns a commission if you join. Nothing you enter in ZungiDill is shared with SmartCredit. Prefer free? See the options below.</p></div>';
   h+='<div class="sect">See your score free</div><div class="group">'+
-    '<a class="cell chev" href="https://www.experian.com/consumer-products/free-credit-report.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none"><span class="grow">Experian<br><span class="small" style="color:var(--ink2)">Free account with a score from your Experian report</span></span></a>'+
+    '<a class="cell chev" href="https://www.experian.com/credit/credit-report/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none"><span class="grow">Experian<br><span class="small" style="color:var(--ink2)">Free account with a score from your Experian report</span></span></a>'+
     '<a class="cell chev" href="https://www.creditkarma.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none"><span class="grow">Credit Karma<br><span class="small" style="color:var(--ink2)">Free scores from your TransUnion and Equifax reports</span></span></a>'+
     '</div><p class="foot">Both are free. Skip any paid upgrade they offer; you do not need one. Many banks and card apps also show a free score. Check yours once a month to see how your disputes and payments are moving it.</p>';
   return h;
@@ -3630,6 +3699,7 @@ document.addEventListener('change',function(e){
   if(ds.res){hap.pick();setResult(ds.res,t.value);render();if(/Corrected|Deleted|Blocked/.test(t.value)){hap.ok();toast('That one is fixed. Nice work.')}return}
   if(ds.remind){S.reminders=t.checked;save();syncReminders(true);toast(t.checked?'Reminders on':'Reminders off');return}
   if(ds.billrem){S.billRemind=t.checked;save();syncReminders(true);toast(t.checked?'Bill reminders on':'Bill reminders off');return}
+  if(ds.micshow){S.micOff=!t.checked;save();toast(t.checked?'Talk button on':'Talk button hidden');return}
   if(ds.freerem){S.freeRemind=t.checked;save();syncReminders(true);render();toast(t.checked?'Monthly reminder on':'Monthly reminder off');return}
   if(ds.plan){S.plan[ds.plan]=t.checked;hap.pick();render();return}
   if(ds.p==='name'&&S.owner&&!sameName(t.value,S.owner.name)){S.profile.name=S.owner.name;t.value=S.owner.name;save();hap.warn();tell('Use the name on your report','ZungiDill is only for your own credit report, and your letters must match it. Your report is in the name '+S.owner.name+'.');return}

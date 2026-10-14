@@ -498,10 +498,12 @@ web={'@type':'WebSite','@id':SITE+'/#site','name':'ZungiDill','url':SITE+'/','pu
 app={'@type':'MobileApplication','@id':SITE+'/#app','name':'ZungiDill','operatingSystem':'Android','applicationCategory':'FinanceApplication',
      'description':'Check your own credit report on your phone, mark what is wrong, and send your own dispute letters. No account and no Social Security number.',
      'url':SITE+'/','downloadUrl':PLAY,'installUrl':PLAY,'publisher':{'@id':SITE+'/#org'},'image':SITE+'/img/og.png','offers':{'@type':'Offer','price':'0','priceCurrency':'USD'}}
+webapp={'@type':'WebApplication','@id':SITE+'/#webapp','name':'ZungiDill web app','url':SITE+'/app/','applicationCategory':'FinanceApplication','operatingSystem':'iOS, Android, Windows, macOS','browserRequirements':'Works in Safari on iPhone and in any modern browser.',
+     'description':'The ZungiDill app in your browser. Check your own credit report, mark what is wrong, and send your own dispute letters. Works on iPhone in Safari.','publisher':{'@id':SITE+'/#org'},'image':SITE+'/img/og.png','offers':{'@type':'Offer','price':'0','priceCurrency':'USD'}}
 qa=re.findall(r'<details class="q"><summary>(.*?)</summary><div>(.*?)</div></details>',files['index.html'],re.S)
 faq={'@type':'FAQPage','@id':SITE+'/#faq','mainEntity':[{'@type':'Question','name':strip(q),'acceptedAnswer':{'@type':'Answer','text':strip(a)}} for q,a in qa]}
 assert len(qa)>=3
-home=ld({'@context':'https://schema.org','@graph':[org,web,app,faq]})
+home=ld({'@context':'https://schema.org','@graph':[org,web,app,webapp,faq]})
 def crumbs(items): return {'@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':i+1,'name':n,'item':u} for i,(n,u) in enumerate(items)]}
 def faqld(pairs): return {'@type':'FAQPage','mainEntity':[{'@type':'Question','name':strip(q),'acceptedAnswer':{'@type':'Answer','text':strip(a)}} for q,a in pairs]}
 def artld(url,headline,desc,cites,about):
@@ -553,17 +555,18 @@ for name, html in files.items():
         raise SystemExit('dash found in ' + name)
     (OUT / name).parent.mkdir(parents=True, exist_ok=True)
     (OUT / name).write_text(html, encoding='utf-8')
-pages=['/','/guide','/learn/']+[f"/learn/{a['slug']}" for a in L.ARTICLES]+['/about','/support','/terms','/privacy','/legal']
+pages=['/','/app/','/guide','/learn/']+[f"/learn/{a['slug']}" for a in L.ARTICLES]+['/about','/support','/terms','/privacy','/legal']
 (OUT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'  <url><loc>{SITE}{u}</loc><lastmod>{LASTMOD}</lastmod></url>\n' for u in pages)+'</urlset>\n',encoding='utf-8')
 bots=['GPTBot','OAI-SearchBot','ChatGPT-User','PerplexityBot','Perplexity-User','ClaudeBot','Claude-SearchBot','Claude-User','Google-Extended','Applebot-Extended','Bingbot','Googlebot']
 (OUT/'robots.txt').write_text('User-agent: *\nAllow: /\n\n'+''.join(f'User-agent: {b}\nAllow: /\n\n' for b in bots)+f'Sitemap: {SITE}/sitemap.xml\n',encoding='utf-8')
 GUIDES="\n".join([f"- [How to fix a mistake on your credit report]({SITE}/guide): The full step by step guide to disputing credit report errors yourself, for free"]+[f"- [{x['title']}]({SITE}/learn/{x['slug']}): {x['answer']}" for x in L.ARTICLES])
 llms=f"""# ZungiDill
 
-> ZungiDill is a phone app for people who want to fix mistakes on their own credit report themselves. You open your free credit report in the app, answer one question per account (not mine, I do not recognize it, mine but something is wrong, or mine and right), and ZungiDill writes the dispute letters for you to send to the credit bureaus. It is not a credit repair company. It has no account and never asks for a Social Security number. Your report stays on your phone. Made by Numerita LLC in Sheridan, Wyoming.
+> ZungiDill is a phone and web app for people who want to fix mistakes on their own credit report themselves. You open your free credit report in the app, answer one question per account (not mine, I do not recognize it, mine but something is wrong, or mine and right), and ZungiDill writes the dispute letters for you to send to the credit bureaus. It is not a credit repair company. It has no account and never asks for a Social Security number. Your report stays on your phone. Made by Numerita LLC in Sheridan, Wyoming.
 
 - Available now on Android through Google Play: {PLAY}
-- iPhone version is coming to the App Store.
+- On iPhone, use the web app in Safari: {SITE}/app/ (no download). The App Store version is coming.
+- Web app purchases are paid by card through Stripe. App purchases go through Google Play or the App Store.
 - Checking your report and drafting letters is free. You pay only when a letter is ready to print, save or send, either one letter at a time or with a monthly plan. Current prices are on the Terms page.
 - Works only with your own credit report. A report in another person's name is stopped.
 - Where to get a free report: AnnualCreditReport.com, the official site.
@@ -575,6 +578,7 @@ llms=f"""# ZungiDill
 ## Pages
 
 - [Home]({SITE}/): What ZungiDill does, how it works and common questions
+- [Web app]({SITE}/app/): Use ZungiDill in your browser, including on iPhone
 - [About]({SITE}/about): Who makes ZungiDill and how the guides are checked
 - [Support]({SITE}/support): Getting your report, sending letters, purchases, cancelling and deleting your data
 - [Terms of Use]({SITE}/terms): Prices, subscriptions, refunds and your responsibilities
