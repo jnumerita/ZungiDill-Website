@@ -153,9 +153,9 @@ Sincerely,
 # ------------------------------------------------------------------
 dict(
  slug='collections',
- title='How to get a collection off your credit report',
+ title='How to dispute a collection on your credit report',
  seo='How to Dispute a Collection on Your Credit Report | ZungiDill',
- desc='How to get a collection off your credit report: check it, make the collector prove it, dispute it, and what to do if the debt is really yours.',
+ desc='How to dispute a collection on your credit report: check it, make the collector prove it, dispute it, and what to do if the debt is really yours.',
  card='Check it, make them prove it, and what to do if it is yours.',
  answer='If a collection is wrong, dispute it with the credit bureaus and ask the collector to prove the debt. If it cannot be verified, it has to come off. If it is yours and correct, it can stay for about seven and a half years from the first missed payment that led to it, but you can still ask the collector to remove it.',
  sections=[
@@ -299,7 +299,7 @@ Sincerely,
  ],
  faqs=[
   ('Does a goodwill letter hurt my credit?','No. Asking does not change your report. The worst answer is no.'),
-  ('Can I send a goodwill letter to a collection agency?','You can, but with collections a pay for delete offer usually gets further. See how to get a collection off your report.'),
+  ('Can I send a goodwill letter to a collection agency?','You can, but with collections a pay for delete offer usually gets further. See how to dispute a collection on your credit report.'),
  ],
  sources=['ftc_fix','ftc_dispute'],
  related=['collections','how-long','dispute-letter'],
