@@ -4,8 +4,6 @@ import re, pathlib
 OUT = pathlib.Path(__file__).parent
 SITE = 'https://zungidill.com'
 EMAIL = 'hola.numerita@gmail.com'
-PHONE_TEL = '+16822477649'
-PHONE = '(682) 247-7649'
 EFFECTIVE = 'October 14, 2026'
 LASTMOD = '2026-10-22'
 
@@ -103,7 +101,6 @@ def page(slug, title, desc, body, current=''):
           <li><a href="/support">Support</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
-          <li><a href="tel:{PHONE_TEL}">{PHONE}</a></li>
           <li>We reply within two business days.</li>
         </ul>
       </div>
@@ -283,7 +280,6 @@ def index():
     <div class="contact">
       <a class="btn" href="https://tally.so/r/Zj479y" target="_blank" rel="noopener">Send us a message</a>
       <a class="btn quiet" href="mailto:{EMAIL}">{EMAIL}</a>
-      <a class="btn quiet" href="tel:{PHONE_TEL}">{PHONE}</a>
     </div>
   </div>
 </section>
@@ -306,7 +302,7 @@ def doc(title, meta, toc, content):
 def support():
     toc = [('start','Getting started'),('letters','Letters'),('purchases','Purchases'),('data','Your data'),('help','Still need help?')]
     c = f'''
-<p style="margin-top:24px">Need help? Email <a href="mailto:{EMAIL}?subject=ZungiDill%20support">{EMAIL}</a>, call <a href="tel:{PHONE_TEL}">{PHONE}</a>, or <a href="https://tally.so/r/Zj479y" target="_blank" rel="noopener">send us a message</a>. We reply within two business days. Please don't send your Social Security number, full account numbers or your credit report.</p>
+<p style="margin-top:24px">Need help? Email <a href="mailto:{EMAIL}?subject=ZungiDill%20support">{EMAIL}</a> or <a href="https://tally.so/r/Zj479y" target="_blank" rel="noopener">send us a message</a>. We reply within two business days. Please don't send your Social Security number, full account numbers or your credit report.</p>
 <h2 id="start">Getting started</h2>
 <h3>Where do I get my credit report?</h3>
 <p>Free at <a href="https://www.annualcreditreport.com">AnnualCreditReport.com</a>, the official site. Get the report from each bureau, save each one as a PDF, then tap Import my report in ZungiDill. You can also photograph a paper copy or add items by hand.</p>
@@ -342,7 +338,7 @@ def support():
 <h3>iPhone launch list</h3>
 <p>To come off the list, email <a href="mailto:{EMAIL}">{EMAIL}</a> from the address you signed up with.</p>
 <h2 id="help">Still need help?</h2>
-<p>Email <a href="mailto:{EMAIL}">{EMAIL}</a>, or call <a href="tel:{PHONE_TEL}">{PHONE}</a>.</p>
+<p>Email <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
 '''
     return page('support', 'ZungiDill Support: Reports, Letters and Purchases', 'Help with ZungiDill: getting your free credit report, importing it, sending your letters, purchases, cancelling a plan and deleting your data.', doc('Support', 'Real answers from a real person.', toc, c), 'support')
 
@@ -392,7 +388,7 @@ def terms():
 <h2 id="changes">Changes</h2>
 <p>We post updated terms on this page with a new effective date, and note big changes in the app's update notes. Using the app after a change means you accept it.</p>
 <h2 id="contact">Contact</h2>
-<p>Numerita LLC, Sheridan, Wyoming<br>Email <a href="mailto:{EMAIL}">{EMAIL}</a><br>Phone <a href="tel:{PHONE_TEL}">{PHONE}</a></p>
+<p>Numerita LLC, Sheridan, Wyoming<br>Email <a href="mailto:{EMAIL}">{EMAIL}</a></p>
 '''
     return page('terms', 'Terms of Use | ZungiDill', 'The ZungiDill Terms of Use: what the app does and does not do, prices, subscriptions, refunds, cancelling, and your part when you send letters.', doc('Terms of Use', 'Effective ' + EFFECTIVE, toc, c))
 
@@ -420,7 +416,7 @@ def privacy():
 <h2 id="launch-list">The iPhone launch list</h2>
 <p>When you sign up on our website, your email address is sent to us by FormSubmit, an email delivery service. If you use our Tally form instead, Tally (Tally BV) stores it and sends it to us. We keep your email address and the date you signed up. We use it only to email you when the iPhone app launches. It is never sold, rented, shared or added to another list. We delete the list after the launch email goes out. To be removed sooner, email <a href="mailto:{EMAIL}">{EMAIL}</a> from the address you signed up with, or reply to the launch email.</p>
 <h2 id="contact">Messages you send us</h2>
-<p>When you use our contact form, email or call us, we receive your email address or phone number and what you tell us. The contact form is run by Tally (Tally BV), which stores what you enter and sends it to us. We use this only to answer you. We delete messages within twelve months of your last contact, or sooner if you ask. Please do not send your Social Security number, full account numbers or your credit report.</p>
+<p>When you use our contact form or email us, we receive your email address and what you tell us. The contact form is run by Tally (Tally BV), which stores what you enter and sends it to us. We use this only to answer you. We delete messages within twelve months of your last contact, or sooner if you ask. Please do not send your Social Security number, full account numbers or your credit report.</p>
 <h2 id="website">This website</h2>
 <p>This website has no ads and no tracking cookies. We use Cloudflare Web Analytics to count page visits. It does not use cookies or local storage and does not follow you across sites or over time. Cloudflare, Inc., our website host, processes technical information like IP addresses and browser type to deliver pages and prevent abuse.</p>
 <h2 id="delete">Deleting your information</h2>
@@ -434,7 +430,7 @@ def privacy():
 <h2 id="changes">Changes</h2>
 <p>We post any update on this page with a new effective date. Changes to how the app handles your information are also noted in the app's update notes.</p>
 <h2 id="reach">Contact</h2>
-<p>Numerita LLC, Sheridan, Wyoming<br>Email <a href="mailto:{EMAIL}">{EMAIL}</a><br>Phone <a href="tel:{PHONE_TEL}">{PHONE}</a></p>
+<p>Numerita LLC, Sheridan, Wyoming<br>Email <a href="mailto:{EMAIL}">{EMAIL}</a></p>
 '''
     return page('privacy', 'Privacy Policy | ZungiDill', 'How ZungiDill handles your information: your report stays on your phone, there is no account, we never ask for your Social Security number and never sell data.', doc('Privacy Policy', 'Effective ' + EFFECTIVE, toc, c))
 
@@ -461,7 +457,7 @@ def legal():
 <h2 id="delete">Delete your data</h2>
 <ul><li>ZungiDill has no accounts. Everything you enter stays on your phone.</li><li>To erase it, open the More tab and tap Erase everything, or delete the app.</li><li>For the iPhone launch list or emails you sent us, write to <a href="mailto:{EMAIL}">{EMAIL}</a> from the address you used. We delete it within 30 days.</li><li>Purchase records are kept by Google Play or the App Store under their own policies.</li></ul>
 <h2 id="contact">Contact</h2>
-<p>Numerita LLC, Sheridan, Wyoming<br>Email <a href="mailto:{EMAIL}">{EMAIL}</a><br>Phone <a href="tel:{PHONE_TEL}">{PHONE}</a></p>
+<p>Numerita LLC, Sheridan, Wyoming<br>Email <a href="mailto:{EMAIL}">{EMAIL}</a></p>
 '''
     return page('legal', 'Legal Disclosures | ZungiDill', 'ZungiDill legal disclosures: not a credit repair company or a law firm, your rights, our affiliate disclosure and how to delete your data.', doc('Legal', 'Terms, privacy, disclosures and your data.', [], c))
 
@@ -543,7 +539,7 @@ def about():
 <h2 id="guides">How we write our guides</h2>
 <p>Every page in <a href="/learn/">Learn</a> is checked against federal law and official pages from the Federal Trade Commission and the Consumer Financial Protection Bureau. Each one lists its sources and the date it was last checked, and we update them when the rules change. They are general information, not legal advice.</p>
 <h2 id="reach">Reach us</h2>
-<p>Numerita LLC, Sheridan, Wyoming<br>Email <a href="mailto:{EMAIL}">{EMAIL}</a><br>Phone <a href="tel:{PHONE_TEL}">{PHONE}</a></p>
+<p>Numerita LLC, Sheridan, Wyoming<br>Email <a href="mailto:{EMAIL}">{EMAIL}</a></p>
 </div></div>"""
     return page('about', 'About ZungiDill and Numerita LLC', 'ZungiDill is a do it yourself credit report app from Numerita LLC in Wyoming. Why we built it, how the app protects you and how we check our guides.', c)
 
@@ -571,8 +567,8 @@ PLAY='https://play.google.com/store/apps/details?id=com.numerita.zungidil'
 def strip(x): return _h.unescape(re.sub(r'<[^>]+>','',x)).strip()
 def ld(obj): return '<script type="application/ld+json">'+json.dumps(obj,ensure_ascii=False,separators=(',',':'))+'</script>'
 org={'@type':'Organization','@id':SITE+'/#org','name':'Numerita LLC','url':SITE+'/','logo':SITE+'/img/icon-512.png','email':EMAIL,
-     'telephone':'+1-682-247-7649','address':{'@type':'PostalAddress','addressLocality':'Sheridan','addressRegion':'WY','addressCountry':'US'},
-     'sameAs':[PLAY],'contactPoint':{'@type':'ContactPoint','contactType':'customer support','email':EMAIL,'telephone':'+1-682-247-7649','availableLanguage':'English'}}
+     'address':{'@type':'PostalAddress','addressLocality':'Sheridan','addressRegion':'WY','addressCountry':'US'},
+     'sameAs':[PLAY],'contactPoint':{'@type':'ContactPoint','contactType':'customer support','email':EMAIL,'availableLanguage':'English'}}
 web={'@type':'WebSite','@id':SITE+'/#site','name':'ZungiDill','url':SITE+'/','publisher':{'@id':SITE+'/#org'},'inLanguage':'en-US'}
 OFFERS=[{'@type':'Offer','name':'Credit report check and letter drafting','price':'0','priceCurrency':'USD'},
  {'@type':'Offer','name':'One letter, launch price','price':'4.99','priceCurrency':'USD','priceValidUntil':'2026-12-31'},
@@ -675,7 +671,6 @@ llms=f"""# ZungiDill
 ## Contact
 
 - Email: {EMAIL}
-- Phone: {PHONE}
 """
 (OUT/'llms.txt').write_text(llms+f"\n## Full text\n\n- [All guides as plain text]({SITE}/llms-full.txt)\n",encoding='utf-8')
 def plain(h):
