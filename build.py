@@ -36,23 +36,27 @@ def page(slug, title, desc, body, current=''):
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc}">
 <meta name="twitter:image" content="{SITE}/img/og.png">{'{NOINDEX}' if slug in ('thanks','404') else ''}
-<meta name="theme-color" content="#F6F5F0">
-<link rel="icon" href="/img/logo.png">
-<link rel="preload" href="/fonts/Poppins-Bold.woff" as="font" type="font/woff" crossorigin>
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/icon-32.png">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+<link rel="preload" href="/fonts/SourceSerif4-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/IBMPlexSans-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header>
   <div class="wrap bar">
-    <a class="logo" href="/" aria-label="ZungiDill home"><img src="/img/logo.png" alt="ZungiDill" width="152" height="38"></a>
+    <a class="brand" href="/" aria-label="ZungiDill home"><img src="/img/icon-180.png" alt="" width="36" height="36"><span>ZungiDill</span></a>
     <nav aria-label="Main">
       <ul>
-        {nav('/#how', 'How it works', 'how', 'hide-sm')}
+        {nav('/#how', 'How it works', 'how', 'hide-md hide-sm')}
+        {nav('/#prices', 'Prices', 'prices', 'hide-sm')}
         {nav('/learn/', 'Learn', 'learn')}
-        {nav('/#questions', 'Questions', 'q', 'hide-sm')}
+        {nav('/#questions', 'Questions', 'q', 'hide-md hide-sm')}
         {nav('/support', 'Support', 'support')}
         {nav('/#contact', 'Contact', 'contact')}
+        {nav('/app/', 'Open the web app', 'app', 'navbtn hide-sm')}
       </ul>
     </nav>
   </div>
@@ -64,8 +68,12 @@ def page(slug, title, desc, body, current=''):
   <div class="wrap">
     <div class="grid">
       <div>
-        <a class="logo" href="/" aria-label="ZungiDill home"><img src="/img/logo.png" alt="ZungiDill" width="136" height="34"></a>
-        <p style="margin-top:14px;color:#D8D6D0">Made by Numerita LLC, Sheridan, Wyoming.</p>
+        <a class="brand" href="/" aria-label="ZungiDill home"><img src="/img/icon-180.png" alt="" width="36" height="36"><span>ZungiDill</span></a>
+        <p class="made">Made by Numerita LLC, Sheridan, Wyoming.</p>
+        <div class="stores">
+          <a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="149" height="44"></a>
+          <a class="soon" href="/#notify"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span><small>iPhone app</small>Coming soon</span></a>
+        </div>
       </div>
       <div>
         <h4>Learn</h4>
@@ -96,7 +104,7 @@ def page(slug, title, desc, body, current=''):
           <li><a href="/about">About</a></li>
           <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
           <li><a href="tel:{PHONE_TEL}">{PHONE}</a></li>
-          <li style="color:var(--muted)">We reply within two business days.</li>
+          <li>We reply within two business days.</li>
         </ul>
       </div>
     </div>
@@ -107,6 +115,8 @@ def page(slug, title, desc, body, current=''):
     </div>
   </div>
 </footer>
+<div class="mbar" aria-label="Get ZungiDill"><a class="btn" href="/app/">Open the web app</a></div>
+<script src="/js/site.js" defer></script>
 </body>
 </html>
 '''
@@ -129,29 +139,40 @@ GOAL = {
 }
 
 def index():
+    LT = {a["slug"]: a["title"] for a in L.ARTICLES}
+    LC = {a["slug"]: a["card"] for a in L.ARTICLES}
     body = f"""
 <section class="first" aria-labelledby="hero-h">
   <div class="wrap hero">
     <div>
       <h1 id="hero-h">Tired of hearing no?</h1>
-      <p class="lede">You work hard and pay your way, a lot of times in cash. Still the answer is no, or yes with a payment that hurts. Sometimes what holds you back is a mistake on your credit report. ZungiDill helps you find it and fix it yourself.</p>
-      <div class="stores">
-        <a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="176" height="52"></a>
-        <a class="soon" href="/app/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span><small>On iPhone?</small>Open the web app</span></a>
+      <p class="lede">Sometimes what holds you back is a mistake on your credit report. ZungiDill helps you find it and fix it yourself.</p>
+      <div class="acts">
+        <a class="btn" href="/app/">Open the web app</a>
+        <a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="183" height="54"></a>
       </div>
-      <form class="notify" id="notify" action="https://tally.so/r/VLR6RJ" method="get" target="_blank" rel="noopener">
-        <label for="nemail"><b>Get notified when ZungiDill is on the App Store</b></label>
-        <div class="nrow"><input id="nemail" name="email" type="email" placeholder="Your email" autocomplete="email" required><button class="nbtn" type="submit">Notify me</button></div>
-        <p class="nmsg" role="status" aria-live="polite" hidden></p>
-        <label class="ncheck"><input type="checkbox" required><span>Email me once when the iPhone app is available. Nothing else. <a href="/privacy#launch-list">Privacy</a></span></label>
-      </form>
-      <ul class="ticks"><li>Free to check</li><li>No account</li><li>No Social Security number</li><li>Stays on your phone</li><li>No monthly plan required</li></ul>
+      <p class="price"><b>Free to check.</b> <span class="launch">Letters $4.99 through Dec 31, 2026.</span><span class="after" hidden>Letters $9.99.</span> <a href="#prices">See prices</a></p>
+      <p class="soonline">iPhone app coming soon. <a href="#notify">Get notified</a></p>
     </div>
-    <div class="wall" aria-label="ZungiDill app screens"><div class="col c1"><div class="track"><img src="/img/screens/welcome.webp" alt="Welcome screen with three steps" width="600" height="1300" decoding="async"><img src="/img/screens/qc.webp" alt="Quick check asking if an item is yours" width="600" height="1300" fetchpriority="high" decoding="async"><img src="/img/screens/letters.webp" alt="A dispute letter ready to print" width="600" height="1300" decoding="async"><img src="/img/screens/welcome.webp" alt="" aria-hidden="true" width="600" height="1300" decoding="async"><img src="/img/screens/qc.webp" alt="" aria-hidden="true" width="600" height="1300" decoding="async"><img src="/img/screens/letters.webp" alt="" aria-hidden="true" width="600" height="1300" decoding="async"></div></div><div class="col c2"><div class="track"><img src="/img/screens/home.webp" alt="Home screen with a quick check and your next step" width="600" height="1300" fetchpriority="high" decoding="async"><img src="/img/screens/report.webp" alt="Report tab with items to check, in dispute and fixed" width="600" height="1300" decoding="async"><img src="/img/screens/track.webp" alt="Track tab counting the days until the bureau must answer" width="600" height="1300" decoding="async"><img src="/img/screens/home.webp" alt="" aria-hidden="true" width="600" height="1300" decoding="async"><img src="/img/screens/report.webp" alt="" aria-hidden="true" width="600" height="1300" decoding="async"><img src="/img/screens/track.webp" alt="" aria-hidden="true" width="600" height="1300" decoding="async"></div></div><div class="col c3"><div class="track"><img src="/img/screens/qc2.webp" alt="Quick check flagging a collection that may be too old to report" width="600" height="1300" fetchpriority="high" decoding="async"><img src="/img/screens/rows.webp" alt="Report items marked in red when something is wrong" width="600" height="1300" decoding="async"><img src="/img/screens/plan.webp" alt="A plan for getting a car on your terms" width="600" height="1300" decoding="async"><img src="/img/screens/qc2.webp" alt="" aria-hidden="true" width="600" height="1300" decoding="async"><img src="/img/screens/rows.webp" alt="" aria-hidden="true" width="600" height="1300" decoding="async"><img src="/img/screens/plan.webp" alt="" aria-hidden="true" width="600" height="1300" decoding="async"></div></div></div>
+    <div class="stage" aria-label="ZungiDill app screens">
+      <div class="phone sm back"><img src="/img/app/report.webp" alt="Report screen with your three credit reports and what may be wrong" width="402" height="874" decoding="async" loading="lazy"></div>
+      <div class="phone front"><img src="/img/app/home.webp" alt="Home screen with your scores and your next step" width="402" height="874" decoding="async" fetchpriority="high"></div>
+    </div>
   </div>
 </section>
 
-<section class="alt" aria-labelledby="heard-h">
+<section class="strip" aria-label="What ZungiDill never asks for">
+  <div class="wrap">
+    <ul class="never">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>No Social Security number</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>No account to make</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Your reports stay on your phone</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>You send your own letters</li>
+    </ul>
+  </div>
+</section>
+
+<section aria-labelledby="heard-h">
   <div class="wrap">
     <div class="sh"><h2 id="heard-h">Sound familiar?</h2></div>
     <div class="heard">
@@ -166,16 +187,44 @@ def index():
 <section id="how" aria-labelledby="how-h">
   <div class="wrap">
     <div class="sh"><h2 id="how-h">How it works</h2><p>No forms to figure out and no calls to make. You stay in charge the whole way.</p></div>
-    <div class="steps">
-      <article class="step"><div class="shot"><img src="/img/zd-report.webp" alt="Report screen with your progress and your path" width="620" height="1265" loading="lazy"></div><div class="txt"><p class="n">First</p><h3>Bring in your report</h3><p>Get your free report and open it in ZungiDill. A photo of a paper copy works too.</p></div></article>
-      <article class="step"><div class="shot"><img src="/img/zd-quick-check.webp" alt="Quick check asking if an item on your report is yours" width="620" height="1265" loading="lazy"></div><div class="txt"><p class="n">Next</p><h3>Tap what is wrong</h3><p>Not mine. I don't know this one. Something is off. Your taps become the letter.</p></div></article>
-      <article class="step"><div class="shot"><img src="/img/zd-track.webp" alt="Track screen showing a letter waiting for an answer" width="620" height="1265" loading="lazy"></div><div class="txt"><p class="n">Then</p><h3>Mail it, we keep watch</h3><p>Add the day it arrived. ZungiDill reminds you when they owe you an answer and helps you read it.</p></div></article>
+    <div class="jobs">
+      <article class="job"><div class="txt"><p class="n" aria-hidden="true">1</p><h3>Bring in your report</h3><p>Get your free report and open it in ZungiDill. A photo of a paper copy works too.</p></div><div class="shot"><div class="phone "><img src="/img/app/upload.webp" alt="Adding your credit reports, one bureau at a time" width="402" height="874" decoding="async" loading="lazy"></div></div></article>
+      <article class="job"><div class="txt"><p class="n" aria-hidden="true">2</p><h3>Tap what is wrong</h3><p>Not mine. I don't know this one. Something is off. One tap per item.</p></div><div class="shot"><div class="phone "><img src="/img/app/check.webp" alt="Quick check asking if a collection account is yours" width="402" height="874" decoding="async" loading="lazy"></div></div></article>
+      <article class="job"><div class="txt"><p class="n" aria-hidden="true">3</p><h3>Your taps become the letter</h3><p>Read every word before it goes out. Then print it and mail it yourself.</p></div><div class="shot"><div class="phone "><img src="/img/app/letter.webp" alt="A finished dispute letter to Equifax, ready to print" width="402" height="874" decoding="async" loading="lazy"></div></div></article>
+      <article class="job"><div class="txt"><p class="n" aria-hidden="true">4</p><h3>We keep watch</h3><p>Add the day it arrived. ZungiDill reminds you when they owe you an answer and helps you read it.</p></div><div class="shot"><div class="phone "><img src="/img/app/track.webp" alt="Track screen counting the days until the bureau must answer" width="402" height="874" decoding="async" loading="lazy"></div></div></article>
     </div>
     <p class="timing"><b>How long does it take?</b> The credit bureaus usually have about 30 days to answer each letter. Start now, so it can be done before you apply for the car, the place or the card.</p>
   </div>
 </section>
 
-<section id="questions" class="alt" aria-labelledby="q-h">
+<section id="prices" aria-labelledby="prices-h">
+  <div class="wrap">
+    <div class="sh"><h2 id="prices-h">Prices</h2></div>
+    <p class="free"><b>Checking your report and drafting letters is free.</b> You pay only when a letter is ready to print, save or send.</p>
+    <div class="plans">
+      <div class="plan">
+        <h3>One letter</h3>
+        <p class="amt"><b><span class="launch">$4.99</span><span class="after" hidden>$9.99</span></b><span>per letter</span></p>
+        <p class="then launch">Launch price through Dec 31, 2026, then <b>$9.99</b>.</p>
+        <ul><li>Unlocks one finished letter to print, save or send</li><li>One-time payment</li><li>No plan needed</li></ul>
+        <a class="btn" href="/app/">Open the web app</a>
+        <p class="terms">You see the price before you pay.</p>
+      </div>
+      <div class="plan">
+        <span class="tag">Monthly plan optional</span>
+        <h3>ZungiDill Monthly</h3>
+        <p class="amt"><b>$19.99</b><span>a month for the first 3 months</span></p>
+        <p class="then">Then <b>$39.99 a month</b>. For new subscribers.</p>
+        <ul><li>One round each month: a letter to each credit bureau, plus company letters</li><li>Renews monthly until you cancel</li><li>Cancel before the renewal date to stop</li></ul>
+        <a class="btn" href="/app/">Open the web app</a>
+        <p class="terms">You see the price before you pay.</p>
+      </div>
+    </div>
+    <p class="fine pricefine">Prices in U.S. dollars. On the web you pay by card through Stripe. In the Android app you pay through Google Play. <a href="/terms#prices">Full terms</a></p>
+  </div>
+</section>
+
+<section id="questions" aria-labelledby="q-h">
   <div class="wrap qwrap">
     <div class="sh"><h2 id="q-h">Questions</h2><p>Want the whole picture?</p><ul class="qlinks"><li><a href="/guide">Step by step guide</a></li><li><a href="/learn/dispute-letter">Free dispute letter sample</a></li><li><a href="/learn/collections">Collections</a></li><li><a href="/learn/">All guides</a></li></ul></div>
     <div class="qa">
@@ -188,6 +237,31 @@ def index():
       <details class="q"><summary>What if they cannot prove it?</summary><div><p>If the company that reported the item cannot show it is right, it has to be fixed or taken off your report.</p></div></details>
       <details class="q"><summary>What if the item is mine and it is right?</summary><div><p>ZungiDill will not tell you to call it wrong. It shows you what you can do instead, like a goodwill letter asking a lender to remove a late payment that really happened.</p></div></details>
     </div>
+  </div>
+</section>
+
+<section aria-labelledby="learn-h">
+  <div class="wrap">
+    <div class="sh"><h2 id="learn-h">Learn the basics</h2><p>Plain-word guides, with sources for every rule.</p></div>
+    <ul class="cards"><li><a href="/learn/dispute-letter"><b>{LT["dispute-letter"]}</b><span>{LC["dispute-letter"]}</span></a></li><li><a href="/learn/not-mine"><b>{LT["not-mine"]}</b><span>{LC["not-mine"]}</span></a></li><li><a href="/learn/collections"><b>{LT["collections"]}</b><span>{LC["collections"]}</span></a></li></ul>
+    <p class="more"><a href="/learn/">All guides</a></p>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="iphone-h">
+  <div class="wrap grid2">
+    <div>
+      <span class="accent" aria-hidden="true"></span>
+      <h2 id="iphone-h">On iPhone? Use it in Safari today.</h2>
+      <p class="lede">The App Store app is coming soon. The web app works on iPhone right now, with nothing to download.</p>
+      <div class="acts"><a class="btn light" href="/app/">Open the web app</a></div>
+    </div>
+    <form class="notify" id="notify" action="https://tally.so/r/VLR6RJ" method="get" target="_blank" rel="noopener">
+      <label for="nemail"><b>Get notified when ZungiDill is on the App Store</b></label>
+      <div class="nrow"><input id="nemail" name="email" type="email" placeholder="Your email" autocomplete="email" required><button class="nbtn" type="submit">Notify me</button></div>
+      <p class="nmsg" role="status" aria-live="polite" hidden></p>
+      <label class="ncheck"><input type="checkbox" required><span>Email me once when the iPhone app is available. Nothing else. <a href="/privacy#launch-list">Privacy</a></span></label>
+    </form>
   </div>
 </section>
 
@@ -491,7 +565,7 @@ import json, html as _h
 PLAY='https://play.google.com/store/apps/details?id=com.numerita.zungidil'
 def strip(x): return _h.unescape(re.sub(r'<[^>]+>','',x)).strip()
 def ld(obj): return '<script type="application/ld+json">'+json.dumps(obj,ensure_ascii=False,separators=(',',':'))+'</script>'
-org={'@type':'Organization','@id':SITE+'/#org','name':'Numerita LLC','url':SITE+'/','logo':SITE+'/img/logo.png','email':EMAIL,
+org={'@type':'Organization','@id':SITE+'/#org','name':'Numerita LLC','url':SITE+'/','logo':SITE+'/img/icon-512.png','email':EMAIL,
      'telephone':'+1-682-247-7649','address':{'@type':'PostalAddress','addressLocality':'Sheridan','addressRegion':'WY','addressCountry':'US'},
      'sameAs':[PLAY],'contactPoint':{'@type':'ContactPoint','contactType':'customer support','email':EMAIL,'telephone':'+1-682-247-7649','availableLanguage':'English'}}
 web={'@type':'WebSite','@id':SITE+'/#site','name':'ZungiDill','url':SITE+'/','publisher':{'@id':SITE+'/#org'},'inLanguage':'en-US'}
