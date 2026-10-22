@@ -8,3 +8,4 @@ learn.py
 __pycache__
 worker.js
 README-web-app.txt
+.gitignore
