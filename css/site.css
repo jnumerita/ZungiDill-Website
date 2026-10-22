@@ -351,3 +351,7 @@ footer{padding-top:56px}
   section[aria-labelledby="learn-h"]{padding-top:0}
   #how .sh,#prices .sh,section[aria-labelledby="learn-h"] .sh,#contact .sh{margin-bottom:24px}
 }
+
+/* How it works, desktop only: stagger the steps so each phone starts beside the lower part of the step above.
+   -135px is the largest overlap that keeps 32px clear between neighbouring steps (checked 1020 to 1440 wide). */
+@media (min-width:981px){#how .job+.job{margin-top:-135px}}
