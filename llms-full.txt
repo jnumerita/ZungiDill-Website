@@ -1,6 +1,6 @@
 # ZungiDill guides, full text
 
-Source: https://zungidill.com/learn/ . Updated 2026-10-13. General information, not legal advice.
+Source: https://zungidill.com/learn/ . Updated 2026-10-22. General information, not legal advice.
 
 ---
 
@@ -8,7 +8,7 @@ URL: https://zungidill.com/guide
 
 # How to fix a mistake on your credit report
 
-Updated October 13, 2026 · Checked against official FTC and CFPB sources
+Last updated October 22, 2026 · Checked against official FTC and CFPB sources
 
 ## The short version
 
@@ -91,7 +91,7 @@ URL: https://zungidill.com/learn/mistakes
 
 # Credit report mistakes to look for
 
-Updated October 13, 2026 · Checked against official sources
+Last updated October 22, 2026 · Checked against official sources
 
 ## The quick answer
 
@@ -174,11 +174,11 @@ URL: https://zungidill.com/learn/dispute-letter
 
 # Credit dispute letter: a free sample you can copy
 
-Updated October 13, 2026 · Checked against official sources
+Last updated October 22, 2026 · Checked against official sources
 
 ## The quick answer
 
-A credit dispute letter tells a credit bureau which item on your report is wrong, why it is wrong and what you want done. Send one to each bureau that shows the mistake, add copies of your proof and keep a copy for yourself. The bureau usually has 30 days to look into it.
+A credit dispute letter tells a credit bureau which item on your report is wrong, why it is wrong and what you want done. Send one to each bureau that shows the mistake, add copies of your proof and keep a copy for yourself. The bureau usually has 30 days to look into it, under federal law (15 U.S.C. 1681i).
 
 ## What goes in the letter
 
@@ -300,7 +300,7 @@ URL: https://zungidill.com/learn/collections
 
 # How to get a collection off your credit report
 
-Updated October 13, 2026 · Checked against official sources
+Last updated October 22, 2026 · Checked against official sources
 
 ## The quick answer
 
@@ -387,7 +387,7 @@ URL: https://zungidill.com/learn/not-mine
 
 # Accounts on your credit report that are not yours
 
-Updated October 13, 2026 · Checked against official sources
+Last updated October 22, 2026 · Checked against official sources
 
 ## The quick answer
 
@@ -458,11 +458,11 @@ URL: https://zungidill.com/learn/how-long
 
 # How long things stay on your credit report
 
-Updated October 13, 2026 · Checked against official sources
+Last updated October 22, 2026 · Checked against official sources
 
 ## The quick answer
 
-Most negative items, like late payments, collections and charge offs, can stay on your credit report for seven years. Bankruptcy can stay for ten. Hard credit checks stay for two years. When the time is up, the item should come off on its own, and if it does not, you can dispute it.
+Most negative items, like late payments, collections and charge offs, can stay on your credit report for seven years. For collections and charge offs, the seven years start 180 days after you first fell behind. Bankruptcy can stay for ten (15 U.S.C. 1681c). Hard credit checks stay for two years. When the time is up, the item should come off on its own, and if it does not, you can dispute it.
 
 ## How long each item stays
 
@@ -531,7 +531,7 @@ URL: https://zungidill.com/learn/goodwill-letter
 
 # Goodwill letter for a late payment: a free sample
 
-Updated October 13, 2026 · Checked against official sources
+Last updated October 22, 2026 · Checked against official sources
 
 ## The quick answer
 
@@ -605,7 +605,7 @@ URL: https://zungidill.com/learn/car-loan
 
 # Car loan with bad credit: check your report before you shop
 
-Updated October 13, 2026 · Checked against official sources
+Last updated October 22, 2026 · Checked against official sources
 
 ## The quick answer
 
@@ -672,11 +672,11 @@ URL: https://zungidill.com/learn/credit-repair
 
 # Credit repair companies: what they can and cannot do
 
-Updated October 13, 2026 · Checked against official sources
+Last updated October 22, 2026 · Checked against official sources
 
 ## The quick answer
 
-A credit repair company can only do what you can do yourself for free: dispute mistakes on your credit report. By law it cannot charge you before the work is done, it has to give you a written contract, and you can cancel within three business days. Nobody can remove true information from your report.
+A credit repair company can only do what you can do yourself for free: dispute mistakes on your credit report. By law it cannot charge you before the work is done, it has to give you a written contract, and you can cancel within three business days (Credit Repair Organizations Act, 15 U.S.C. 1679b, 1679d and 1679e). Nobody can remove true information from your report.
 
 ## What the law says
 
@@ -735,6 +735,7 @@ Open your report in ZungiDill, tap what is wrong, and it writes the letter and r
 ## Sources
 
 - Credit Repair Organizations Act, 15 U.S.C. 1679b: no payment before the work is done
+- Credit Repair Organizations Act, 15 U.S.C. 1679d: written contract
 - Credit Repair Organizations Act, 15 U.S.C. 1679e: right to cancel
 - Federal Trade Commission: Fixing your credit FAQs
 

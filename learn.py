@@ -1,8 +1,9 @@
 # Content for the Learn section of zungidill.com.
 # Every fact here was checked against the source listed with the article.
 
-UPDATED = 'October 13, 2026'
-UPDATED_ISO = '2026-10-13'
+UPDATED = 'October 22, 2026'
+UPDATED_ISO = '2026-10-22'
+PUBLISHED_ISO = '2026-10-13'
 
 SRC = {
  'ftc_dispute': ('Federal Trade Commission: Disputing errors on your credit reports', 'https://consumer.ftc.gov/articles/disputing-errors-your-credit-reports'),
@@ -18,6 +19,7 @@ SRC = {
  'fcra_1681i': ('Fair Credit Reporting Act, 15 U.S.C. 1681i: disputes', 'https://www.law.cornell.edu/uscode/text/15/1681i'),
  'fdcpa_1692g': ('Fair Debt Collection Practices Act, 15 U.S.C. 1692g: proof of the debt', 'https://www.law.cornell.edu/uscode/text/15/1692g'),
  'croa_1679b': ('Credit Repair Organizations Act, 15 U.S.C. 1679b: no payment before the work is done', 'https://www.law.cornell.edu/uscode/text/15/1679b'),
+ 'croa_1679d':('Credit Repair Organizations Act, 15 U.S.C. 1679d: written contract','https://www.law.cornell.edu/uscode/text/15/1679d'),
  'croa_1679e': ('Credit Repair Organizations Act, 15 U.S.C. 1679e: right to cancel', 'https://www.law.cornell.edu/uscode/text/15/1679e'),
  'medical_2022': ('Equifax, Experian and TransUnion: changes to medical collection debt reporting (Business Wire)', 'https://www.businesswire.com/news/home/20220318005244/en'),
  'medical_court': ('CBS News: Federal judge reverses medical debt rule', 'https://www.cbsnews.com/news/federal-judge-reverses-medical-debt-rule-credit-reports-cfpb'),
@@ -80,7 +82,7 @@ dict(
  seo='Credit Dispute Letter Sample: Free Template | ZungiDill',
  desc='A free credit dispute letter you can copy, what to put in it, where to mail it for Equifax, Experian and TransUnion, and what happens after you send it.',
  card='A sample letter, what to put in it and where to mail it.',
- answer='A credit dispute letter tells a credit bureau which item on your report is wrong, why it is wrong and what you want done. Send one to each bureau that shows the mistake, add copies of your proof and keep a copy for yourself. The bureau usually has 30 days to look into it.',
+ answer='A credit dispute letter tells a credit bureau which item on your report is wrong, why it is wrong and what you want done. Send one to each bureau that shows the mistake, add copies of your proof and keep a copy for yourself. The bureau usually has 30 days to look into it, under federal law (15 U.S.C. 1681i).',
  sections=[
   ('what','What goes in the letter','''<ul>
 <li>Your full name, current address and date of birth, so they can find your file.</li>
@@ -152,7 +154,7 @@ Sincerely,
 dict(
  slug='collections',
  title='How to get a collection off your credit report',
- seo='Remove a Collection From Your Credit Report | ZungiDill',
+ seo='How to Dispute a Collection on Your Credit Report | ZungiDill',
  desc='How to get a collection off your credit report: check it, make the collector prove it, dispute it, and what to do if the debt is really yours.',
  card='Check it, make them prove it, and what to do if it is yours.',
  answer='If a collection is wrong, dispute it with the credit bureaus and ask the collector to prove the debt. If it cannot be verified, it has to come off. If it is yours and correct, it can stay for about seven and a half years from the first missed payment that led to it, but you can still ask the collector to remove it.',
@@ -229,7 +231,7 @@ dict(
  seo='How Long Do Negative Items Stay on Your Credit Report?',
  desc='How long late payments, collections, charge offs, bankruptcy and credit checks stay on your credit report, and what to do if one stays too long.',
  card='Late payments, collections, bankruptcy and when they drop off.',
- answer='Most negative items, like late payments, collections and charge offs, can stay on your credit report for seven years. Bankruptcy can stay for ten. Hard credit checks stay for two years. When the time is up, the item should come off on its own, and if it does not, you can dispute it.',
+ answer='Most negative items, like late payments, collections and charge offs, can stay on your credit report for seven years. For collections and charge offs, the seven years start 180 days after you first fell behind. Bankruptcy can stay for ten (15 U.S.C. 1681c). Hard credit checks stay for two years. When the time is up, the item should come off on its own, and if it does not, you can dispute it.',
  sections=[
   ('table','How long each item stays','''<table>
 <tr><th>Item</th><th>How long</th><th>When the clock starts</th></tr>
@@ -261,7 +263,7 @@ dict(
 dict(
  slug='goodwill-letter',
  title='Goodwill letter for a late payment: a free sample',
- seo='Remove a Late Payment: Goodwill Letter Sample | ZungiDill',
+ seo='Goodwill Letter for a Late Payment: Free Sample | ZungiDill',
  desc='A free goodwill letter sample to ask a lender to remove a late payment that really happened, when it works, when it does not, and who to send it to.',
  card='Ask a lender to remove a late payment that really happened.',
  answer='A goodwill letter asks a lender to remove a late payment that really happened, as a favor. They do not have to say yes. It works best when the late payment was a one time slip, your account is current now and the rest of your history is good. It costs nothing to ask.',
@@ -338,7 +340,7 @@ dict(
  seo='Is Credit Repair Worth It? What the Law Says | ZungiDill',
  desc='What credit repair companies can legally do, what they cannot, the red flags of a scam, and how to do the same thing yourself for free in the same time.',
  card='What the law allows, red flags, and doing it yourself.',
- answer='A credit repair company can only do what you can do yourself for free: dispute mistakes on your credit report. By law it cannot charge you before the work is done, it has to give you a written contract, and you can cancel within three business days. Nobody can remove true information from your report.',
+ answer='A credit repair company can only do what you can do yourself for free: dispute mistakes on your credit report. By law it cannot charge you before the work is done, it has to give you a written contract, and you can cancel within three business days (Credit Repair Organizations Act, 15 U.S.C. 1679b, 1679d and 1679e). Nobody can remove true information from your report.',
  sections=[
   ('law','What the law says','''<ul>
 <li>They cannot charge you before they finish the work they promised.</li>
@@ -367,7 +369,7 @@ dict(
   ('What is a CPN?','A credit privacy number, sold as a way to get a fresh credit file. It is a scam, and using one to apply for credit can be a federal crime.'),
   ('Is ZungiDill a credit repair company?','No. ZungiDill is a tool you use yourself. You decide what is wrong and you send your own letters.'),
  ],
- sources=['croa_1679b','croa_1679e','ftc_fix'],
+ sources=['croa_1679b','croa_1679d','croa_1679e','ftc_fix'],
  related=['dispute-letter','collections','not-mine'],
 ),
 ]

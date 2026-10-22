@@ -1,11 +1,14 @@
 # ZungiDill
 
-> ZungiDill is a phone and web app for people who want to fix mistakes on their own credit report themselves. You open your free credit report in the app, answer one question per account (not mine, I do not recognize it, mine but something is wrong, or mine and right), and ZungiDill writes the dispute letters for you to send to the credit bureaus. It is not a credit repair company. It has no account and never asks for a Social Security number. Your report stays on your phone. Made by Numerita LLC in Sheridan, Wyoming.
+> ZungiDill is a phone and web app for people who want to fix mistakes on their own credit report themselves. You open your free credit report in the app, answer one question per account (not mine, I do not recognize it, mine but something is wrong, or mine and right), and ZungiDill writes the dispute letters for you to send to the credit bureaus. It is a self-help tool, not a credit repair organization or a law firm, and it does not promise results. It has no account and never asks for a Social Security number. Your report stays on your phone. Made by Numerita LLC in Sheridan, Wyoming.
 
-- Available now on Android through Google Play: https://play.google.com/store/apps/details?id=com.numerita.zungidil
-- On iPhone, use the web app in Safari: https://zungidill.com/app/ (no download). The App Store version is coming.
+- Use it now in any browser, including Safari on iPhone: https://zungidill.com/app/ (no download).
+- Android app on Google Play: https://play.google.com/store/apps/details?id=com.numerita.zungidil
+- iPhone app: coming soon to the App Store.
 - Web app purchases are paid by card through Stripe. App purchases go through Google Play or the App Store.
-- Checking your report and drafting letters is free. You pay only when a letter is ready to print, save or send, either one letter at a time or with a monthly plan. Current prices are on the Terms page.
+- Checking your report and drafting letters is free. You pay only when a letter is ready to print, save or send.
+- One letter: $4.99 through December 31, 2026, then $9.99.
+- ZungiDill Monthly (optional): $19.99 a month for the first 3 months for new subscribers, then $39.99 a month. Renews until you cancel. Full terms: https://zungidill.com/terms#prices
 - Works only with your own credit report. A report in another person's name is stopped.
 - Where to get a free report: AnnualCreditReport.com, the official site.
 
@@ -13,13 +16,13 @@
 
 - [How to fix a mistake on your credit report](https://zungidill.com/guide): The full step by step guide to disputing credit report errors yourself, for free
 - [Credit report mistakes to look for](https://zungidill.com/learn/mistakes): The most common credit report mistakes are wrong personal details, accounts that belong to someone else, late payments you paid on time, wrong balances or limits, the same debt listed twice and wrong dates. Check each account on all three reports, because a mistake can show on one and not the others.
-- [Credit dispute letter: a free sample you can copy](https://zungidill.com/learn/dispute-letter): A credit dispute letter tells a credit bureau which item on your report is wrong, why it is wrong and what you want done. Send one to each bureau that shows the mistake, add copies of your proof and keep a copy for yourself. The bureau usually has 30 days to look into it.
+- [Credit dispute letter: a free sample you can copy](https://zungidill.com/learn/dispute-letter): A credit dispute letter tells a credit bureau which item on your report is wrong, why it is wrong and what you want done. Send one to each bureau that shows the mistake, add copies of your proof and keep a copy for yourself. The bureau usually has 30 days to look into it, under federal law (15 U.S.C. 1681i).
 - [How to get a collection off your credit report](https://zungidill.com/learn/collections): If a collection is wrong, dispute it with the credit bureaus and ask the collector to prove the debt. If it cannot be verified, it has to come off. If it is yours and correct, it can stay for about seven and a half years from the first missed payment that led to it, but you can still ask the collector to remove it.
 - [Accounts on your credit report that are not yours](https://zungidill.com/learn/not-mine): If an account on your report is not yours, first figure out if it is a mix up or identity theft. For identity theft, report it at IdentityTheft.gov, then send that report to each credit bureau and ask them to block the accounts. They must block them within four business days. For a mix up, send a regular dispute.
-- [How long things stay on your credit report](https://zungidill.com/learn/how-long): Most negative items, like late payments, collections and charge offs, can stay on your credit report for seven years. Bankruptcy can stay for ten. Hard credit checks stay for two years. When the time is up, the item should come off on its own, and if it does not, you can dispute it.
+- [How long things stay on your credit report](https://zungidill.com/learn/how-long): Most negative items, like late payments, collections and charge offs, can stay on your credit report for seven years. For collections and charge offs, the seven years start 180 days after you first fell behind. Bankruptcy can stay for ten (15 U.S.C. 1681c). Hard credit checks stay for two years. When the time is up, the item should come off on its own, and if it does not, you can dispute it.
 - [Goodwill letter for a late payment: a free sample](https://zungidill.com/learn/goodwill-letter): A goodwill letter asks a lender to remove a late payment that really happened, as a favor. They do not have to say yes. It works best when the late payment was a one time slip, your account is current now and the rest of your history is good. It costs nothing to ask.
 - [Car loan with bad credit: check your report before you shop](https://zungidill.com/learn/car-loan): Before you shop for a car with bad credit, get your free credit reports and dispute anything wrong, then get preapproved by a bank or credit union so you know your rate before you walk in. A mistake on your report can cost you a higher rate for the whole loan.
-- [Credit repair companies: what they can and cannot do](https://zungidill.com/learn/credit-repair): A credit repair company can only do what you can do yourself for free: dispute mistakes on your credit report. By law it cannot charge you before the work is done, it has to give you a written contract, and you can cancel within three business days. Nobody can remove true information from your report.
+- [Credit repair companies: what they can and cannot do](https://zungidill.com/learn/credit-repair): A credit repair company can only do what you can do yourself for free: dispute mistakes on your credit report. By law it cannot charge you before the work is done, it has to give you a written contract, and you can cancel within three business days (Credit Repair Organizations Act, 15 U.S.C. 1679b, 1679d and 1679e). Nobody can remove true information from your report.
 
 ## Pages
 
