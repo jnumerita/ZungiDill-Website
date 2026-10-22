@@ -274,7 +274,8 @@ def index():
     <div class="forms">
       <div class="panel">
         <h3>Send us a message</h3>
-        <iframe class="tally" data-tally-src="https://tally.so/embed/Zj479y?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" width="100%" height="300" frameborder="0" marginheight="0" marginwidth="0" title="Send us a message"></iframe>
+        <p class="fine formwait">Loading the form. If it does not appear, email <a href="mailto:{EMAIL}">{EMAIL}</a> or call <a href="tel:{PHONE_TEL}">{PHONE}</a>.</p>
+        <iframe class="tally" data-tally-src="https://tally.so/embed/Zj479y?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" width="100%" height="380" frameborder="0" marginheight="0" marginwidth="0" title="Send us a message"></iframe>
         <noscript><p class="fine"><a href="https://tally.so/r/Zj479y">Open the form</a></p></noscript>
       </div>
     </div>
@@ -344,7 +345,7 @@ def support():
 def terms():
     toc = [('what','What ZungiDill is'),('results','No guarantee of results'),('you','Your responsibilities'),('rights','Your free rights'),('prices','Prices and purchases'),('info','Your information'),('other','Other services'),('license','License and use'),('disclaimers','Disclaimers'),('liability','Limitation of liability'),('apple',"Apple's terms"),('google',"Google Play's terms"),('law','Governing law'),('changes','Changes'),('contact','Contact')]
     c = f'''
-<div class="short"><h2>The short version</h2><ul><li>ZungiDill is a tool you use yourself. It is not credit repair and not a law firm.</li><li>Nobody can promise a score or a removal. The bureaus decide.</li><li>Checking and drafting are free. You pay only to send a letter, or with Monthly if you choose it.</li><li>Use it only for your own credit report, and only dispute what you believe is wrong.</li><li>Cancel Monthly any time in Google Play or your iPhone settings.</li></ul></div>
+<div class="short"><h2>The short version</h2><ul><li>ZungiDill is a tool you use yourself. It is not credit repair and not a law firm.</li><li>Nobody can promise a score or a removal. The bureaus decide.</li><li>Checking and drafting are free. You pay only to send a letter, or with Monthly if you choose it.</li><li>Use it only for your own credit report, and only dispute what you believe is wrong.</li><li>Cancel Monthly any time in Google Play or your iPhone settings, or in the web app under More, then Manage or cancel subscription.</li></ul></div>
 <p style="margin-top:24px">These terms cover the ZungiDill app for Android and iPhone and the website zungidill.com, made by Numerita LLC. By using the app you agree to them.</p>
 <h2 id="what">What ZungiDill is</h2>
 <ul><li>Self-help software for reviewing your own credit reports, deciding what you believe is inaccurate, and drafting letters you send yourself.</li><li>Not a credit repair organization, credit counseling service or law firm. It does not give legal, financial or credit advice.</li><li>It does not contact credit bureaus, creditors, debt collectors or government agencies for you, and it never sends anything on your behalf.</li><li>The free review points out items worth checking against federal reporting rules. You decide what is wrong.</li><li>Letters are built from set wording plus your answers. Read every letter and change anything that is not true for you.</li></ul>
@@ -355,7 +356,7 @@ def terms():
 <h2 id="rights">Your free rights</h2>
 <p>You can dispute directly with the credit bureaus and the companies that report to them for free, without ZungiDill. Free credit reports are at <a href="https://www.annualcreditreport.com">AnnualCreditReport.com</a>. Credit freezes are free under federal law.</p>
 <h2 id="prices">Prices and purchases</h2>
-<p>Downloading the app, the credit report review and letter drafting are free. You pay only to print, save or send a finished letter. Prices are shown in the app and by your store before you pay. Current U.S. prices:</p>
+<p>Downloading the app, the credit report review and letter drafting are free. You pay only to print, save or send a finished letter. Prices are shown in the app and by your store, or at checkout on the web, before you pay. Current U.S. prices:</p>
 <table><tr><th scope="row">Credit report review</th><td>Free</td></tr><tr><th scope="row">Letter drafting, reading replies, follow-up letters</th><td>Free</td></tr><tr><th scope="row">One letter, one-time purchase</th><td>$4.99 launch price through December 31, 2026, then $9.99</td></tr><tr><th scope="row">ZungiDill Monthly, auto-renewing</th><td>$39.99 a month. New subscribers pay $19.99 a month for the first three months, then $39.99 a month.</td></tr></table>
 <p style="margin-top:12px">You pay the price your store shows when you confirm. A price change applies only to later purchases or renewals. Your store tells you before a subscription renews at a higher price.</p>
 <h3>One letter</h3>

@@ -8,7 +8,12 @@
   var bar = document.querySelector('.mbar');
   if (!bar) return;
   if (location.pathname.indexOf('/app') === 0) { bar.remove(); return; }
-  function tick() { bar.classList.toggle('on', window.scrollY > window.innerHeight * 0.8); }
+  // Hidden while the Prices section is on screen, so its own buttons are not doubled.
+  var pricesOn = false, prices = document.getElementById('prices');
+  function tick() { bar.classList.toggle('on', !pricesOn && window.scrollY > window.innerHeight * 0.8); }
+  if (prices && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) { pricesOn = e[0].isIntersecting; tick(); }).observe(prices);
+  }
   window.addEventListener('scroll', tick, { passive: true });
   tick();
 })();

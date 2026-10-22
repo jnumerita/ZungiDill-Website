@@ -263,12 +263,13 @@ footer .stores .soon span{font-size:15px}
   .hero .acts{flex-direction:column;align-items:stretch}
   .hero .acts .btn{width:100%}
   .hero .acts a img{margin:0 auto}
-  .stage{min-height:520px}
+  .stage{min-height:500px;justify-content:flex-end}
   .phone{width:240px;border-radius:44px;padding:9px}
   .phone img{border-radius:36px}
   .phone.sm{width:200px;border-radius:38px;padding:8px}.phone.sm img{border-radius:31px}
-  .stage .phone.back{left:0;top:50px}
-  .stage .phone.front{left:12%}
+  /* both phones stay fully on screen: small tilt, back phone inset from the left edge */
+  .stage .phone.back{width:180px;left:16px;top:56px;transform:rotate(-3deg)}
+  .stage .phone.front{width:220px;left:auto;margin-right:12px;transform:rotate(2deg)}
   .never{grid-template-columns:1fr}
   .never li,.never li+li{padding:18px 0;border-left:0}
   .never li+li{border-top:1px solid var(--line)}
@@ -279,8 +280,9 @@ footer .stores .soon span{font-size:15px}
   .nrow{flex-direction:column}.nbtn{width:100%}
   .band .acts .btn{width:100%}
   footer{padding-bottom:110px}
-  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:25;gap:10px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .25s ease}
-  .mbar.on{transform:none}
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:25;gap:10px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);visibility:hidden}
+  .mbar.on{visibility:visible}
   .mbar .btn{flex:1;min-height:50px;font-size:16px;padding:0 12px}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.mbar{transition:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.formwait{margin-top:8px}
