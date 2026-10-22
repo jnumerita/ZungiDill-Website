@@ -141,108 +141,118 @@ GOAL = {
 def index():
     LT = {a["slug"]: a["title"] for a in L.ARTICLES}
     LC = {a["slug"]: a["card"] for a in L.ARTICLES}
+    def device(name, alt, lazy=True):
+        l = ' loading="lazy"' if lazy else ' fetchpriority="high"'
+        return f'<img class="device" src="/img/kit/phone-{name}.webp" alt="{alt}" width="732" height="1380" decoding="async"{l}>'
+    def card(name, alt, w, h, cls):
+        return f'<img class="float {cls}" src="/img/kit/card-{name}.webp" alt="{alt}" width="{w}" height="{h}" decoding="async" loading="lazy">'
+    guides = ''.join(f'<li><a href="/learn/{x}"><b>{LT[x]}</b><span>{LC[x]}</span></a></li>' for x in ('dispute-letter', 'not-mine', 'collections'))
     body = f"""
 <section class="first" aria-labelledby="hero-h">
   <div class="wrap hero">
     <div>
-      <h1 id="hero-h">Tired of hearing no?</h1>
-      <p class="lede">Sometimes what holds you back is a mistake on your credit report. ZungiDill helps you find it and fix it yourself.</p>
+      <p class="kicker">Tired of hearing no?</p>
+      <h1 id="hero-h">Find mistakes on your credit report and dispute them yourself.</h1>
+      <p class="lede">You mark what's wrong. ZungiDill writes a letter asking the credit bureau to fix it. The credit bureaus are Equifax, Experian and TransUnion, the companies that keep your report.</p>
       <div class="acts">
         <a class="btn" href="/app/">Open the web app</a>
         <a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="183" height="54"></a>
       </div>
-      <p class="price"><b>Free to check.</b> <span class="launch">Letters $4.99 through Dec 31, 2026.</span><span class="after" hidden>Letters $9.99.</span> <a href="#prices">See prices</a></p>
-      <p class="soonline">iPhone app coming soon. <a href="#notify">Get notified</a></p>
+      <p class="price"><b>Checking is free.</b> <span class="launch">A letter costs $4.99 through Dec 31, 2026.</span><span class="after" hidden>A letter costs $9.99.</span> <a href="#prices">See prices</a></p>
+      <p class="soonline">The iPhone app is coming soon. <a href="#notify">Get notified</a></p>
     </div>
-    <div class="stage" aria-label="ZungiDill app screens">
-      <div class="phone sm back"><img src="/img/app/report.webp" srcset="/img/app/report-402.webp 402w, /img/app/report.webp 804w" sizes="(max-width: 640px) 240px, 300px" alt="Report screen with your three credit reports and what may be wrong" width="402" height="874" decoding="async" loading="lazy"></div>
-      <div class="phone front"><img src="/img/app/home.webp" srcset="/img/app/home-402.webp 402w, /img/app/home.webp 804w" sizes="(max-width: 640px) 240px, 300px" alt="Home screen with your scores and your next step" width="402" height="874" decoding="async" fetchpriority="high"></div>
-    </div>
+    <figure class="stage">
+      {device('home', 'ZungiDill home screen with your scores and your next step', lazy=False)}
+      {card('northgate', 'A collection account on the report: Northgate Collections, $412', 670, 540, 'f-hero')}
+      <figcaption class="cap">Screens show a made-up report.</figcaption>
+    </figure>
   </div>
 </section>
 
-<section class="strip" aria-label="What ZungiDill never asks for">
-  <div class="wrap">
-    <ul class="never">
-      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>No Social Security number</li>
-      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>No account to make</li>
-      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Your reports stay on your phone</li>
-      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>You send your own letters</li>
-    </ul>
+<section class="soft" aria-labelledby="private-h">
+  <div class="wrap split">
+    <div class="txt">
+      <h2 id="private-h">Your report stays on your phone.</h2>
+      <p class="lede">There's no account to make. We never ask for your Social Security number. You send your own letters, so you see every word.</p>
+    </div>
+    <div class="stack">
+      {card('phone', 'Your reports stay on your phone. Nothing is uploaded to us.', 750, 305, 'f-a')}
+      {card('credit', 'We never pull your credit, so your score is not affected.', 750, 305, 'f-b')}
+    </div>
   </div>
 </section>
 
 <section aria-labelledby="heard-h">
   <div class="wrap">
-    <div class="sh"><h2 id="heard-h">Sound familiar?</h2></div>
+    <h2 id="heard-h" class="sh2">When ZungiDill helps</h2>
     <div class="heard">
-      <div><h3>"Start here. Trade up next year."</h3><p>Next year it is another used car with the same high note. ZungiDill shows you what the lender sees, so you walk in knowing your file.</p></div>
-      <div><h3>"I paid credit repair. Nothing changed."</h3><p>You never saw what they sent. With ZungiDill you read every letter before it goes out, and you send it yourself.</p></div>
-      <div><h3>"I just pay cash."</h3><p>Cash works until you need a lease, a car or a home. Your report follows you either way, so make sure it tells the truth.</p></div>
-      <div><h3>"I don't know where to start."</h3><p>Start with your free credit report. ZungiDill reads it with you and shows you what to look at first.</p></div>
+      <div><h3>You were told no, or offered a high rate</h3><p>Lenders decide from your credit report. ZungiDill shows you what they see, so you can check it for mistakes.</p></div>
+      <div><h3>You paid a credit repair company and nothing changed</h3><p>You never saw what they sent. Here you read every letter before it goes out, and you mail it yourself.</p></div>
+      <div><h3>You pay cash for most things</h3><p>That works until you need a lease or a loan. Your report follows you either way, so make sure it's right.</p></div>
+      <div><h3>You don't know where to start</h3><p>Start with your free credit report. ZungiDill reads it with you and shows you what to look at first.</p></div>
     </div>
   </div>
 </section>
 
 <section id="how" aria-labelledby="how-h">
   <div class="wrap">
-    <div class="sh"><h2 id="how-h">How it works</h2><p>No forms to figure out and no calls to make. You stay in charge the whole way.</p></div>
+    <div class="sh"><h2 id="how-h">How it works</h2><p>You do each step yourself, on your phone or computer.</p></div>
     <div class="jobs">
-      <article class="job"><div class="txt"><p class="n" aria-hidden="true">1</p><h3>Bring in your report</h3><p>Get your free report and open it in ZungiDill. A photo of a paper copy works too.</p></div><div class="shot"><div class="phone "><img src="/img/app/upload.webp" srcset="/img/app/upload-402.webp 402w, /img/app/upload.webp 804w" sizes="(max-width: 640px) 240px, 300px" alt="Adding your credit reports, one bureau at a time" width="402" height="874" decoding="async" loading="lazy"></div></div></article>
-      <article class="job"><div class="txt"><p class="n" aria-hidden="true">2</p><h3>Tap what is wrong</h3><p>Not mine. I don't know this one. Something is off. One tap per item.</p></div><div class="shot"><div class="phone "><img src="/img/app/check.webp" srcset="/img/app/check-402.webp 402w, /img/app/check.webp 804w" sizes="(max-width: 640px) 240px, 300px" alt="Quick check asking if a collection account is yours" width="402" height="874" decoding="async" loading="lazy"></div></div></article>
-      <article class="job"><div class="txt"><p class="n" aria-hidden="true">3</p><h3>Your taps become the letter</h3><p>Read every word before it goes out. Then print it and mail it yourself.</p></div><div class="shot"><div class="phone "><img src="/img/app/letter.webp" srcset="/img/app/letter-402.webp 402w, /img/app/letter.webp 804w" sizes="(max-width: 640px) 240px, 300px" alt="A finished dispute letter to Equifax, ready to print" width="402" height="874" decoding="async" loading="lazy"></div></div></article>
-      <article class="job"><div class="txt"><p class="n" aria-hidden="true">4</p><h3>We keep watch</h3><p>Add the day it arrived. ZungiDill reminds you when they owe you an answer and helps you read it.</p></div><div class="shot"><div class="phone "><img src="/img/app/track.webp" srcset="/img/app/track-402.webp 402w, /img/app/track.webp 804w" sizes="(max-width: 640px) 240px, 300px" alt="Track screen counting the days until the bureau must answer" width="402" height="874" decoding="async" loading="lazy"></div></div></article>
+      <article class="job"><div class="txt"><p class="n" aria-hidden="true">1</p><h3>Add your credit report</h3><p>Get your free report and open it in ZungiDill. A photo of a paper copy works too.</p></div><figure class="shot">{device('upload', 'Adding your credit reports, one bureau at a time')}</figure></article>
+      <article class="job"><div class="txt"><p class="n" aria-hidden="true">2</p><h3>Check each item</h3><p>Go through your report one item at a time and mark anything that isn't right.</p></div><figure class="shot">{device('check', 'Quick check asking if a collection account is yours')}{card('yours', 'Is this yours? Not mine is selected.', 670, 755, 'f-step')}</figure></article>
+      <article class="job"><div class="txt"><p class="n" aria-hidden="true">3</p><h3>Read and mail your letter</h3><p>ZungiDill writes the letter from what you marked. You read it, then print and mail it.</p></div><figure class="shot">{device('letter', 'A finished dispute letter to Equifax, ready to print')}{card('heading', 'The top of a dispute letter to Equifax', 580, 500, 'f-step')}</figure></article>
+      <article class="job"><div class="txt"><p class="n" aria-hidden="true">4</p><h3>Track the 30 days</h3><p>Enter the date it was delivered. We'll remind you when the bureau's 30 days are up.</p></div><figure class="shot">{device('track', 'Track screen counting the days until the bureau must answer')}{card('ring', '16 days left. Experian has until Nov 3 to reply.', 659, 670, 'f-step')}</figure></article>
     </div>
-    <p class="timing"><b>How long does it take?</b> The credit bureaus usually have about 30 days to answer each letter. Start now, so it can be done before you apply for the car, the place or the card.</p>
+    <p class="timing"><b>How long does it take?</b> Bureaus usually have 30 days to answer. If you're planning to apply for something, start now.</p>
+    <p class="cap">Screens show a made-up report.</p>
   </div>
 </section>
 
-<section id="prices" aria-labelledby="prices-h">
+<section id="prices" class="soft" aria-labelledby="prices-h">
   <div class="wrap">
-    <div class="sh"><h2 id="prices-h">Prices</h2></div>
-    <p class="free"><b>Checking your report and drafting letters is free.</b> You pay only when a letter is ready to print, save or send.</p>
+    <div class="sh"><h2 id="prices-h">What it costs</h2><p><b>Checking your report and writing letters is free.</b> You pay only when a letter is ready to print, save or send.</p></div>
     <div class="plans">
       <div class="plan">
         <h3>One letter</h3>
         <p class="amt"><b><span class="launch">$4.99</span><span class="after" hidden>$9.99</span></b><span>per letter</span></p>
-        <p class="then launch">Launch price through Dec 31, 2026, then <b>$9.99</b>.</p>
-        <ul><li>Unlocks one finished letter to print, save or send</li><li>One-time payment</li><li>No plan needed</li></ul>
+        <p class="then launch">That price runs through Dec 31, 2026. After that, a letter is <b>$9.99</b>.</p>
+        <ul><li>Pays for one finished letter you can print, save or send.</li><li>You pay once. There's no plan.</li></ul>
         <a class="btn" href="/app/">Open the web app</a>
         <p class="terms">You see the price before you pay.</p>
       </div>
       <div class="plan">
-        <span class="tag">Monthly plan optional</span>
         <h3>ZungiDill Monthly</h3>
-        <p class="amt"><b>$19.99</b><span>a month for the first 3 months</span></p>
-        <p class="then">Then <b>$39.99 a month</b>. For new subscribers.</p>
-        <ul><li>One round each month: a letter to each credit bureau, plus company letters</li><li>Renews monthly until you cancel</li><li>Cancel before the renewal date to stop</li></ul>
+        <p class="opt">Optional. One letter at a time works too.</p>
+        <p class="amt"><b>$19.99</b><span>a month for your first 3 months</span></p>
+        <p class="then">Then <b>$39.99 a month</b>. The first price is for new subscribers.</p>
+        <ul><li>Each month you get a letter to each credit bureau, plus letters to companies.</li><li>It renews every month until you cancel.</li><li>To stop, cancel before your renewal date.</li></ul>
         <a class="btn" href="/app/">Open the web app</a>
         <p class="terms">You see the price before you pay.</p>
       </div>
     </div>
-    <p class="fine pricefine">Prices in U.S. dollars. On the web you pay by card through Stripe. In the Android app you pay through Google Play. <a href="/terms#prices">Full terms</a></p>
+    <p class="fine pricefine">Prices in U.S. dollars. On the web, you pay by card through Stripe. In the Android app, you pay through Google Play. <a href="/terms#prices">Full terms</a></p>
   </div>
 </section>
 
 <section id="questions" aria-labelledby="q-h">
   <div class="wrap qwrap">
-    <div class="sh"><h2 id="q-h">Questions</h2><p>Want the whole picture?</p><ul class="qlinks"><li><a href="/guide">Step by step guide</a></li><li><a href="/learn/dispute-letter">Free dispute letter sample</a></li><li><a href="/learn/collections">Collections</a></li><li><a href="/learn/">All guides</a></li></ul></div>
+    <div class="sh"><h2 id="q-h">Questions</h2><p>Longer answers are in our guides.</p><ul class="qlinks"><li><a href="/guide">Step by step guide</a></li><li><a href="/learn/dispute-letter">Free dispute letter sample</a></li><li><a href="/learn/collections">Collections</a></li><li><a href="/learn/">All guides</a></li></ul></div>
     <div class="qa">
-      <details class="q"><summary>How do I fix a mistake on my credit report?</summary><div><p>Get your free report, find the item that is wrong, and send the credit bureau a letter that says what is wrong and why, with copies of any proof. ZungiDill writes that letter from your taps and keeps track of the answer.</p></div></details>
-      <details class="q"><summary>Is this credit repair?</summary><div><p>No. Nobody does it for you, and nobody charges you every month for promises. ZungiDill is a tool you use yourself. You decide what is wrong and you send your own letters.</p></div></details>
-      <details class="q"><summary>Where do I get my credit report?</summary><div><p>Free at AnnualCreditReport.com, the official site. Save it as a PDF and open it in ZungiDill. The <a href="/support">Support page</a> walks you through it.</p></div></details>
-      <details class="q"><summary>What does it cost?</summary><div><p>Checking your report and drafting letters is free. You pay only when a letter is ready to print, save or send, one at a time or with a monthly plan. You see the price before you pay. <a href="/terms#prices">See prices</a></p></div></details>
-      <details class="q"><summary>Can I use it for someone else?</summary><div><p>No. ZungiDill is for your own credit report only. A report in another name is stopped and not used.</p></div></details>
-      <details class="q"><summary>What if they cannot prove it?</summary><div><p>If the company that reported the item cannot show it is right, it has to be fixed or taken off your report. That is the law: <a href="https://www.law.cornell.edu/uscode/text/15/1681i">15 U.S.C. 1681i(a)(5)</a>.</p></div></details>
-      <details class="q"><summary>What if the item is mine and it is right?</summary><div><p>ZungiDill will not tell you to call it wrong. It shows you what you can do instead, like a goodwill letter asking a lender to remove a late payment that really happened.</p></div></details>
+      <details class="q"><summary>How do I fix a mistake on my credit report?</summary><div><p>Send the credit bureau a letter. Say which item is wrong and why, and add copies of any proof. ZungiDill writes that letter from what you mark and keeps track of the answer.</p></div></details>
+      <details class="q"><summary>Is this credit repair?</summary><div><p>No. ZungiDill is a tool you use yourself. Nobody does it for you, and nobody charges you every month for promises. You decide what's wrong, and you send your own letters.</p></div></details>
+      <details class="q"><summary>Where do I get my credit report?</summary><div><p>Free at AnnualCreditReport.com, the official site. Save each report as a PDF and open it in ZungiDill. The <a href="/support">Support page</a> walks you through it.</p></div></details>
+      <details class="q"><summary>What does it cost?</summary><div><p>Checking your report and writing letters is free. You pay only when a letter is ready to print, save or send. You can pay for one letter at a time or use the monthly plan. You see the price before you pay. <a href="#prices">See prices</a></p></div></details>
+      <details class="q"><summary>Can I use it for someone else?</summary><div><p>No. ZungiDill only works with your own credit report. If a report is in another name, the app stops and won't use it.</p></div></details>
+      <details class="q"><summary>What if they cannot prove it?</summary><div><p>Then it has to be fixed or taken off your report. That's the law if the company that reported it can't show it's right: <a href="https://www.law.cornell.edu/uscode/text/15/1681i">15 U.S.C. 1681i(a)(5)</a>.</p></div></details>
+      <details class="q"><summary>What if the item is mine and it is right?</summary><div><p>ZungiDill won't tell you to call it wrong. It shows you other options instead. One is a goodwill letter, where you ask the lender to remove a late payment that really happened.</p></div></details>
     </div>
   </div>
 </section>
 
 <section aria-labelledby="learn-h">
   <div class="wrap">
-    <div class="sh"><h2 id="learn-h">Learn the basics</h2><p>Plain-word guides, with sources for every rule.</p></div>
-    <ul class="cards"><li><a href="/learn/dispute-letter"><b>{LT["dispute-letter"]}</b><span>{LC["dispute-letter"]}</span></a></li><li><a href="/learn/not-mine"><b>{LT["not-mine"]}</b><span>{LC["not-mine"]}</span></a></li><li><a href="/learn/collections"><b>{LT["collections"]}</b><span>{LC["collections"]}</span></a></li></ul>
+    <div class="sh"><h2 id="learn-h">Guides</h2><p>Plain answers, with the law and official sources for each rule.</p></div>
+    <ul class="glist">{guides}</ul>
     <p class="more"><a href="/learn/">All guides</a></p>
   </div>
 </section>
@@ -251,12 +261,12 @@ def index():
   <div class="wrap grid2">
     <div>
       <span class="accent" aria-hidden="true"></span>
-      <h2 id="iphone-h">On iPhone? Use it in Safari today.</h2>
-      <p class="lede">The App Store app is coming soon. The web app works on iPhone right now, with nothing to download.</p>
+      <h2 id="iphone-h">On iPhone? Use the web app in Safari.</h2>
+      <p class="lede">The iPhone app is coming soon. Until then, the web app works in Safari. There's nothing to download.</p>
       <div class="acts"><a class="btn light" href="/app/">Open the web app</a></div>
     </div>
     <form class="notify" id="notify" action="https://tally.so/r/VLR6RJ" method="get" target="_blank" rel="noopener">
-      <label for="nemail"><b>Get notified when ZungiDill is on the App Store</b></label>
+      <label for="nemail"><b>Get one email when the iPhone app is ready</b></label>
       <div class="nrow"><input id="nemail" name="email" type="email" placeholder="Your email" autocomplete="email" required><button class="nbtn" type="submit">Notify me</button></div>
       <p class="nmsg" role="status" aria-live="polite" hidden></p>
       <label class="ncheck"><input type="checkbox" required><span>Email me once when the iPhone app is available. Nothing else. <a href="/privacy#launch-list">Privacy</a></span></label>
@@ -268,20 +278,15 @@ def index():
   <div class="wrap">
     <div class="sh">
       <h2 id="contact-h">Talk to a real person</h2>
-      <p>A person reads every message and replies within two business days. You can also email <a href="mailto:{EMAIL}">{EMAIL}</a> or call <a href="tel:{PHONE_TEL}">{PHONE}</a>.</p>
+      <p>A person reads every message. We reply within two business days.</p>
     </div>
-    <div class="forms">
-      <div class="panel">
-        <h3>Send us a message</h3>
-        <p class="fine formwait">Loading the form. If it does not appear, email <a href="mailto:{EMAIL}">{EMAIL}</a> or call <a href="tel:{PHONE_TEL}">{PHONE}</a>.</p>
-        <iframe class="tally" data-tally-src="https://tally.so/embed/Zj479y?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" width="100%" height="380" frameborder="0" marginheight="0" marginwidth="0" title="Send us a message"></iframe>
-        <noscript><p class="fine"><a href="https://tally.so/r/Zj479y">Open the form</a></p></noscript>
-      </div>
+    <div class="contact">
+      <a class="btn" href="https://tally.so/r/Zj479y" target="_blank" rel="noopener">Send us a message</a>
+      <a class="btn quiet" href="mailto:{EMAIL}">{EMAIL}</a>
+      <a class="btn quiet" href="tel:{PHONE_TEL}">{PHONE}</a>
     </div>
   </div>
 </section>
-<script src="https://tally.so/widgets/embed.js" async></script>
-<script src="/js/forms.js" defer></script>
 <script src="/js/notify.js" defer></script>
 """
     return page('index', 'Fix Your Credit Report Yourself | ZungiDill Dispute App',
@@ -301,7 +306,7 @@ def doc(title, meta, toc, content):
 def support():
     toc = [('start','Getting started'),('letters','Letters'),('purchases','Purchases'),('data','Your data'),('help','Still need help?')]
     c = f'''
-<p style="margin-top:24px">Email <a href="mailto:{EMAIL}?subject=ZungiDill%20support">{EMAIL}</a>, call <a href="tel:{PHONE_TEL}">{PHONE}</a>, or use the <a href="/#contact">contact section</a>. We reply within two business days. Please do not send your Social Security number, full account numbers or your credit report.</p>
+<p style="margin-top:24px">Need help? Email <a href="mailto:{EMAIL}?subject=ZungiDill%20support">{EMAIL}</a>, call <a href="tel:{PHONE_TEL}">{PHONE}</a>, or <a href="https://tally.so/r/Zj479y" target="_blank" rel="noopener">send us a message</a>. We reply within two business days. Please don't send your Social Security number, full account numbers or your credit report.</p>
 <h2 id="start">Getting started</h2>
 <h3>Where do I get my credit report?</h3>
 <p>Free at <a href="https://www.annualcreditreport.com">AnnualCreditReport.com</a>, the official site. Get the report from each bureau, save each one as a PDF, then tap Import my report in ZungiDill. You can also photograph a paper copy or add items by hand.</p>
@@ -485,7 +490,7 @@ def guide():
 <p>You can still write a goodwill letter asking the lender to remove a late payment that really happened. Some lenders say yes, mostly when the rest of your history is good.</p>
 <h2 id="repair">About credit repair companies</h2>
 <p>You do not need to pay anyone to dispute for you. Everything they do, you can do yourself for free. By law, a credit repair company cannot charge you before it finishes the work it promised. If one asks for money up front, walk away.</p>
-<div class="cta"><h3>Do it from your phone</h3><p>ZungiDill walks you through every step above. Open your report, tap what is wrong, and it writes the letter and reminds you when the answer is due.</p><div class="stores"><a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="176" height="52"></a></div></div>
+<div class="cta"><h3>Do it on your phone</h3><p>ZungiDill walks you through each step above. Open your report and mark what's wrong. It writes the letter and reminds you when the answer is due.</p><div class="stores"><a class="btn" href="/app/">Open the web app</a><a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="176" height="52"></a></div></div>
 <h2 id="sources">Where this comes from</h2>
 <ul><li><a href="https://consumer.ftc.gov/articles/disputing-errors-your-credit-reports">Federal Trade Commission: Disputing errors on your credit reports</a></li><li><a href="https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-an-error-on-my-credit-report-en-314/">Consumer Financial Protection Bureau: How do I dispute an error on my credit report?</a></li><li><a href="https://www.identitytheft.gov">IdentityTheft.gov</a></li><li><a href="https://www.annualcreditreport.com">AnnualCreditReport.com</a></li></ul>
 <p class="fine" style="margin-top:16px">This guide is general information, not legal advice.</p>
@@ -496,7 +501,7 @@ import learn as L
 LBY={a['slug']:a for a in L.ARTICLES}
 def src_list(keys):
     return '<ol class="sources">'+''.join(f'<li><a href="{L.SRC[k][1]}">{L.SRC[k][0]}</a></li>' for k in keys)+'</ol>'
-CTA='<div class="cta"><h3>Do it from your phone</h3><p>Open your report in ZungiDill, tap what is wrong, and it writes the letter and reminds you when the answer is due.</p><div class="stores"><a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="176" height="52" loading="lazy"></a></div></div>'
+CTA='<div class="cta"><h3>Do it on your phone</h3><p>Open your report in ZungiDill and mark what\'s wrong. It writes the letter and reminds you when the answer is due.</p><div class="stores"><a class="btn" href="/app/">Open the web app</a><a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="176" height="52" loading="lazy"></a></div></div>'
 def article(a):
     toc=[(i,h) for i,h,_ in a['sections']]+[('faq','Common questions'),('sources','Sources')]
     body=''.join(f'<h2 id="{i}">{h}</h2>\n{html}\n' for i,h,html in a['sections'])
@@ -530,7 +535,7 @@ def learn_hub():
 def about():
     c = f"""<div class="doc"><div class="wrap narrow">
 <h1>About ZungiDill</h1>
-<p class="lede" style="margin-top:16px">ZungiDill is a phone app made by Numerita LLC, a small software company in Sheridan, Wyoming. It helps you check your own credit report and send your own dispute letters, without paying anyone every month.</p>
+<p class="lede" style="margin-top:16px">ZungiDill helps you check your own credit report and send your own dispute letters. You don't have to pay anyone every month. It's made by Numerita LLC, a small software company in Sheridan, Wyoming.</p>
 <h2 id="why">Why it exists</h2>
 <p>Credit repair companies charge every month for letters you have the right to send yourself, and most people never see what was sent. ZungiDill puts that work in your hands. You read every letter, and you decide what goes out.</p>
 <h2 id="honest">How the app stays honest</h2>
