@@ -383,3 +383,5 @@ footer .soontxt a{color:var(--ink);text-decoration:underline}
 #how .job:nth-child(2) .f-step{top:25%}
 #how .job:nth-child(3) .f-step{top:15%}
 #how .job:nth-child(4) .f-step{top:35%}
+/* step 1 only, desktop: the number lines up with the top of step 1's phone */
+@media (min-width:981px){#how .job:first-child .txt{padding-top:0;margin-top:-16px}}
