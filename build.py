@@ -70,7 +70,7 @@ def page(slug, title, desc, body, current=''):
         <p class="made">Made by Numerita LLC, Sheridan, Wyoming.</p>
         <div class="stores">
           <a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="149" height="44"></a>
-          <a class="soon" href="/#notify"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span><small>iPhone app</small>Coming soon</span></a>
+          <p class="soontxt">iPhone app coming soon. <a href="/#notify">Get notified</a></p>
         </div>
       </div>
       <div>
@@ -97,7 +97,7 @@ def page(slug, title, desc, body, current=''):
       <div>
         <h4>Help</h4>
         <ul>
-          <li><a href="/app/">Open the web app</a></li>
+          <li><a href="/app/">Web app</a></li>
           <li><a href="/support">Support</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
@@ -112,7 +112,7 @@ def page(slug, title, desc, body, current=''):
     </div>
   </div>
 </footer>
-<div class="mbar" aria-label="Get ZungiDill"><a class="btn" href="/app/">Open the web app</a></div>
+<div class="mbar" aria-label="Get ZungiDill"><a class="btn" href="/app/">Check your report</a></div>
 <script src="/js/site.js" defer></script>
 </body>
 </html>
@@ -150,7 +150,7 @@ def index():
     <div>
       <p class="kicker">Tired of hearing no?</p>
       <h1 id="hero-h">Find mistakes on your credit report and dispute them yourself.</h1>
-      <p class="lede">You mark what's wrong. ZungiDill writes a letter asking the credit bureau to fix it. The credit bureaus are Equifax, Experian and TransUnion, the companies that keep your report.</p>
+      <p class="lede">You mark what's wrong. ZungiDill writes the letter.</p>
       <div class="acts">
         <a class="btn" href="/app/">Open the web app</a>
         <a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="183" height="54"></a>
@@ -173,8 +173,8 @@ def index():
       <p class="lede">There's no account to make. We never ask for your Social Security number. You send your own letters, so you see every word.</p>
     </div>
     <div class="stack">
-      {card('phone', 'Your reports stay on your phone. Nothing is uploaded to us.', 750, 305, 'f-a')}
-      {card('credit', 'We never pull your credit, so your score is not affected.', 750, 305, 'f-b')}
+      <div class="float tcard f-a"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6 15h4"/></svg><p><b>Payments by Stripe</b>on the web and Google Play in the app.</p></div>
+      <div class="float tcard f-b"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2.5h8l4.5 4.5v14.5H6z"/><path d="M14 2.5V7h4.5M9 12h6M9 16h6"/></svg><p><b>Your right to dispute:</b><a href="https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-an-error-on-my-credit-report-en-314/">15 U.S.C. 1681i</a></p></div>
     </div>
   </div>
 </section>
@@ -193,7 +193,7 @@ def index():
 
 <section id="how" aria-labelledby="how-h">
   <div class="wrap">
-    <div class="sh"><h2 id="how-h">How it works</h2><p>You do each step yourself, on your phone or computer.</p></div>
+    <div class="sh"><h2 id="how-h">How it works</h2><p>You do each step yourself, on your phone or computer. Your letters go to the credit bureaus: Equifax, Experian and TransUnion, the companies that keep your report.</p></div>
     <div class="jobs">
       <article class="job"><div class="txt"><p class="n" aria-hidden="true">1</p><h3>Add your credit report</h3><p>Get your free report and open it in ZungiDill. A photo of a paper copy works too.</p></div><figure class="shot">{device('upload', 'Adding your credit reports, one bureau at a time')}</figure></article>
       <article class="job"><div class="txt"><p class="n" aria-hidden="true">2</p><h3>Check each item</h3><p>Go through your report one item at a time and mark anything that isn't right.</p></div><figure class="shot">{device('check', 'Quick check asking if a collection account is yours')}{card('yours', 'Is this yours? Not mine is selected.', 670, 755, 'f-step')}</figure></article>
@@ -209,12 +209,12 @@ def index():
   <div class="wrap">
     <div class="sh"><h2 id="prices-h">What it costs</h2><p><b>Checking your report and writing letters is free.</b> You pay only when a letter is ready to print, save or send.</p></div>
     <div class="plans">
-      <div class="plan">
+      <div class="plan main">
         <h3>One letter</h3>
         <p class="amt"><b><span class="launch">$4.99</span><span class="after" hidden>$9.99</span></b><span>per letter</span></p>
         <p class="then launch">That price runs through Dec 31, 2026. After that, a letter is <b>$9.99</b>.</p>
         <ul><li>Pays for one finished letter you can print, save or send.</li><li>You pay once. There's no plan.</li></ul>
-        <a class="btn" href="/app/">Open the web app</a>
+        <a class="btn" href="/app/">Get one letter</a>
         <p class="terms">You see the price before you pay.</p>
       </div>
       <div class="plan">
@@ -223,7 +223,7 @@ def index():
         <p class="amt"><b>$19.99</b><span>a month for your first 3 months</span></p>
         <p class="then">Then <b>$39.99 a month</b>. The first price is for new subscribers.</p>
         <ul><li>Each month you get a letter to each credit bureau, plus letters to companies.</li><li>It renews every month until you cancel.</li><li>To stop, cancel before your renewal date.</li></ul>
-        <a class="btn" href="/app/">Open the web app</a>
+        <a class="btn" href="/app/">Start Monthly</a>
         <p class="terms">You see the price before you pay.</p>
       </div>
     </div>
@@ -257,7 +257,6 @@ def index():
 <section class="band" aria-labelledby="iphone-h">
   <div class="wrap grid2">
     <div>
-      <span class="accent" aria-hidden="true"></span>
       <h2 id="iphone-h">On iPhone? Use the web app in Safari.</h2>
       <p class="lede">The iPhone app is coming soon. Until then, the web app works in Safari. There's nothing to download.</p>
       <div class="acts"><a class="btn light" href="/app/">Open the web app</a></div>
@@ -486,7 +485,7 @@ def guide():
 <p>You can still write a goodwill letter asking the lender to remove a late payment that really happened. Some lenders say yes, mostly when the rest of your history is good.</p>
 <h2 id="repair">About credit repair companies</h2>
 <p>You do not need to pay anyone to dispute for you. Everything they do, you can do yourself for free. By law, a credit repair company cannot charge you before it finishes the work it promised. If one asks for money up front, walk away.</p>
-<div class="cta"><h3>Do it on your phone</h3><p>ZungiDill walks you through each step above. Open your report and mark what's wrong. It writes the letter and reminds you when the answer is due.</p><div class="stores"><a class="btn" href="/app/">Open the web app</a><a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="176" height="52"></a></div></div>
+<div class="cta"><h3>Do it on your phone</h3><p>ZungiDill walks you through each step above. Open your report and mark what's wrong. It writes the letter and reminds you when the answer is due.</p><div class="stores"><a class="btn" href="/app/">Check your report</a><a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="176" height="52"></a></div></div>
 <h2 id="sources">Where this comes from</h2>
 <ul><li><a href="https://consumer.ftc.gov/articles/disputing-errors-your-credit-reports">Federal Trade Commission: Disputing errors on your credit reports</a></li><li><a href="https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-an-error-on-my-credit-report-en-314/">Consumer Financial Protection Bureau: How do I dispute an error on my credit report?</a></li><li><a href="https://www.identitytheft.gov">IdentityTheft.gov</a></li><li><a href="https://www.annualcreditreport.com">AnnualCreditReport.com</a></li></ul>
 <p class="fine" style="margin-top:16px">This guide is general information, not legal advice.</p>
@@ -497,7 +496,7 @@ import learn as L
 LBY={a['slug']:a for a in L.ARTICLES}
 def src_list(keys):
     return '<ol class="sources">'+''.join(f'<li><a href="{L.SRC[k][1]}">{L.SRC[k][0]}</a></li>' for k in keys)+'</ol>'
-CTA='<div class="cta"><h3>Do it on your phone</h3><p>Open your report in ZungiDill and mark what\'s wrong. It writes the letter and reminds you when the answer is due.</p><div class="stores"><a class="btn" href="/app/">Open the web app</a><a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="176" height="52" loading="lazy"></a></div></div>'
+CTA='<div class="cta"><h3>Do it on your phone</h3><p>Open your report in ZungiDill and mark what\'s wrong. It writes the letter and reminds you when the answer is due.</p><div class="stores"><a class="btn" href="/app/">Check your report</a><a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="176" height="52" loading="lazy"></a></div></div>'
 def article(a):
     toc=[(i,h) for i,h,_ in a['sections']]+[('faq','Common questions'),('sources','Sources')]
     body=''.join(f'<h2 id="{i}">{h}</h2>\n{html}\n' for i,h,html in a['sections'])

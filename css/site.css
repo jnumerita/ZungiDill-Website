@@ -140,7 +140,6 @@ section.band{background:var(--primary-strong);color:#fff;border-top:0}
 .band .grid2{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
 .band .lede{margin-top:16px;color:#fff}
 .band .acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
-.band .accent{display:block;width:56px;height:3px;background:var(--gold-50);border-radius:2px;margin-bottom:24px}
 .notify{background:#fff;color:var(--ink);border-radius:20px;padding:26px 28px;box-shadow:0 30px 60px -30px rgba(0,0,0,.45)}
 .notify p{color:var(--ink2)}
 .notify>label b{font:700 22px/1.25 var(--serif)}
@@ -355,3 +354,21 @@ footer{padding-top:56px}
 /* How it works, desktop only: stagger the steps so each phone starts beside the lower part of the step above.
    -135px is the largest overlap that keeps 32px clear between neighbouring steps (checked 1020 to 1440 wide). */
 @media (min-width:981px){#how .job+.job{margin-top:-135px}}
+
+/* trust pass: HTML trust cards (same floating look as the card images), main price card, footer iPhone line */
+.stack .tcard{display:flex;gap:16px;align-items:flex-start;background:#fff;border-radius:20px;padding:28px 28px 28px 30px}
+.tcard svg{width:22px;height:22px;flex:none;margin-top:3px;fill:none;stroke:var(--primary-strong);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.tcard p{font-size:16px;line-height:1.4;color:var(--ink)}
+.tcard b{display:block;font-size:18px;line-height:1.35;font-weight:700}
+.tcard a{color:var(--ink);font-weight:600}
+.plans{align-items:start}
+.plan.main{box-shadow:inset 0 0 0 2px var(--primary-strong),var(--shadow)}
+.plan .btn{margin-top:0}
+footer .soontxt{font-size:15px;color:var(--ink2)}
+footer .soontxt a{color:var(--ink);text-decoration:underline}
+.stack .tcard{width:auto;min-width:340px;max-width:400px}
+@media (max-width:640px){
+  .stack .tcard{padding:22px;gap:12px;width:270px;min-width:0}
+  .tcard b{font-size:17px}
+  .tcard p{font-size:15px}
+}
