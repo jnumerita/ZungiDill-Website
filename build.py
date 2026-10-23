@@ -148,7 +148,6 @@ def index():
 <section class="first" aria-labelledby="hero-h">
   <div class="wrap hero">
     <div>
-      <p class="kicker">Tired of hearing no?</p>
       <h1 id="hero-h">Find mistakes on your credit report and dispute them yourself.</h1>
       <p class="lede">You mark what's wrong. ZungiDill writes the letter.</p>
       <div class="acts">
