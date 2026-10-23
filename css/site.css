@@ -372,3 +372,14 @@ footer .soontxt a{color:var(--ink);text-decoration:underline}
   .tcard b{font-size:17px}
   .tcard p{font-size:15px}
 }
+
+/* How it works: text starts 137px below its phone's top on desktop (the closest that keeps 32px clear of the phone above with the -135px stagger); cards sit higher, each at its own spot on the phone */
+@media (min-width:981px){
+  #how .job,#how .job .txt{align-items:start;align-self:start}
+  #how .job .txt{padding-top:137px}
+}
+#how .job .f-step{bottom:auto}
+#how .job:nth-child(1) .f-step{top:20%}
+#how .job:nth-child(2) .f-step{top:25%}
+#how .job:nth-child(3) .f-step{top:15%}
+#how .job:nth-child(4) .f-step{top:35%}
