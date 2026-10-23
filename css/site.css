@@ -385,3 +385,14 @@ footer .soontxt a{color:var(--ink);text-decoration:underline}
 #how .job:nth-child(4) .f-step{top:35%}
 /* step 1 only, desktop: the number lines up with the top of step 1's phone */
 @media (min-width:981px){#how .job:first-child .txt{padding-top:0;margin-top:-16px}}
+/* How it works, desktop: each step's own overlap and text spot, so no column has more than 64px of empty space (checked 1020 to 1440 wide).
+   Step 3's heading always breaks after "your" on desktop so the spacing doesn't jump at the width where it would fit on one line. */
+@media (min-width:981px){
+  #how .job:nth-child(2){margin-top:-339px}
+  #how .job:nth-child(3){margin-top:34px}
+  #how .job:nth-child(4){margin-top:-300px}
+  #how .job:nth-child(2) .txt{padding-top:357px}
+  #how .job:nth-child(3) .txt{padding-top:0;margin-top:-16px}
+  #how .job:nth-child(3) h3{max-width:11em}
+  #how .job:nth-child(4) .txt{padding-top:318px}
+}
