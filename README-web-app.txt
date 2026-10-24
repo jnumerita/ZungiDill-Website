@@ -37,3 +37,4 @@ Web-only changes in app/index.html (keep these when copying a new app build over
 - SmartCredit card and More row say "We may earn a fee if you sign up."
 - Server security headers for /app/ are in _headers (same set as the site, with a CSP that matches the app's own).
 - The Get started renewal note (storeRenewNote) uses the Stripe wording on the web; Apple wording only shows in the iPhone app.
+- Cloudflare Web Analytics is allowed on /app/: https://static.cloudflareinsights.com in script-src, in both the app's meta CSP and _headers. The beacon reports to /cdn-cgi/rum on this domain ('self').
