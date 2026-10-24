@@ -26,8 +26,12 @@
 
 ## Pages
 
-- [Home](https://zungidill.com/): What ZungiDill does, how it works and common questions
+- [Home](https://zungidill.com/): What ZungiDill does and how it works
 - [Web app](https://zungidill.com/app/): Use ZungiDill in your browser, including on iPhone
+- [Prices](https://zungidill.com/prices): What it costs
+- [Questions](https://zungidill.com/questions): Common questions
+- [Who it's for](https://zungidill.com/who-its-for): When ZungiDill helps
+- [iPhone app](https://zungidill.com/iphone): Get one email when the iPhone app is ready
 - [About](https://zungidill.com/about): Who makes ZungiDill and how the guides are checked
 - [Support](https://zungidill.com/support): Getting your report, sending letters, purchases, cancelling and deleting your data
 - [Terms of Use](https://zungidill.com/terms): Prices, subscriptions, refunds and your responsibilities
