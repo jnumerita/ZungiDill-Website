@@ -5,6 +5,7 @@ OUT = pathlib.Path(__file__).parent
 SITE = 'https://zungidill.com'
 EMAIL = 'hola.numerita@gmail.com'
 EFFECTIVE = 'October 14, 2026'
+PRIVACY_EFFECTIVE = 'October 23, 2026'
 LASTMOD = '2026-10-22'
 
 def page(slug, title, desc, body, current=''):
@@ -412,22 +413,24 @@ def terms():
 def privacy():
     toc = [('never','What the app never asks for'),('phone','What stays on your phone'),('report','Your report and replies'),('diagnostics','Diagnostics on Android'),('reminders','Reminders'),('purchases','Purchases'),('links','Links to other sites'),('launch-list','The iPhone launch list'),('contact','Messages you send us'),('website','This website'),('delete','Deleting your information'),('rights','Your privacy rights'),('children','Children'),('security','Security'),('changes','Changes'),('reach','Contact')]
     c = f'''
-<div class="short"><h2>The short version</h2><ul><li>Your report and letters stay on your phone. We never get them.</li><li>No account, and we never ask for your Social Security number.</li><li>We never sell your information.</li><li>If you email us or join the iPhone list, we use your email only to answer you.</li><li>Erase everything any time from the More tab.</li></ul></div>
-<p style="margin-top:24px">This policy covers the ZungiDill app for Android and iPhone and the website zungidill.com, made by Numerita LLC.</p>
+<div class="short"><h2>The short version</h2><ul><li>Your report and letters stay on your phone, or in your browser if you use the web app. We never get them.</li><li>No account, and we never ask for your Social Security number.</li><li>We never sell your information.</li><li>If you email us or join the iPhone list, we use your email only to answer you.</li><li>Erase everything any time from the More tab.</li></ul></div>
+<p style="margin-top:24px">This policy covers the ZungiDill app for Android and iPhone, the web app at zungidill.com/app, and the website zungidill.com, made by Numerita LLC.</p>
 <h2 id="never">What the app never asks for</h2>
 <p>Your Social Security number, date of birth, passwords, or bank or card details. Letters to the bureaus have blank lines where you write your Social Security number and birth date by hand. The app does not keep them.</p>
 <h2 id="phone">What stays on your phone</h2>
 <p>Your name and mailing address, report items (company names, the last four digits of account numbers, balances, dates, statuses and personal details from your report), your answers and dispute choices, drafted letters, mailing and arrival dates, tracking numbers, results you record, photos of proof or bureau replies, and your settings.</p>
 <p>This is kept in the app's private storage on your phone. It is not sent to Numerita LLC or anyone else. It may be included in your phone's own backup (iCloud or your computer on iPhone, your Google account on Android), which you, Apple and Google control.</p>
+<p>In the web app at zungidill.com/app, the same information is kept in your web browser's local storage on that device. It is not encrypted there, so anyone who can use the same browser can open it. It stays until you tap Erase everything on the More tab or clear this site's data in your browser. It is not sent to Numerita LLC or anyone else.</p>
 <h2 id="report">Your report and bureau replies</h2>
 <p>Report files and photos you bring in are read on your phone, using Apple's Vision on iPhone and Google's ML Kit on Android. Only the items you choose are saved. The report file and the text read from it are not kept, and nothing is uploaded. The app checks that a report is in the same name as your file, on your phone, so it is used only for your own report.</p>
+<p>In the web app, report files and text you paste are read in your browser on your device. The report file and the text read from it are not kept, and nothing is uploaded.</p>
 <h2 id="diagnostics">Diagnostics on Android</h2>
 <p>Google's ML Kit, which reads text on Android, may send Google basic diagnostics: device model, Android version, app name and version, an installation identifier, performance timings and error codes. It does not include your documents, photos or the text read from them. Numerita LLC does not receive this information.</p>
 <h2 id="reminders">Reminders</h2>
-<p>Deadline and monthly reminders are scheduled on your phone as local notifications. Nothing is sent to a server.</p>
+<p>Deadline and monthly reminders are scheduled on your phone as local notifications. Nothing is sent to a server. The web app does not send reminders.</p>
 <h2 id="purchases">Purchases</h2>
 <p>In the Android and iPhone apps, Google Play and the App Store handle all payments. The app only checks with your store whether a purchase or subscription is active.</p>
-<p>In the web app at zungidill.com/app, payments are handled by Stripe, our payment processor. Stripe collects your card details and the email address for your receipt. Numerita LLC never receives your full card number. We can see in our Stripe account the email address, the amount, the date and whether a subscription is active, and we use this only to provide what you bought, answer billing questions and meet legal and tax duties. The web app keeps a reference to your purchase in your browser on your device so it can unlock your letters. <a href="https://stripe.com/privacy">Stripe Privacy Policy</a></p>
+<p>In the web app at zungidill.com/app, payments are handled by Stripe, our payment processor. Stripe collects your card details and the email address for your receipt. Numerita LLC never receives your full card number. We can see in our Stripe account the email address, the amount, the date and whether a subscription is active, and we use this only to provide what you bought, answer billing questions and meet legal and tax duties. The web app keeps a reference to your purchase in your browser's local storage on your device so it can unlock your letters and let you manage your subscription. To check a payment or a subscription, the web app sends our server only that reference. It never sends your report or letters. <a href="https://stripe.com/privacy">Stripe Privacy Policy</a></p>
 <h2 id="links">Links to other sites</h2>
 <p>The app links to sites such as AnnualCreditReport.com, the credit bureaus, IdentityTheft.gov, the CFPB, OptOutPrescreen.com and SmartCredit. Their own privacy policies apply. Nothing you enter in ZungiDill is passed to them. SmartCredit is an optional affiliate: Numerita LLC may earn a commission through the link, and no user information is shared with SmartCredit.</p>
 <h2 id="launch-list">The iPhone launch list</h2>
@@ -437,19 +440,19 @@ def privacy():
 <h2 id="website">This website</h2>
 <p>This website has no ads and no tracking cookies. We use Cloudflare Web Analytics to count page visits. It does not use cookies or local storage and does not follow you across sites or over time. Cloudflare, Inc., our website host, processes technical information like IP addresses and browser type to deliver pages and prevent abuse.</p>
 <h2 id="delete">Deleting your information</h2>
-<p>In the app: tap Erase everything on the More tab, or delete the app. We cannot see, restore or delete app data for you because we never have it. For the launch list, messages or emails: email <a href="mailto:{EMAIL}">{EMAIL}</a> and we will delete it within 30 days.</p>
+<p>In the app: tap Erase everything on the More tab, or delete the app. In the web app: tap Erase everything on the More tab, or clear this site's data in your browser. This also removes purchase records kept in that browser. It does not cancel ZungiDill Monthly. We cannot see, restore or delete app data for you because we never have it. For the launch list, messages or emails: email <a href="mailto:{EMAIL}">{EMAIL}</a> and we will delete it within 30 days.</p>
 <h2 id="rights">Your privacy rights</h2>
 <p>We do not sell or share personal information for targeted advertising, and we do not profile users. Depending on your state, you may have the right to know, access, correct or delete information we hold about you. For launch list and message information, email us and we will respond within 45 days. We will not treat you differently for using these rights.</p>
 <h2 id="children">Children</h2>
 <p>ZungiDill is for adults in the United States. It is not meant for anyone under 18, and we do not knowingly collect information from children.</p>
 <h2 id="security">Security</h2>
-<p>The biggest protection is that the app keeps your information on your phone, with no account and no server. Use a passcode or screen lock on your phone. Launch list and support emails are kept in our email account.</p>
+<p>The biggest protection is that the app keeps your information on your phone, with no account and no server. Use a passcode or screen lock on your phone. In the web app, your information is stored in your browser without encryption. Use it on a device you trust. On a shared computer, use Erase everything when you're done. Launch list and support emails are kept in our email account.</p>
 <h2 id="changes">Changes</h2>
 <p>We post any update on this page with a new effective date. Changes to how the app handles your information are also noted in the app's update notes.</p>
 <h2 id="reach">Contact</h2>
 <p>Numerita LLC, Sheridan, Wyoming<br>Email <a href="mailto:{EMAIL}">{EMAIL}</a></p>
 '''
-    return page('privacy', 'Privacy Policy | ZungiDill', 'How ZungiDill handles your information: your report stays on your phone, there is no account, we never ask for your Social Security number and never sell data.', doc('Privacy Policy', 'Effective ' + EFFECTIVE, toc, c))
+    return page('privacy', 'Privacy Policy | ZungiDill', 'How ZungiDill handles your information: your report stays on your phone, there is no account, we never ask for your Social Security number and never sell data.', doc('Privacy Policy', 'Effective ' + PRIVACY_EFFECTIVE, toc, c))
 
 def legal():
     c = f'''

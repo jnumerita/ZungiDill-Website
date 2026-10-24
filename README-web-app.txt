@@ -29,3 +29,11 @@ Test before going live
 With the sk_test_ key in step 6, open zungidill.com/app, make a letter, tap Unlock,
 and pay with card 4242 4242 4242 4242, any future date, any CVC, any ZIP.
 The letter should unlock. Then swap the secret to the sk_live_ key.
+
+Web-only changes in app/index.html (keep these when copying a new app build over)
+- First-use notice: "Your report is saved only in this browser..." shown once (webNotice, S.webNotice).
+- Erase everything on the web clears this site's localStorage and sessionStorage and reloads (webErase).
+- S.web (Stripe subscription reference) is part of the saved state, so Manage or cancel subscription works after a reload.
+- SmartCredit card and More row say "We may earn a fee if you sign up."
+- Server security headers for /app/ are in _headers (same set as the site, with a CSP that matches the app's own).
+- The Get started renewal note (storeRenewNote) uses the Stripe wording on the web; Apple wording only shows in the iPhone app.

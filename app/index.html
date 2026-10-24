@@ -1057,6 +1057,10 @@ a.zd-row{text-decoration:none}
 .pn[aria-label="Promo code"] input{font:400 20px/24px var(--sans)!important;letter-spacing:1px;margin-top:16px}
 .pn[aria-label="Promo code"] .err{font:400 14px/20px var(--sans);color:var(--zd-danger-50)!important}
 .pn[aria-label="Promo code"] .fine{font:500 12px/20px var(--sans);color:var(--zd-grey-30)}
+/* web: one-time notice about where the report is saved */
+.zd-notice{position:fixed;left:50%;bottom:calc(var(--tab) + var(--sb) + 14px);transform:translateX(-50%);z-index:65;width:min(440px,calc(100vw - 24px));display:flex;gap:8px;align-items:center;background:var(--card);color:var(--ink);border-radius:16px;padding:12px 8px 12px 16px;box-shadow:0 8px 28px rgba(0,0,0,.2);font-size:15px;line-height:1.4}
+.zd-notice p{margin:0;flex:1}
+.zd-notice button{flex:none;min-width:48px;min-height:48px;padding:0 10px;border:0;background:transparent;color:var(--ink);font:inherit;font-weight:600;cursor:pointer;border-radius:10px;text-decoration:underline}
 </style>
 <script>if(/[?&]f=1/.test(location.search))document.documentElement.className+=' framed-inner';</script>
 </head>
@@ -1243,7 +1247,7 @@ function bucket(){return {mine:[],disputes:{},track:{},results:{},mov:{},cfpb:{}
 var S={v:2,screen:'welcome',agreed:false,tab:'report',bureau:'Equifax',demo:false,reminders:true,
   profile:{name:'',address:'',city:'',state:'',zip:''},reportNo:{},
   unlock:{},freeUsed:null,plansSeen:false,paidEver:false,credits:0,sub:{active:false,expires:0},rounds:{},real:bucket(),ex:bucket(),
-  owner:null,bills:[],billRemind:true,freeRemind:false,plan:{},path:{},seenMail:false,setupStep:0,goal:'',salt:''};
+  owner:null,bills:[],billRemind:true,freeRemind:false,plan:{},path:{},seenMail:false,setupStep:0,goal:'',salt:'',webNotice:false,web:null};
 var T={open:null,draft:null,err:'',letter:null,scrollY:{}};  /* not saved */
 
 function D(){return S.demo?S.ex:S.real}
@@ -1252,8 +1256,8 @@ function item(id){return items().find(function(i){return i.id===id})}
 function profile(){return S.demo?EX_PROFILE:S.profile}
 function profileReady(){var p=S.profile;return !!(p.name.trim()&&p.address.trim()&&p.city.trim()&&p.state.trim()&&p.zip.trim())}
 
-var KEY='zungidill.v2',OLD='zd1',saveT=null;
-function save(){clearTimeout(saveT);saveT=setTimeout(function(){store.set(KEY,JSON.stringify(S))},120)}
+var KEY='zungidill.v2',OLD='zd1',saveT=null,erasing=false;
+function save(){if(erasing)return;clearTimeout(saveT);saveT=setTimeout(function(){store.set(KEY,JSON.stringify(S))},120)}
 function migrate(o){
   /* earlier builds kept one flat object in localStorage */
   var b=S.real;
@@ -2101,6 +2105,7 @@ function render(){
   /* a plan bought from Get started: go on to the report upload (buy() re-renders when the store answers) */
   if(T.onbBuy&&!buying&&(subActive()||(S.credits||0)>T.onbBuy.credits)){T.onbBuy=null;S.plansSeen=true;if(!items().length){S.screen='setup'}}
   setTimeout(statusBar,0);
+  if(WEB)setTimeout(webNotice,400);
   if(S.screen==='plans'){S.screen=S.agreed?'app':'welcome';setTimeout(function(){openPlans('plans')},0)}
   if(S.screen==='welcome'){app.innerHTML=vWelcome();wireWelcome();save();return}
   if(T.reading){T.open=null;app.innerHTML=vReading();return}
@@ -2189,7 +2194,8 @@ function statusBar(){
 /* Get started: what is free, what is paid. Prices always come from the store (PRICE), never typed in. */
 function planCheck(t,on){return '<li class="'+(on?'in':'out')+'">'+(on?'<i class="g-check">'+I.check+'</i>':'<i class="dash"></i>')+'<span>'+t+'</span></li>'}
 function storeRenewNote(){
-  return 'ZungiDill Monthly renews every month until you cancel. '+(ANDROID?'Cancel anytime in Google Play, under Payments and subscriptions.':
+  /* web: Stripe wording, the same as the Important information text (webSubFine). Apple wording is for the iPhone app only. */
+  return 'ZungiDill Monthly renews every month until you cancel. '+(WEB?'Payment is charged to your card through Stripe, our payment processor. Cancel anytime from More, then Manage or cancel subscription, before the renewal date.':ANDROID?'Cancel anytime in Google Play, under Payments and subscriptions.':
     'Payment is charged to your Apple Account. It renews automatically unless you cancel at least 24 hours before the end of the current period. Cancel anytime in Settings, under your name, then Subscriptions.');
 }
 function plansHTML(tab,L){
@@ -2222,7 +2228,7 @@ function plansHTML(tab,L){
         '<p class="zd-fine">'+storeRenewNote()+'</p></div>'+
       '<p class="zd-note">You pay only to print, save or send a finished letter.</p>'+
       '<p class="zd-note">Reading their reply and follow-up letters are always free.</p>'+
-      (CFG.smartcredit?'<div class="zd-plan zd-addon"><span class="zd-label">Add-on</span><b>SmartCredit</b><p>Scores and alerts from all 3 bureaus.</p><p class="zd-fine">Separate company with its own price.</p>'+
+      (CFG.smartcredit?'<div class="zd-plan zd-addon"><span class="zd-label">Add-on</span><b>SmartCredit</b><p>Scores and alerts from all 3 bureaus.</p><p class="zd-fine">Separate company with its own price.</p><p class="zd-fine">We may earn a fee if you sign up.</p>'+
         '<button class="btn plain zd-left" data-plan-go="smartcredit">Learn more</button></div>':'')+
       '<div class="zd-important"><h3>Important information</h3><p class="zd-fine">'+subFine()+'</p><p class="zd-fine">One letter is a one-time purchase. Follow-up letters after a bureau answers are always free.</p></div>';
   }
@@ -3883,7 +3889,7 @@ function vMore(){
     msec('Printed on your letters',mrow('data-moresub="printed"',who))+
     msec('Reminders',mswitch('data-remind="1"','Deadline reminders',S.reminders),'A notification 3 days before each answer is due, and on the day.')+
     msec('Typing',mswitch('data-micshow="1"','Show the Talk button',!S.micOff),'Say it in your own words instead of typing.')+
-    (CFG.smartcredit?msec('Your scores and alerts',mrow('data-act="smartcredit"','SmartCredit · optional','Scores and alerts from all 3 bureaus')):'')+
+    (CFG.smartcredit?msec('Your scores and alerts',mrow('data-act="smartcredit"','SmartCredit · optional','Scores and alerts from all 3 bureaus. We may earn a fee if you sign up.')):'')+
     msec('Free credit reports',mlink('https://www.annualcreditreport.com','AnnualCreditReport.com')+mswitch('data-freerem="1"','Remind me every month',S.freeRemind,'Monthly free report reminder'),
       'Equifax, Experian and TransUnion each give you a free report every week at AnnualCreditReport.com, the official site.')+
     msec('Protect your credit (optional)',mrow('data-boost="idtheft"','Identity theft','An FTC identity theft report, a fraud alert, and a block letter. The bureau must block the information within 4 business days (15 U.S.C. § 1681c-2).')+mrow('data-protect="Freeze"','Freeze your credit')+mrow('data-protect="Stop pre-approved"','Stop pre-approved offers')+mrow('data-protect="Innovis"','Innovis, the 4th bureau'))+
@@ -4147,8 +4153,9 @@ document.addEventListener('click',function(e){
     hap.ok();render();
   }
   else if(a==='erase'){
-    ask({title:'Erase everything on this '+DEV+'?',message:'Your items, disputes, letters, dates, photos and unlocked letters are removed from this '+DEV+'. This cannot be undone.',ok:'Erase',destructive:true}).then(function(y){
+    ask({title:'Erase everything on this '+DEV+'?',message:WEB?'Everything ZungiDill saved in this browser is removed: your items, disputes, letters, dates, your name and address, and purchases made in this browser. This cannot be undone.'+(S.web&&S.web.sub?' Erasing does not cancel ZungiDill Monthly. To stop it, use Manage or cancel subscription first.':''):'Your items, disputes, letters, dates, photos and unlocked letters are removed from this '+DEV+'. This cannot be undone.',ok:'Erase',destructive:true}).then(function(y){
       if(!y)return;
+      if(WEB){webErase();return}
       S.real=bucket();S.ex=bucket();S.bills=[];S.plan={};S.goal='';S.path={};S.freeRemind=false;S.unlock={};S.reportNo={};S.sub={active:false,expires:0};S.profile={name:'',address:'',city:'',state:'',zip:''};S.owner=null;S.demo=false;S.tab='report';
       T.open=null;T.draft=null;T.letter=null;syncReminders();render();toast('Everything erased');
     });
@@ -4186,6 +4193,24 @@ document.addEventListener('input',function(e){
 });
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&T.open)closeItem()});
 
+/* ---------- web: one-time notice, and Erase everything clears this browser ---------- */
+function webNotice(){
+  /* on wide screens the app runs inside a phone frame: show it there, never on the outer page */
+  if(!WEB||S.webNotice||S.screen==='welcome'||$('zdNotice')||!$('app')||document.documentElement.classList.contains('framed'))return;
+  S.webNotice=true;save();
+  var n=document.createElement('div');n.className='zd-notice';n.id='zdNotice';n.setAttribute('role','status');
+  n.innerHTML='<p>Your report is saved only in this browser. On a shared computer, use Erase everything when you\'re done.</p><button type="button">Close</button>';
+  n.querySelector('button').addEventListener('click',function(e){e.stopPropagation();n.remove()});
+  document.body.appendChild(n);
+}
+function webErase(){
+  /* everything the web app keeps is in this site's localStorage (and nothing in sessionStorage, cookies or IndexedDB) */
+  erasing=true;clearTimeout(saveT);
+  try{localStorage.clear()}catch(e){}
+  try{sessionStorage.clear()}catch(e){}
+  location.replace(location.pathname+'?erased=1');
+}
+
 /* ---------- start ---------- */
 function boot(){
   load().then(function(){
@@ -4195,6 +4220,7 @@ function boot(){
     else if(S.screen==='app'){S.tab='home';T.open=null;T.letter=null}  /* 1.8: no paywall at launch. Letters are built first, payment comes at the letter. */
     if(S.screen==='welcome')showSplash();
     render();loadPrices();syncReminders();checkSub();if(WEB)webReturn();
+    if(WEB&&/[?&]erased=1/.test(location.search)){history.replaceState(null,'',location.pathname);toast('Everything erased')}
     document.addEventListener('visibilitychange',function(){if(!document.hidden)checkSub()});
     var SB=plug('StatusBar');
     if(NATIVE&&SB){
