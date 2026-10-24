@@ -13,6 +13,8 @@ def page(slug, title, desc, body, current=''):
         c = f' class="{cls}"' if cls else ''
         return f'<li{c}><a href="{href}"{cur}>{label}</a></li>'
     canon = SITE + ('/' if slug == 'index' else '/' + slug)
+    HOMECSS = '\n<link rel="stylesheet" href="/css/home.css">' if slug == 'index' else ''
+    BODYCLS = ' class="p-home"' if slug == 'index' else ''
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -39,9 +41,9 @@ def page(slug, title, desc, body, current=''):
 <link rel="apple-touch-icon" href="/img/icon-180.png">
 <link rel="preload" href="/fonts/SourceSerif4-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/IBMPlexSans-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/site.css">{HOMECSS}
 </head>
-<body>
+<body{BODYCLS}>
 <a class="skip" href="#main">Skip to content</a>
 <header>
   <div class="wrap bar">
@@ -138,50 +140,66 @@ GOAL = {
 def index():
     LT = {a["slug"]: a["title"] for a in L.ARTICLES}
     LC = {a["slug"]: a["card"] for a in L.ARTICLES}
-    def device(name, alt, lazy=True):
+    # Icons are Fractal library icons exported from Figma (Unicons Line). The 3D objects are built in Figma and exported.
+    IC = {n: (OUT / 'img' / 'icons' / f'{n}.svg').read_text(encoding='utf-8').strip().replace('<svg ', '<svg aria-hidden="true" focusable="false" ', 1) for n in ('tick', 'card', 'doc', 'plus')}
+    def obj(name, w, h, cls='', lazy=True):
         l = ' loading="lazy"' if lazy else ' fetchpriority="high"'
-        return f'<img class="device" src="/img/kit/phone-{name}.webp" alt="{alt}" width="732" height="1380" decoding="async"{l}>'
-    def card(name, alt, w, h, cls):
-        return f'<img class="float {cls}" src="/img/kit/card-{name}.webp" alt="{alt}" width="{w}" height="{h}" decoding="async" loading="lazy">'
+        return f'<img class="{cls}" src="/img/3d/{name}.webp" alt="" width="{w}" height="{h}" decoding="async"{l}>'
+    steps = [
+        ('1', 'Add your credit report', 'Get your free report and open it in ZungiDill. A photo of a paper copy works too.', obj('step-report', 711, 846, 'h-obj rv'), obj('num-1', 220, 365, 'h-num rv')),
+        ('2', 'Check each item', "Go through your report one item at a time and mark anything that isn't right.", obj('step-magnifier', 717, 602, 'h-obj rv'), obj('num-2', 255, 368, 'h-num rv')),
+        ('3', 'Read and mail your letter', 'ZungiDill writes the letter from what you marked. You read it, then print and mail it.', obj('step-envelope', 804, 762, 'h-obj rv'), obj('num-3', 261, 371, 'h-num rv')),
+        ('4', 'Track the 30 days', "Enter the date it was delivered. We'll remind you when the bureau's 30 days are up.", obj('step-calendar', 726, 770, 'h-obj rv'), obj('num-4', 273, 365, 'h-num rv')),
+    ]
+    rows = ''.join(f'''
+    <li class="h-row{' h-band' if n == '3' else ''}"><div class="h-wrap h-rowin">
+      <div class="h-vis" aria-hidden="true">{num}{o}</div>
+      <div class="h-txt"><h3>{h}</h3><p>{t}</p></div>
+    </div></li>''' for n, h, t, o, num in steps)
+    li = lambda items: ''.join(f'<li>{IC["tick"]}<span>{x}</span></li>' for x in items)
     guides = ''.join(f'<li><a href="/learn/{x}"><b>{LT[x]}</b><span>{LC[x]}</span></a></li>' for x in ('dispute-letter', 'not-mine', 'collections'))
+    qa = [
+        ('How do I fix a mistake on my credit report?', '<p>Send the credit bureau a letter. Say which item is wrong and why, and add copies of any proof. ZungiDill writes that letter from what you mark and keeps track of the answer.</p>'),
+        ('Is this credit repair?', "<p>No. ZungiDill is a tool you use yourself. Nobody does it for you, and nobody charges you every month for promises. You decide what's wrong, and you send your own letters.</p>"),
+        ('Where do I get my credit report?', '<p>Free at AnnualCreditReport.com, the official site. Save each report as a PDF and open it in ZungiDill. The <a href="/support">Support page</a> walks you through it.</p>'),
+        ('What does it cost?', '<p>Checking your report and writing letters is free. You pay only when a letter is ready to print, save or send. You can pay for one letter at a time or use the monthly plan. You see the price before you pay. <a href="#prices">See prices</a></p>'),
+        ('Can I use it for someone else?', "<p>No. ZungiDill only works with your own credit report. If a report is in another name, the app stops and won't use it.</p>"),
+        ('What if they cannot prove it?', "<p>Then it has to be fixed or taken off your report. That's the law if the company that reported it can't show it's right: <a href=\"https://www.law.cornell.edu/uscode/text/15/1681i\">15 U.S.C. 1681i(a)(5)</a>.</p>"),
+        ('What if the item is mine and it is right?', "<p>ZungiDill won't tell you to call it wrong. It shows you other options instead. One is a goodwill letter, where you ask the lender to remove a late payment that really happened.</p>"),
+    ]
+    faq = ''.join(f'<details class="h-q"><summary><span>{q}</span>{IC["plus"]}</summary><div>{a}</div></details>' for q, a in qa)
     body = f"""
-<section class="first" aria-labelledby="hero-h">
-  <div class="wrap hero">
+<section class="h-hero" aria-labelledby="hero-h">
+  <div class="h-wrap">
+    <div class="h-float" aria-hidden="true">{obj('hero-card', 1246, 1051, 'h-herocard', lazy=False)}</div>
+    <h1 id="hero-h">Find mistakes on your credit report and dispute them <em>yourself.</em></h1>
+    <p class="h-lede">You mark what's wrong. ZungiDill writes the letter.</p>
+    <div class="h-acts">
+      <a class="btn" href="/app/">Open the web app</a>
+      <a class="h-badge" href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="183" height="54"></a>
+    </div>
+    <p class="h-price"><b>Checking is free.</b> <span class="launch">A letter costs $4.99 through Dec 31, 2026.</span><span class="after" hidden>A letter costs $9.99.</span> <a href="#prices">See prices</a></p>
+    <p class="h-soon">The iPhone app is coming soon. <a href="#notify">Get notified</a></p>
+  </div>
+</section>
+
+<section class="h-private" aria-labelledby="private-h">
+  <div class="h-wrap h-split">
     <div>
-      <h1 id="hero-h">Find mistakes on your credit report and dispute them yourself.</h1>
-      <p class="lede">You mark what's wrong. ZungiDill writes the letter.</p>
-      <div class="acts">
-        <a class="btn" href="/app/">Open the web app</a>
-        <a href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="183" height="54"></a>
-      </div>
-      <p class="price"><b>Checking is free.</b> <span class="launch">A letter costs $4.99 through Dec 31, 2026.</span><span class="after" hidden>A letter costs $9.99.</span> <a href="#prices">See prices</a></p>
-      <p class="soonline">The iPhone app is coming soon. <a href="#notify">Get notified</a></p>
-    </div>
-    <figure class="stage">
-      {device('home', 'ZungiDill home screen with your scores and your next step', lazy=False)}
-      {card('northgate', 'A collection account on the report: Northgate Collections, $412', 670, 540, 'f-hero')}
-      <figcaption class="cap">Screens show a made-up report.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section class="soft" aria-labelledby="private-h">
-  <div class="wrap split">
-    <div class="txt">
       <h2 id="private-h">Your report stays on your phone.</h2>
-      <p class="lede">There's no account to make. We never ask for your Social Security number. You send your own letters, so you see every word.</p>
+      <p class="h-lede">There's no account to make. We never ask for your Social Security number. You send your own letters, so you see every word.</p>
     </div>
-    <div class="stack">
-      <div class="float tcard f-a"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6 15h4"/></svg><p><b>Payments by Stripe</b>on the web and Google Play in the app.</p></div>
-      <div class="float tcard f-b"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2.5h8l4.5 4.5v14.5H6z"/><path d="M14 2.5V7h4.5M9 12h6M9 16h6"/></svg><p><b>Your right to dispute:</b><a href="https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-an-error-on-my-credit-report-en-314/">15 U.S.C. 1681i</a></p></div>
+    <div class="h-trust">
+      <div class="h-tcard">{IC['card']}<p><b>Payments by Stripe</b>on the web and Google Play in the app.</p></div>
+      <div class="h-tcard">{IC['doc']}<p><b>Your right to dispute:</b><a href="https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-an-error-on-my-credit-report-en-314/">15 U.S.C. 1681i</a></p></div>
     </div>
   </div>
 </section>
 
-<section aria-labelledby="heard-h">
-  <div class="wrap">
-    <h2 id="heard-h" class="sh2">When ZungiDill helps</h2>
-    <div class="heard">
+<section class="h-heard" aria-labelledby="heard-h">
+  <div class="h-wrap">
+    <h2 id="heard-h" class="h-big">When ZungiDill helps</h2>
+    <div class="h-bento">
       <div><h3>You were told no, or offered a high rate</h3><p>Lenders decide from your credit report. ZungiDill shows you what they see, so you can check it for mistakes.</p></div>
       <div><h3>You paid a credit repair company and nothing changed</h3><p>You never saw what they sent. Here you read every letter before it goes out, and you mail it yourself.</p></div>
       <div><h3>You pay cash for most things</h3><p>That works until you need a lease or a loan. Your report follows you either way, so make sure it's right.</p></div>
@@ -190,75 +208,73 @@ def index():
   </div>
 </section>
 
-<section id="how" aria-labelledby="how-h">
-  <div class="wrap">
-    <div class="sh"><h2 id="how-h">How it works</h2><p>You do each step yourself, on your phone or computer. Your letters go to the credit bureaus: Equifax, Experian and TransUnion, the companies that keep your report.</p></div>
-    <div class="jobs">
-      <article class="job"><div class="txt"><p class="n" aria-hidden="true">1</p><h3>Add your credit report</h3><p>Get your free report and open it in ZungiDill. A photo of a paper copy works too.</p></div><figure class="shot">{device('upload', 'Adding your credit reports, one bureau at a time')}</figure></article>
-      <article class="job"><div class="txt"><p class="n" aria-hidden="true">2</p><h3>Check each item</h3><p>Go through your report one item at a time and mark anything that isn't right.</p></div><figure class="shot">{device('check', 'Quick check asking if a collection account is yours')}{card('yours', 'Is this yours? Not mine is selected.', 670, 755, 'f-step')}</figure></article>
-      <article class="job"><div class="txt"><p class="n" aria-hidden="true">3</p><h3>Read and mail your letter</h3><p>ZungiDill writes the letter from what you marked. You read it, then print and mail it.</p></div><figure class="shot">{device('letter', 'A finished dispute letter to Equifax, ready to print')}{card('heading', 'The top of a dispute letter to Equifax', 580, 500, 'f-step')}</figure></article>
-      <article class="job"><div class="txt"><p class="n" aria-hidden="true">4</p><h3>Track the 30 days</h3><p>Enter the date it was delivered. We'll remind you when the bureau's 30 days are up.</p></div><figure class="shot">{device('track', 'Track screen counting the days until the bureau must answer')}{card('ring', '16 days left. Experian has until Nov 3 to reply.', 659, 670, 'f-step')}</figure></article>
-    </div>
-    <p class="timing"><b>How long does it take?</b> Bureaus usually have 30 days to answer. If you're planning to apply for something, start now.</p>
-    <p class="cap">Screens show a made-up report.</p>
+<section id="how" class="h-how" aria-labelledby="how-h">
+  <div class="h-wrap h-head">
+    <h2 id="how-h" class="h-big">How it works</h2>
+    <p>You do each step yourself, on your phone or computer. Your letters go to the credit bureaus: Equifax, Experian and TransUnion, the companies that keep your report.</p>
   </div>
+  <ol class="h-rows">{rows}
+  </ol>
+  <div class="h-wrap"><p class="h-timing"><b>How long does it take?</b> Bureaus usually have 30 days to answer. If you're planning to apply for something, start now.</p></div>
 </section>
 
-<section id="prices" class="soft" aria-labelledby="prices-h">
-  <div class="wrap">
-    <div class="sh"><h2 id="prices-h">What it costs</h2><p><b>Checking your report and writing letters is free.</b> You pay only when a letter is ready to print, save or send.</p></div>
-    <div class="plans">
-      <div class="plan main">
+<section id="prices" class="h-prices" aria-labelledby="prices-h">
+  <div class="h-wrap">
+    <div class="h-head h-head-in">
+      <h2 id="prices-h" class="h-big">What it costs</h2>
+      <p><b>Checking your report and writing letters is free.</b> You pay only when a letter is ready to print, save or send.</p>
+    </div>
+    <div class="h-plans">
+      <div class="h-plan h-main">
         <h3>One letter</h3>
-        <p class="amt"><b><span class="launch">$4.99</span><span class="after" hidden>$9.99</span></b><span>per letter</span></p>
-        <p class="then launch">That price runs through Dec 31, 2026. After that, a letter is <b>$9.99</b>.</p>
-        <ul><li>Pays for one finished letter you can print, save or send.</li><li>You pay once. There's no plan.</li></ul>
-        <a class="btn" href="/app/">Get one letter</a>
-        <p class="terms">You see the price before you pay.</p>
+        <p class="h-amt"><b><span class="launch">$4.99</span><span class="after" hidden>$9.99</span></b><span>per letter</span></p>
+        <p class="h-then launch">That price runs through Dec 31, 2026. After that, a letter is <b>$9.99</b>.</p>
+        <ul>{li(['Pays for one finished letter you can print, save or send.', "You pay once. There's no plan."])}</ul>
+        <a class="btn gold" href="/app/">Get one letter</a>
+        <p class="h-terms">You see the price before you pay.</p>
       </div>
-      <div class="plan">
+      <div class="h-plan">
         <h3>ZungiDill Monthly</h3>
-        <p class="opt">Optional. One letter at a time works too.</p>
-        <p class="amt"><b>$19.99</b><span>a month for your first 3 months</span></p>
-        <p class="then">Then <b>$39.99 a month</b>. The first price is for new subscribers.</p>
-        <ul><li>Each month you get a letter to each credit bureau, plus letters to companies.</li><li>It renews every month until you cancel.</li><li>To stop, cancel before your renewal date.</li></ul>
+        <p class="h-opt">Optional. One letter at a time works too.</p>
+        <p class="h-amt"><b>$19.99</b><span>a month for your first 3 months</span></p>
+        <p class="h-then">Then <b>$39.99 a month</b>. The first price is for new subscribers.</p>
+        <ul>{li(['Each month you get a letter to each credit bureau, plus letters to companies.', 'It renews every month until you cancel.', 'To stop, cancel before your renewal date.'])}</ul>
         <a class="btn" href="/app/">Start Monthly</a>
-        <p class="terms">You see the price before you pay.</p>
+        <p class="h-terms">You see the price before you pay.</p>
       </div>
     </div>
-    <p class="fine pricefine">Prices in U.S. dollars. On the web, you pay by card through Stripe. In the Android app, you pay through Google Play. <a href="/terms#prices">Full terms</a></p>
+    <p class="h-fine">Prices in U.S. dollars. On the web, you pay by card through Stripe. In the Android app, you pay through Google Play. <a href="/terms#prices">Full terms</a></p>
   </div>
 </section>
 
-<section id="questions" aria-labelledby="q-h">
-  <div class="wrap qwrap">
-    <div class="sh"><h2 id="q-h">Questions</h2><p>Longer answers are in our guides.</p><ul class="qlinks"><li><a href="/guide">Step by step guide</a></li><li><a href="/learn/dispute-letter">Free dispute letter sample</a></li><li><a href="/learn/collections">Collections</a></li><li><a href="/learn/">All guides</a></li></ul></div>
-    <div class="qa">
-      <details class="q"><summary>How do I fix a mistake on my credit report?</summary><div><p>Send the credit bureau a letter. Say which item is wrong and why, and add copies of any proof. ZungiDill writes that letter from what you mark and keeps track of the answer.</p></div></details>
-      <details class="q"><summary>Is this credit repair?</summary><div><p>No. ZungiDill is a tool you use yourself. Nobody does it for you, and nobody charges you every month for promises. You decide what's wrong, and you send your own letters.</p></div></details>
-      <details class="q"><summary>Where do I get my credit report?</summary><div><p>Free at AnnualCreditReport.com, the official site. Save each report as a PDF and open it in ZungiDill. The <a href="/support">Support page</a> walks you through it.</p></div></details>
-      <details class="q"><summary>What does it cost?</summary><div><p>Checking your report and writing letters is free. You pay only when a letter is ready to print, save or send. You can pay for one letter at a time or use the monthly plan. You see the price before you pay. <a href="#prices">See prices</a></p></div></details>
-      <details class="q"><summary>Can I use it for someone else?</summary><div><p>No. ZungiDill only works with your own credit report. If a report is in another name, the app stops and won't use it.</p></div></details>
-      <details class="q"><summary>What if they cannot prove it?</summary><div><p>Then it has to be fixed or taken off your report. That's the law if the company that reported it can't show it's right: <a href="https://www.law.cornell.edu/uscode/text/15/1681i">15 U.S.C. 1681i(a)(5)</a>.</p></div></details>
-      <details class="q"><summary>What if the item is mine and it is right?</summary><div><p>ZungiDill won't tell you to call it wrong. It shows you other options instead. One is a goodwill letter, where you ask the lender to remove a late payment that really happened.</p></div></details>
+<section id="questions" class="h-questions" aria-labelledby="q-h">
+  <div class="h-wrap h-qwrap">
+    <div class="h-qside">
+      <h2 id="q-h" class="h-big">Questions</h2>
+      <p>Longer answers are in our guides.</p>
+      <ul class="h-qlinks"><li><a href="/guide">Step by step guide</a></li><li><a href="/learn/dispute-letter">Free dispute letter sample</a></li><li><a href="/learn/collections">Collections</a></li><li><a href="/learn/">All guides</a></li></ul>
     </div>
+    <div class="h-qa">{faq}</div>
   </div>
 </section>
 
-<section aria-labelledby="learn-h">
-  <div class="wrap">
-    <div class="sh"><h2 id="learn-h">Guides</h2><p>Plain answers, with the law and official sources for each rule.</p></div>
-    <ul class="glist">{guides}</ul>
-    <p class="more"><a href="/learn/">All guides</a></p>
+<section class="h-guides" aria-labelledby="learn-h">
+  <div class="h-wrap">
+    <div class="h-head h-head-in">
+      <h2 id="learn-h" class="h-big">Guides</h2>
+      <p>Plain answers, with the law and official sources for each rule.</p>
+    </div>
+    <ul class="h-glist">{guides}</ul>
+    <p class="h-more"><a href="/learn/">All guides</a></p>
   </div>
 </section>
 
-<section class="band" aria-labelledby="iphone-h">
-  <div class="wrap grid2">
+<section class="h-iphone" aria-labelledby="iphone-h">
+  <div class="h-wrap h-split">
     <div>
       <h2 id="iphone-h">On iPhone? Use the web app in Safari.</h2>
-      <p class="lede">The iPhone app is coming soon. Until then, the web app works in Safari. There's nothing to download.</p>
-      <div class="acts"><a class="btn light" href="/app/">Open the web app</a></div>
+      <p class="h-lede">The iPhone app is coming soon. Until then, the web app works in Safari. There's nothing to download.</p>
+      <div class="h-acts"><a class="btn light" href="/app/">Open the web app</a></div>
     </div>
     <form class="notify" id="notify" action="https://tally.so/r/VLR6RJ" method="get" target="_blank" rel="noopener">
       <label for="nemail"><b>Get one email when the iPhone app is ready</b></label>
@@ -269,13 +285,13 @@ def index():
   </div>
 </section>
 
-<section id="contact" aria-labelledby="contact-h">
-  <div class="wrap">
-    <div class="sh">
-      <h2 id="contact-h">Talk to a real person</h2>
+<section id="contact" class="h-contact" aria-labelledby="contact-h">
+  <div class="h-wrap h-head">
+    <div>
+      <h2 id="contact-h" class="h-big">Talk to a real person</h2>
       <p>A person reads every message. We reply within two business days.</p>
     </div>
-    <div class="contact">
+    <div class="h-cbtns">
       <a class="btn" href="https://tally.so/r/Zj479y" target="_blank" rel="noopener">Send us a message</a>
       <a class="btn quiet" href="mailto:{EMAIL}">{EMAIL}</a>
     </div>
@@ -578,7 +594,7 @@ app={'@type':'MobileApplication','@id':SITE+'/#app','name':'ZungiDill','operatin
      'url':SITE+'/','downloadUrl':PLAY,'installUrl':PLAY,'publisher':{'@id':SITE+'/#org'},'image':SITE+'/img/og.png','offers':OFFERS}
 webapp={'@type':'WebApplication','@id':SITE+'/#webapp','name':'ZungiDill web app','url':SITE+'/app/','applicationCategory':'FinanceApplication','operatingSystem':'iOS, Android, Windows, macOS','browserRequirements':'Works in Safari on iPhone and in any modern browser.',
      'description':'The ZungiDill app in your browser. Check your own credit report, mark what is wrong, and send your own dispute letters. Works on iPhone in Safari.','publisher':{'@id':SITE+'/#org'},'image':SITE+'/img/og.png','offers':OFFERS}
-qa=re.findall(r'<details class="q"><summary>(.*?)</summary><div>(.*?)</div></details>',files['index.html'],re.S)
+qa=re.findall(r'<details class="h-q"><summary><span>(.*?)</span>.*?</summary><div>(.*?)</div></details>',files['index.html'],re.S)
 faq={'@type':'FAQPage','@id':SITE+'/#faq','mainEntity':[{'@type':'Question','name':strip(q),'acceptedAnswer':{'@type':'Answer','text':strip(a)}} for q,a in qa]}
 assert len(qa)>=3
 home=ld({'@context':'https://schema.org','@graph':[org,web,app,webapp,faq]})

@@ -1,0 +1,230 @@
+/* Home page redesign ("Pile"). Loaded on the home page only, after site.css.
+   Colors are the Fractal variables used in Figma (ZungiDill Website Redesign, page "Redesign options 2").
+   3D objects are built in Figma from shapes and exported; icons are Fractal library icons. */
+@font-face{font-family:"Source Serif 4";src:url(../fonts/SourceSerif4-700-italic.woff2) format("woff2");font-weight:700;font-style:italic;font-display:swap}
+.p-home{
+  --f-green:#2F5D50;--f-deep:#173F34;--f-ink:#1F2A24;--f-off:#F6F4EE;--f-gold:#D9A441;--f-gold90:#F7EDD9;--f-grey30:#4B534D;--f-grey50:#626A63;--f-grey90:#ECE9E1;
+  --f-r:32px;--f-pad:80px;
+  color:var(--f-ink);background:#fff;
+}
+.p-home section{padding:0;border:0}
+.p-home h1,.p-home h2,.p-home h3{color:var(--f-ink)}
+.h-wrap{max-width:1440px;margin:0 auto;padding:0 var(--f-pad)}
+.h-big{font-size:clamp(52px,8.9vw,128px);line-height:.9;letter-spacing:-.035em}
+.h-lede{font-size:clamp(18px,1.6vw,22px);line-height:1.45;color:var(--f-grey30)}
+
+/* header on the off-white hero */
+.p-home header{background:rgba(246,244,238,.94);box-shadow:none}
+.p-home .bar{height:88px}
+.p-home nav a{color:var(--f-ink)}
+.p-home .wrap.bar{max-width:1440px;padding:0 var(--f-pad)}
+
+/* buttons: Fractal radius S, small lift on hover */
+.p-home .btn{border-radius:8px;min-height:56px;padding:0 30px;background:var(--f-green);transition:transform .2s ease,box-shadow .2s ease,background-color .2s ease}
+.p-home .btn:hover{background:#264D42;transform:translateY(-2px);box-shadow:0 10px 22px -10px rgba(23,63,52,.55)}
+.p-home .btn.gold{background:var(--f-gold);color:var(--f-ink)}
+.p-home .btn.gold:hover{background:#E2B254}
+.p-home .btn.light{background:#fff;color:var(--f-green)}
+.p-home .btn.light:hover{background:var(--f-gold90)}
+.p-home .btn.quiet{background:var(--f-off);color:var(--f-ink)}
+.p-home .btn.quiet:hover{background:var(--f-grey90)}
+.p-home nav .navbtn a{border-radius:8px;background:var(--f-green);color:#fff;transition:transform .2s ease,box-shadow .2s ease}
+.p-home nav .navbtn a:hover{transform:translateY(-2px);box-shadow:0 10px 22px -10px rgba(23,63,52,.55)}
+.h-badge{display:block;border-radius:8px;transition:transform .2s ease}
+.h-badge:hover{transform:translateY(-2px)}
+.h-badge img{height:56px;width:auto}
+
+/* hero: one 3D object, the card with the gold check, floating above huge type */
+.h-hero{background:var(--f-off);padding:16px 0 120px!important;text-align:center}
+.h-float{width:clamp(280px,40vw,580px);margin:0 auto 24px}
+.h-herocard{width:100%;height:auto;animation:h-float 6s ease-in-out infinite}
+@keyframes h-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.h-hero h1{font-size:clamp(46px,8.1vw,116px);line-height:.92;letter-spacing:-.035em;max-width:13em;margin:0 auto}
+.p-home h1 em,.p-home h2 em{font-style:italic;color:var(--f-green)}
+.h-hero .h-lede{margin:28px auto 0;max-width:30em}
+.h-acts{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center;margin-top:32px}
+.h-price{margin-top:26px;font-size:15px;color:var(--f-grey30)}
+.h-price b{color:var(--f-ink)}
+.h-price a,.h-soon a{color:var(--f-green);font-weight:600}
+.h-soon{margin-top:10px;font-size:14px;color:var(--f-grey50)}
+
+/* private: deep green band, two trust cards */
+.h-private{background:var(--f-green);color:#fff;padding:120px 0!important}
+.h-split{display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:center}
+.h-private h2,.h-iphone h2{color:#fff;font-size:clamp(44px,5.6vw,80px);line-height:.95;letter-spacing:-.03em}
+.h-private .h-lede,.h-iphone .h-lede{color:#fff;margin-top:24px;max-width:32em}
+.h-trust{display:grid;gap:16px}
+.h-tcard{display:flex;gap:16px;align-items:flex-start;background:#fff;border-radius:24px;padding:28px 30px;color:var(--f-ink)}
+.h-tcard svg{width:28px;height:28px;flex:none;color:var(--f-green)}
+.h-tcard p{font-size:16px;line-height:1.45}
+.h-tcard b{display:block;font-size:19px;font-weight:600;color:var(--f-ink)}
+.h-tcard a{color:var(--f-green);font-weight:600}
+
+/* when ZungiDill helps: bento tiles */
+.h-heard{background:var(--f-off);padding:128px 0!important}
+.h-bento{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:56px}
+.h-bento>div{background:#fff;border-radius:var(--f-r);padding:44px 48px}
+.h-bento h3{font-size:clamp(24px,2.3vw,32px);line-height:1.12;letter-spacing:-.015em}
+.h-bento p{margin-top:14px;color:var(--f-grey30);font-size:17px}
+
+/* section head: huge title left, short text right (Fold layout) */
+.h-head{display:flex;justify-content:space-between;align-items:flex-end;gap:48px}
+.h-head>p,.h-head>div>p{max-width:470px;font-size:clamp(17px,1.4vw,20px);line-height:1.5;color:var(--f-grey30)}
+.h-head>div>p{margin-top:24px}
+@media (min-width:1200px){.h-head>h2{white-space:nowrap}}
+.h-head p b{color:var(--f-ink)}
+
+/* how it works: alternating rows, step 3 on a full-width green band */
+.h-how{padding:128px 0 100px!important}
+.h-how>.h-head{margin-bottom:48px}
+.h-rows{list-style:none;margin:0;padding:0}
+.h-row{padding:28px 0}
+.h-row.h-band{background:var(--f-green);padding:78px 0;margin:28px 0}
+.h-rowin{display:grid;grid-template-columns:640fr 520fr;gap:96px;align-items:center}
+.h-row:nth-child(even) .h-vis{order:2}
+.h-vis{position:relative;aspect-ratio:640/440;background:var(--f-off);border-radius:var(--f-r)}
+.h-band .h-vis{background:var(--f-deep)}
+.h-num{position:absolute;left:6.5%;top:7%;width:19%;height:auto}
+.h-obj{position:absolute;right:6%;top:50%;width:56%;height:auto;translate:0 -50%}
+.h-row:nth-child(2) .h-obj{width:58%}
+.h-txt h3{font-size:clamp(36px,5vw,72px);line-height:1;letter-spacing:-.03em}
+.h-txt p{margin-top:22px;font-size:clamp(17px,1.4vw,20px);line-height:1.5;color:var(--f-grey30);max-width:26em}
+.h-band .h-txt h3,.h-band .h-txt p{color:#fff}
+.h-timing{margin:56px auto 0;max-width:860px;text-align:center;font-size:clamp(18px,1.5vw,22px);line-height:1.45;color:var(--f-ink)}
+
+/* step objects and numbers rise in once when they scroll into view (site.js adds .in) */
+.js-rv .rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.js-rv .h-obj.rv{transition-delay:.12s}
+.js-rv .rv.in{opacity:1;transform:none}
+
+/* prices: bento, no 3D objects */
+.h-prices{background:var(--f-off);padding:128px 0!important}
+.h-head-in{margin-bottom:56px}
+.h-plans{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.h-plan{background:#fff;border-radius:var(--f-r);padding:56px;display:flex;flex-direction:column}
+.h-plan h3{font-size:clamp(24px,2vw,28px)}
+.h-plan.h-main{background:var(--f-green);color:#fff}
+.h-main h3,.h-main .h-amt b,.h-main .h-amt span,.h-main .h-then,.h-main .h-then b,.h-main li,.h-main .h-terms{color:#fff}
+.h-opt{margin-top:8px;font-size:15px;color:var(--f-grey30)}
+.h-amt{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 12px;margin-top:18px}
+.h-amt b{font:700 clamp(56px,5vw,72px)/1 var(--serif);letter-spacing:-.02em;color:var(--f-ink)}
+.h-amt>span{font-size:17px;color:var(--f-grey30)}
+.h-then{margin-top:14px;font-size:17px;color:var(--f-grey30)}
+.h-then b{color:var(--f-ink)}
+.h-plan ul{list-style:none;margin:22px 0 28px;padding:0;display:grid;gap:12px}
+.h-plan li{display:flex;gap:12px;font-size:17px;color:var(--f-ink)}
+.h-plan li svg{width:24px;height:24px;flex:none;color:var(--f-green)}
+.h-main li svg{color:var(--f-gold)}
+.h-plan.h-main li{color:#fff}
+.h-plan .btn{margin-top:auto;align-self:flex-start}
+.h-terms{margin-top:14px;font-size:14px;color:var(--f-grey50)}
+.h-fine{margin-top:24px;background:#fff;border-radius:var(--f-r);padding:28px 56px;font-size:14px;color:var(--f-grey30)}
+.h-fine a{color:var(--f-green);font-weight:600}
+
+/* questions */
+.h-questions{padding:128px 0!important}
+.h-qwrap{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+.h-qside{position:sticky;top:112px}
+.h-qside>p{margin-top:20px;font-size:19px;color:var(--f-grey30)}
+.h-qlinks{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px}
+.h-qlinks a{color:var(--f-green);font-weight:600}
+.h-qa{display:grid;gap:12px}
+.h-q{background:var(--f-off);border-radius:24px;padding:0 28px}
+.h-q summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;min-height:48px;font:600 19px/1.35 var(--sans);color:var(--f-ink)}
+.h-q summary::-webkit-details-marker{display:none}
+.h-q summary svg{width:26px;height:26px;flex:none;color:var(--f-green);transition:transform .25s ease}
+.h-q[open] summary svg{transform:rotate(45deg)}
+.h-q>div{padding:0 0 24px;color:var(--f-grey30);max-width:640px}
+.h-q a{color:var(--f-green);font-weight:600}
+
+/* guides */
+.h-guides{background:var(--f-off);padding:128px 0!important}
+.h-glist{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.h-glist a{display:block;height:100%;background:#fff;border-radius:var(--f-r);padding:36px 36px 40px;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
+.h-glist a:hover{transform:translateY(-2px);box-shadow:0 18px 36px -24px rgba(23,63,52,.45)}
+.h-glist b{display:block;font:700 clamp(22px,1.9vw,26px)/1.2 var(--serif);color:var(--f-ink)}
+.h-glist span{display:block;margin-top:12px;color:var(--f-grey30)}
+.h-more{margin-top:28px;font-weight:600}
+.h-more a{color:var(--f-green)}
+
+/* iPhone band */
+.h-iphone{background:var(--f-green);color:#fff;padding:120px 0!important}
+.h-iphone .h-acts{justify-content:flex-start}
+.p-home .notify{border-radius:var(--f-r);padding:36px;box-shadow:0 30px 60px -30px rgba(0,0,0,.45)}
+.p-home .nrow input{border-radius:8px}
+.p-home .nbtn{border-radius:8px;background:var(--f-green);transition:transform .2s ease}
+.p-home .nbtn:hover{transform:translateY(-2px)}
+
+/* contact */
+.h-contact{padding:120px 0!important}
+.h-cbtns{display:flex;flex-direction:column;gap:12px;align-items:flex-end;flex:none}
+
+/* footer: deep ink green */
+.p-home footer{background:var(--f-ink);color:rgba(255,255,255,.82);padding:88px 0 48px}
+.p-home footer .wrap{max-width:1440px;padding:0 var(--f-pad)}
+.p-home footer h4{color:var(--f-gold)}
+.p-home footer a,.p-home footer .brand span{color:#fff}
+.p-home footer .soontxt,.p-home footer .soontxt a{color:#fff}
+.p-home .disc{color:rgba(255,255,255,.7)}
+
+/* tablet */
+@media (max-width:1100px){
+  .p-home{--f-pad:40px;--f-r:28px}
+  .h-rowin{gap:48px}
+  .h-split{gap:48px}
+  .h-plan{padding:44px}
+}
+@media (max-width:900px){
+  .h-split,.h-qwrap{grid-template-columns:1fr}
+  .h-qside{position:static}
+  .h-rowin{grid-template-columns:1fr;gap:28px}
+  .h-row:nth-child(even) .h-vis{order:0}
+  .h-row{padding:20px 0}
+  .h-row.h-band{padding:56px 0;margin:20px 0}
+  .h-head{flex-direction:column;align-items:flex-start;gap:20px}
+  .h-cbtns{align-items:flex-start}
+  .h-glist{grid-template-columns:1fr}
+  .h-hero{padding-bottom:96px!important}
+  .h-private,.h-heard,.h-how,.h-prices,.h-questions,.h-guides,.h-iphone,.h-contact{padding-top:96px!important;padding-bottom:96px!important}
+}
+@media (max-width:760px){
+  .h-plans,.h-bento{grid-template-columns:1fr}
+}
+/* phone */
+@media (max-width:640px){
+  .p-home{--f-pad:16px;--f-r:24px}
+  .p-home .bar{height:64px}
+  .h-hero{padding:8px 0 64px!important}
+  .h-hero h1{font-size:clamp(40px,11.8vw,56px);line-height:.98}
+  .h-acts{flex-direction:column;align-items:stretch}
+  .h-acts .btn{width:100%}
+  .h-badge img{margin:0 auto}
+  .h-iphone .h-acts .btn{width:100%}
+  .h-big{font-size:clamp(46px,15vw,64px);line-height:.95}
+  .h-private,.h-heard,.h-how,.h-prices,.h-questions,.h-guides,.h-iphone,.h-contact{padding-top:72px!important;padding-bottom:72px!important}
+  .h-how{padding-bottom:64px!important}
+  .h-row{padding:14px 0}
+  .h-row.h-band{padding:40px 0;margin:14px 0}
+  .h-txt h3{font-size:36px}
+  .h-bento>div{padding:28px 24px}
+  .h-bento{margin-top:36px;gap:16px}
+  .h-plan{padding:32px 24px}
+  .h-plan .btn{align-self:stretch}
+  .h-fine{padding:22px 24px}
+  .h-tcard{padding:22px}
+  .h-q{padding:0 20px}
+  .h-q summary{font-size:17px}
+  .h-cbtns{flex-direction:column;align-items:stretch;width:100%}
+  .h-cbtns .btn{width:100%}
+  .p-home .notify{padding:24px 20px}
+  .p-home .nrow input{flex:none;width:100%;height:52px}
+  .p-home footer{padding:64px 0 120px}
+}
+
+/* reduce motion: no float, no rise, no lift */
+@media (prefers-reduced-motion:reduce){
+  .h-herocard{animation:none}
+  .js-rv .rv{opacity:1;transform:none;transition:none}
+  .p-home .btn,.p-home .btn:hover,.h-badge:hover,.h-glist a:hover,.p-home .nbtn:hover,.p-home nav .navbtn a:hover{transition:none;transform:none}
+  .h-q summary svg{transition:none}
+}
