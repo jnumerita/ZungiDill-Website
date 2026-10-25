@@ -14,9 +14,9 @@ def page(slug, title, desc, body, current=''):
         c = f' class="{cls}"' if cls else ''
         return f'<li{c}><a href="{href}"{cur}>{label}</a></li>'
     canon = SITE + ('/' if slug == 'index' else '/' + slug)
-    styled = slug in ('index', 'who-its-for', 'questions', 'prices', 'iphone')
-    HOMECSS = '\n<link rel="stylesheet" href="/css/home.css">' if styled else ''
-    BODYCLS = ' class="p-home"' if styled else ''
+    styled = slug in ('index', 'who-its-for', 'questions', 'prices', 'iphone', 'start')
+    HOMECSS = ('\n<link rel="stylesheet" href="/css/home.css">' if styled else '') + ('\n<link rel="stylesheet" href="/css/start.css">' if slug == 'start' else '')
+    BODYCLS = (' class="p-home p-start"' if slug == 'start' else ' class="p-home"') if styled else ''
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -141,7 +141,7 @@ GOAL = {
 
 def _icons():
     # Fractal library icons exported from Figma (Unicons Line).
-    return {n: (OUT / 'img' / 'icons' / f'{n}.svg').read_text(encoding='utf-8').strip().replace('<svg ', '<svg aria-hidden="true" focusable="false" ', 1) for n in ('tick', 'card', 'doc', 'plus', 'lockfile')}
+    return {n: (OUT / 'img' / 'icons' / f'{n}.svg').read_text(encoding='utf-8').strip().replace('<svg ', '<svg aria-hidden="true" focusable="false" ', 1) for n in ('tick', 'card', 'doc', 'plus', 'lockfile', 'calendar')}
 
 def _obj(name, w, h, cls='', lazy=True):
     # 3D objects are built in Figma (ZungiDill Website Redesign) and exported.
@@ -305,6 +305,148 @@ def iphone_page():
 </div></section>
 <script src="/js/notify.js" defer></script>'''
     return page('iphone', 'iPhone App Coming Soon | ZungiDill', 'The ZungiDill iPhone app is coming soon. Until then, the web app works in Safari. Get one email when the iPhone app is ready.', c, 'iphone')
+
+def _photo(name, alt, w, h, cls='', lazy=True):
+    # Real photos from Unsplash (credits in img/photos/CREDITS.txt).
+    l = ' loading="lazy"' if lazy else ' fetchpriority="high"'
+    return f'<img class="{cls}" src="/img/photos/{name}.webp" alt="{alt}" width="{w}" height="{h}" decoding="async"{l}>'
+
+def start_page():
+    # Landing page at /start. Layout inspired by a Landingfolio reference; all copy, colors, type, icons and 3D objects are ZungiDill's own.
+    IC = _icons()
+    Q = dict(FAQ)
+    acc = lambda keys: ''.join(f'<details class="h-q"><summary><span>{k}</span>{IC["plus"]}</summary><div>{Q[k]}</div></details>' for k in keys)
+    li = lambda items: ''.join(f'<li>{IC["tick"]}<span>{x}</span></li>' for x in items)
+    steps = [
+        ('1', 'Add your credit report', 'Get your free report and open it in ZungiDill. A photo of a paper copy works too.', _photo('step-laptop', 'A woman at her laptop by a window', 800, 800, 's-photo rv')),
+        ('2', 'Check each item', "Go through your report one item at a time and mark anything that isn't right.", _photo('step-reading', 'A man reading a printed page in an armchair', 800, 800, 's-photo rv')),
+        ('3', 'Read and mail your letter', 'ZungiDill writes the letter from what you marked. You read it, then print and mail it.', _photo('step-mailbox', 'Two blue U.S. mail drop boxes on a city street', 800, 800, 's-photo rv')),
+        ('4', 'Track the 30 days', "Enter the date it was delivered. We'll remind you when the bureau's 30 days are up.", _photo('step-planner', 'An open monthly planner and a pen on a wooden desk', 800, 800, 's-photo rv')),
+    ]
+    cards = ''.join(f'<li class="s-card"><div class="s-tile s-t{n}" aria-hidden="true">{o}</div><p class="s-n" aria-hidden="true">{n}</p><h3>{h}</h3><p>{t}</p></li>' for n, h, t, o in steps)
+    who = [
+        ('You were told no, or offered a high rate', 'Lenders decide from your credit report. ZungiDill shows you what they see, so you can check it for mistakes.'),
+        ('You paid a credit repair company and nothing changed', 'You never saw what they sent. Here you read every letter before it goes out, and you mail it yourself.'),
+        ('You pay cash for most things', "That works until you need a lease or a loan. Your report follows you either way, so make sure it's right."),
+        ("You don't know where to start", 'Start with your free credit report. ZungiDill reads it with you and shows you what to look at first.'),
+    ]
+    whol = ''.join(f'<li>{IC["tick"]}<div><h3>{h}</h3><p>{t}</p></div></li>' for h, t in who)
+    body = f"""
+<section class="s-hero" aria-labelledby="s-h1">
+  <div class="h-wrap s-heroin">
+    <div class="s-copy">
+      <h1 id="s-h1">Find mistakes on your credit report and dispute them <em>yourself.</em></h1>
+      <p class="s-lede">You mark what's wrong. ZungiDill writes the letter.</p>
+      <div class="s-acts">
+        <a class="btn light" href="/app/">Open the web app</a>
+        <a class="h-badge" href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="183" height="54"></a>
+      </div>
+      <p class="s-price"><b>Checking is free.</b> <span class="launch">A letter costs $4.99 through Dec 31, 2026.</span><span class="after" hidden>A letter costs $9.99.</span> <a href="#s-prices">See prices</a></p>
+    </div>
+    <div class="s-art"><div class="s-square" aria-hidden="true"></div>{_photo('hero-home-desk', 'A woman at her desk at home, smiling at her phone', 1000, 1000, 's-heroimg', lazy=False)}</div>
+  </div>
+</section>
+
+<section class="s-sec" aria-labelledby="s-priv">
+  <div class="h-wrap s-split">
+    <div class="s-pic">
+      {_photo('privacy-kitchen', 'A woman at her kitchen table holding a letter to her chest, smiling', 1000, 1000, 's-picimg')}
+      <div class="s-trust">
+        <div class="s-tc">{IC['card']}<p><b>Payments by Stripe</b>on the web and Google Play in the app.</p></div>
+        <div class="s-tc">{IC['doc']}<p><b>Your right to dispute:</b><a href="https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-an-error-on-my-credit-report-en-314/">15 U.S.C. 1681i</a></p></div>
+      </div>
+    </div>
+    <div>
+      <span class="s-badge" aria-hidden="true">{IC['lockfile']}</span>
+      <h2 id="s-priv" class="s-h2">Your report stays on your phone.</h2>
+      <p class="s-p">There's no account to make. We never ask for your Social Security number. You send your own letters, so you see every word.</p>
+      <div class="s-acc">{acc(['Is this credit repair?', 'Where do I get my credit report?', 'Can I use it for someone else?'])}</div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="s-sec s-alt" aria-labelledby="s-how">
+  <div class="h-wrap">
+    <div class="s-center">
+      <h2 id="s-how" class="s-h2">How it works</h2>
+      <p class="s-p">You do each step yourself, on your phone or computer. Your letters go to the credit bureaus: Equifax, Experian and TransUnion, the companies that keep your report.</p>
+    </div>
+    <ol class="s-cards">{cards}</ol>
+  </div>
+</section>
+
+<section class="s-sec" aria-labelledby="s-who">
+  <div class="h-wrap s-split s-whowrap">
+    <div>
+      <h2 id="s-who" class="s-h2">When ZungiDill helps</h2>
+      <ul class="s-list">{whol}</ul>
+    </div>
+    <div class="s-panel"><p><b>How long does it take?</b> Bureaus usually have 30 days to answer. If you're planning to apply for something, start now.</p></div>
+  </div>
+</section>
+
+<section id="s-prices" class="s-sec s-alt" aria-labelledby="s-cost">
+  <div class="h-wrap">
+    <div class="s-center">
+      <h2 id="s-cost" class="s-h2">What it costs</h2>
+      <p class="s-p"><b>Checking your report and writing letters is free.</b> You pay only when a letter is ready to print, save or send.</p>
+    </div>
+    <div class="s-plans">
+      <div class="s-plan s-fern">
+        <div class="s-pbody">
+          <span class="s-picon" aria-hidden="true">{IC['doc']}</span>
+          <h3>One letter</h3>
+          <p class="s-amt"><b><span class="launch">$4.99</span><span class="after" hidden>$9.99</span></b><span>per letter</span></p>
+          <p class="s-then launch">That price runs through Dec 31, 2026. After that, a letter is <b>$9.99</b>.</p>
+          <ul>{li(['Pays for one finished letter you can print, save or send.', "You pay once. There's no plan."])}</ul>
+          <p class="s-terms">You see the price before you pay.</p>
+        </div>
+        <a class="s-band" href="/app/">Get one letter</a>
+      </div>
+      <div class="s-plan s-gold">
+        <div class="s-pbody">
+          <span class="s-picon" aria-hidden="true">{IC['calendar']}</span>
+          <h3>ZungiDill Monthly</h3>
+          <p class="s-opt">Optional. One letter at a time works too.</p>
+          <p class="s-amt"><b>$19.99</b><span>a month for your first 3 months</span></p>
+          <p class="s-then">Then <b>$39.99 a month</b>. The first price is for new subscribers.</p>
+          <ul>{li(['Each month you get a letter to each credit bureau, plus letters to companies.', 'It renews every month until you cancel.', 'To stop, cancel before your renewal date.'])}</ul>
+          <p class="s-terms">You see the price before you pay.</p>
+        </div>
+        <a class="s-band" href="/app/">Start Monthly</a>
+      </div>
+    </div>
+    <p class="s-fine">Prices in U.S. dollars. On the web, you pay by card through Stripe. In the Android app, you pay through Google Play. <a href="/terms#prices">Full terms</a></p>
+  </div>
+</section>
+
+<section class="s-sec" aria-labelledby="s-iphone">
+  <div class="h-wrap s-center s-formwrap">
+    <h2 id="s-iphone" class="s-h2">On iPhone? Use the web app in Safari.</h2>
+    <p class="s-p">The iPhone app is coming soon. Until then, the web app works in Safari. There's nothing to download.</p>
+    <form class="notify" id="notify" action="https://tally.so/r/VLR6RJ" method="get" target="_blank" rel="noopener">
+      <label for="nemail"><b>Get one email when the iPhone app is ready</b></label>
+      <div class="nrow"><input id="nemail" name="email" type="email" placeholder="Your email" autocomplete="email" required><button class="nbtn" type="submit">Notify me</button></div>
+      <p class="nmsg" role="status" aria-live="polite" hidden></p>
+      <label class="ncheck"><input type="checkbox" required><span>Email me once when the iPhone app is available. Nothing else. <a href="/privacy#launch-list">Privacy</a></span></label>
+    </form>
+  </div>
+</section>
+
+<section class="s-sec s-alt" aria-labelledby="s-q">
+  <div class="h-wrap s-split s-qwrap">
+    <div>
+      <h2 id="s-q" class="s-h2">Questions</h2>
+      <p class="s-p">Longer answers are in our guides.</p>
+      <ul class="s-more"><li><a href="/guide">Step by step guide</a></li><li><a href="/learn/dispute-letter">Free dispute letter sample</a></li><li><a href="/learn/collections">Collections</a></li><li><a href="/learn/">All guides</a></li></ul>
+    </div>
+    <div class="s-acc">{acc(['How do I fix a mistake on my credit report?', 'What does it cost?', 'What if they cannot prove it?', 'What if the item is mine and it is right?'])}</div>
+  </div>
+</section>
+<script src="/js/notify.js" defer></script>
+"""
+    return page('start', 'Fix Your Credit Report Yourself | ZungiDill Dispute App',
+        'Tired of hearing no? ZungiDill helps you check your credit report free on your phone and send your own dispute letters. No account, no Social Security number.', body)
 
 def doc(title, meta, toc, content):
     t = ''
@@ -571,7 +713,7 @@ def notfound():
     c = f'''<div class="doc"><div class="wrap narrow"><h1>That page is not here.</h1><p class="lede" style="margin-top:20px">The link may be old. Everything you need is one tap away.</p><p style="margin-top:28px"><a class="btn" href="/">Go to the home page</a></p></div></div>'''
     return page('404', 'Page not found · ZungiDill', 'Page not found.', c)
 
-files = {'index.html': index(), 'guide.html': guide(), 'learn/index.html': learn_hub(), **{f"learn/{a['slug']}.html": article(a) for a in L.ARTICLES}, 'support.html': support(), 'about.html': about(), 'terms.html': terms(), 'privacy.html': privacy(), 'legal.html': legal(), 'thanks.html': thanks(), '404.html': notfound(), 'who-its-for.html': who_page(), 'questions.html': questions_page(), 'prices.html': prices_page(), 'iphone.html': iphone_page()}
+files = {'index.html': index(), 'guide.html': guide(), 'learn/index.html': learn_hub(), **{f"learn/{a['slug']}.html": article(a) for a in L.ARTICLES}, 'support.html': support(), 'about.html': about(), 'terms.html': terms(), 'privacy.html': privacy(), 'legal.html': legal(), 'thanks.html': thanks(), '404.html': notfound(), 'who-its-for.html': who_page(), 'questions.html': questions_page(), 'prices.html': prices_page(), 'iphone.html': iphone_page(), 'start.html': start_page()}
 def rel(html):
     def fix(m):
         attr,path=m.group(1),m.group(2)
