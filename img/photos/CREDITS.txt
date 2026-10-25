@@ -1,6 +1,6 @@
 Photo credits for zungidill.com/start
 
-In use on /start now: hero-reading-table.webp and privacy-writing-letter.webp.
+In use on /start now: hero-reading-table.webp and papers-phone-table.webp.
 The other files below are from the earlier version of /start and are kept until it is replaced.
 
 All photos are from Unsplash, free to use under the Unsplash License (https://unsplash.com/license),
@@ -43,10 +43,10 @@ hero-reading-table.webp
   Photographer: Vitaly Gariev, https://unsplash.com/@silverkblack
   Photo: https://unsplash.com/photos/woman-reading-document-at-kitchen-table-with-coffee-RNUNbvIXUbg
 
-privacy-writing-letter.webp
-  A person writing on a piece of paper next to a cup of coffee (letter and envelope on a table)
-  Photographer: Kelly Sikkema, https://unsplash.com/@kellysikkema
-  Photo: https://unsplash.com/photos/Nv-87ynmdHA
+papers-phone-table.webp
+  Two people reviewing documents at a table (printed pages, a phone, a pen and a tablet)
+  Photographer: Olena Kholina, https://unsplash.com/@sixtynice
+  Photo: https://unsplash.com/photos/two-people-reviewing-documents-at-a-table-MhqUBTxQ3Hw
 
 Fonts on /start: Figtree by Erik Kennedy, SIL Open Font License 1.1 (fonts/OFL-Figtree.txt), from Google Fonts.
 Step icons on /start: "Line Rounded" icons from the Cardpay Figma template (VhxhpxuJNKJhN7kYCZuVKB).

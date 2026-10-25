@@ -352,7 +352,7 @@ def start_page():
 
 <section class="s-sec s-alt" aria-labelledby="s-priv">
   <div class="h-wrap s-split">
-    {_photo('privacy-writing-letter', 'Hands at a wooden table preparing a letter and an envelope', 1200, 960, 's-pimg')}
+    {_photo('papers-phone-table', 'Printed pages on a table next to a phone, a pen and a tablet', 1200, 960, 's-pimg')}
     <div>
       <h2 id="s-priv" class="s-h2">Your report stays on your phone.</h2>
       <p class="s-p">There's no account to make. We never ask for your Social Security number. You send your own letters, so you see every word.</p>
