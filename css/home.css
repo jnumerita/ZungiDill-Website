@@ -193,3 +193,19 @@
   .p-home .btn,.p-home .btn:hover,.h-badge:hover,.p-home .nbtn:hover,.p-home nav .navbtn a:hover{transition:none;transform:none}
   .h-q summary svg{transition:none}
 }
+
+/* Inner pages built with this stylesheet (Questions, Prices, Who it's for, iPhone) use the same page header as
+   Support and Learn (see theme.css): same title size, top spacing, gaps, left edge and 760px text column. */
+.h-subpage{padding:56px 0 88px!important}
+.h-subpage>.h-wrap{max-width:1160px;padding:0 32px}
+.p-home .h-subpage h1.h-big,.p-home .h-iphonepage h1.h-big{font-size:clamp(38px,4.8vw,54px);line-height:1.08;font-weight:700;letter-spacing:-.02em;max-width:760px}
+.h-subpage .h-sublede{margin-top:16px;max-width:760px;font-size:20px;line-height:1.55}
+.h-subpage .h-qlinks{margin-top:32px}
+.h-subpage .h-qpage{margin-top:32px}
+.h-subpage .h-open{margin-top:32px}
+.h-subpage .h-plans{margin-top:32px}
+.h-iphonepage .h-split{align-items:start}
+@media (max-width:640px){
+  .h-subpage>.h-wrap{padding:0 16px}
+  .h-subpage .h-sublede{font-size:18px}
+}
