@@ -39,8 +39,8 @@ def page(slug, title, desc, body, current=''):
 <meta name="twitter:description" content="{desc}">
 <meta name="twitter:image" content="{SITE}/img/og.png">{'{NOINDEX}' if slug in ('thanks','404') else ''}
 <meta name="theme-color" content="#FFFFFF">
-<link rel="icon" type="image/png" sizes="32x32" href="/img/icon-32.png">
-<link rel="apple-touch-icon" href="/img/icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/logo-32.png">
+<link rel="apple-touch-icon" href="/img/logo-180.png">
 <link rel="preload" href="/fonts/SourceSerif4-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/IBMPlexSans-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css">{HOMECSS}
@@ -49,7 +49,7 @@ def page(slug, title, desc, body, current=''):
 <a class="skip" href="#main">Skip to content</a>
 <header>
   <div class="wrap bar">
-    <a class="brand" href="/" aria-label="ZungiDill home"><img src="/img/icon-72.png" alt="" width="36" height="36"><span>ZungiDill</span></a>
+    <a class="brand" href="/" aria-label="ZungiDill home"><img src="/img/logo-72.png" alt="" width="36" height="36"><span>ZungiDill</span></a>
     <nav aria-label="Main">
       <ul>
         {nav('/#how', 'How it works', 'how', 'hide-md hide-sm')}
@@ -70,7 +70,7 @@ def page(slug, title, desc, body, current=''):
   <div class="wrap">
     <div class="grid">
       <div>
-        <a class="brand" href="/" aria-label="ZungiDill home"><img src="/img/icon-72.png" alt="" width="36" height="36"><span>ZungiDill</span></a>
+        <a class="brand" href="/" aria-label="ZungiDill home"><img src="/img/logo-72.png" alt="" width="36" height="36"><span>ZungiDill</span></a>
         <p class="made">Made by Numerita LLC, Sheridan, Wyoming.</p>
       </div>
       <div>
@@ -352,7 +352,7 @@ def start_page():
 
 <section class="s-sec s-alt" aria-labelledby="s-priv">
   <div class="h-wrap s-split">
-    {_photo('papers-phone-table', 'Printed pages on a table next to a phone, a pen and a tablet', 1200, 960, 's-pimg')}
+    {_photo('mailing-letter', 'A hand putting a stamped envelope into a mailbox', 1200, 960, 's-pimg')}
     <div>
       <h2 id="s-priv" class="s-h2">Your report stays on your phone.</h2>
       <p class="s-p">There's no account to make. We never ask for your Social Security number. You send your own letters, so you see every word.</p>
@@ -683,7 +683,7 @@ import json, html as _h
 PLAY='https://play.google.com/store/apps/details?id=com.numerita.zungidil'
 def strip(x): return _h.unescape(re.sub(r'<[^>]+>','',x)).strip()
 def ld(obj): return '<script type="application/ld+json">'+json.dumps(obj,ensure_ascii=False,separators=(',',':'))+'</script>'
-org={'@type':'Organization','@id':SITE+'/#org','name':'Numerita LLC','url':SITE+'/','logo':SITE+'/img/icon-512.png','email':EMAIL,
+org={'@type':'Organization','@id':SITE+'/#org','name':'Numerita LLC','url':SITE+'/','logo':SITE+'/img/logo-512.png','email':EMAIL,
      'address':{'@type':'PostalAddress','addressLocality':'Sheridan','addressRegion':'WY','addressCountry':'US'},
      'sameAs':[PLAY],'contactPoint':{'@type':'ContactPoint','contactType':'customer support','email':EMAIL,'availableLanguage':'English'}}
 web={'@type':'WebSite','@id':SITE+'/#site','name':'ZungiDill','url':SITE+'/','publisher':{'@id':SITE+'/#org'},'inLanguage':'en-US'}
