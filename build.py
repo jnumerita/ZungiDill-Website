@@ -335,7 +335,7 @@ def start_page():
       </div>
       <p class="s-price"><b>Checking is free.</b> <span class="launch">A letter costs $4.99 through Dec 31, 2026.</span><span class="after" hidden>A letter costs $9.99.</span> <a href="#s-prices">See prices</a></p>
     </div>
-    <div class="s-art">{_photo('hero-reading-table', 'A woman at her kitchen table reading a letter, smiling', 1100, 1100, 's-heroimg', lazy=False)}</div>
+    <div class="s-art">{_photo('hero-man-laptop', 'A man at his laptop with his hands on his head', 1100, 1100, 's-heroimg', lazy=False)}</div>
   </div>
 </section>
 

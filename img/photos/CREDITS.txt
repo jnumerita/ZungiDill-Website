@@ -1,6 +1,6 @@
 Photo credits for zungidill.com/start
 
-In use on /start now: hero-reading-table.webp and mailing-letter.webp.
+In use on /start now: hero-man-laptop.webp and mailing-letter.webp.
 The other files below are from the earlier version of /start and are kept until it is replaced.
 
 All photos are from Unsplash, free to use under the Unsplash License (https://unsplash.com/license),
@@ -38,10 +38,11 @@ step-planner.webp
   Photographer: Cabri Caldwell, https://unsplash.com/@minimizethenorganize
   Photo: https://unsplash.com/photos/7ja5zM7PBu8
 
-hero-reading-table.webp
-  Woman reading a document at a kitchen table with coffee
-  Photographer: Vitaly Gariev, https://unsplash.com/@silverkblack
-  Photo: https://unsplash.com/photos/woman-reading-document-at-kitchen-table-with-coffee-RNUNbvIXUbg
+hero-man-laptop.webp
+  A man with glasses is looking at a laptop
+  Photographer: Francis Ledger, https://unsplash.com/@francis_ledger
+  Photo: https://unsplash.com/photos/a-man-with-glasses-is-looking-at-a-laptop-hHg9MC-G8_Y
+  Cropped square so the laptop's brand logo is out of frame.
 
 mailing-letter.webp
   Person holding mail envelope putting on box
