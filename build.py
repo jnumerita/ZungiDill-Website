@@ -332,8 +332,8 @@ def start_page():
       <div class="s-acts">
         <a class="btn" href="/app/">Open the web app</a>
         <a class="h-badge" href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="183" height="54"></a>
+        <a class="s-soon-btn" href="/iphone"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span>iPhone app<small>Coming soon</small></span></a>
       </div>
-      <p class="s-price s-iphone">On iPhone? Use the web app in Safari. The iPhone app is coming soon. <a href="/iphone">Get notified</a></p>
       <p class="s-price"><b>Checking is free.</b> <span class="launch">A letter costs $4.99 through Dec 31, 2026.</span><span class="after" hidden>A letter costs $9.99.</span> <a href="#s-prices">See prices</a></p>
     </div>
     <div class="s-art">{_photo('hero-man-laptop', 'A man at his laptop with his hands on his head', 1100, 1100, 's-heroimg', lazy=False)}</div>

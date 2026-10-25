@@ -16,8 +16,12 @@
 .s-acts{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:36px}
 .s-price{margin-top:24px;font-size:15px;color:var(--f-grey30)}
 .s-price b{color:var(--f-ink)}
-.s-price.s-iphone{margin-top:20px}
-.s-price.s-iphone+.s-price{margin-top:6px}
+/* iPhone "coming soon" button: same height and corner radius as the Google Play badge, plain outline style, links to the notify page */
+.p-start main a.s-soon-btn{display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 18px 0 14px;border:1.5px solid var(--f-ink);border-radius:8px;background:#fff;color:var(--f-ink);text-decoration:none;font-weight:600;transition:transform .2s ease,background-color .2s ease}
+.p-start main a.s-soon-btn:hover{background:var(--f-off);transform:translateY(-2px)}
+.s-soon-btn svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.s-soon-btn span{display:flex;flex-direction:column;line-height:1.1;font-size:17px;font-weight:600}
+.s-soon-btn small{font-size:12px;font-weight:400;color:var(--f-grey30);margin-top:2px}
 .s-art{position:relative}
 .s-art::before{content:"";position:absolute;right:-20px;top:-20px;width:62%;height:62%;background:var(--gold9);border-radius:var(--f-r)}
 .s-heroimg{position:relative;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:var(--f-r)}
@@ -90,6 +94,8 @@
   .s-acts{flex-direction:column;align-items:stretch}
   .s-acts .btn{width:100%}
   .s-acts .h-badge img{margin:0 auto}
+  .s-acts .s-soon-btn{align-self:center;width:190px;justify-content:center}
+  .s-hero .s-acts{gap:12px}
   .s-sec{padding:48px 0!important}
   .s-hero{padding:24px 0 0!important}
   .s-steps{grid-template-columns:1fr;gap:32px;margin-top:32px}
@@ -100,3 +106,5 @@
   .s-timing{margin-top:32px}
   .s-fine a{display:inline-block;margin:6px 6px 0}
 }
+
+@media (prefers-reduced-motion:reduce){.p-start main a.s-soon-btn,.p-start main a.s-soon-btn:hover{transition:none;transform:none}}
