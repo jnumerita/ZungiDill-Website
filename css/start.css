@@ -110,7 +110,10 @@
   .s-acts .h-badge img{margin:0 auto}
   .s-sec{padding:72px 0!important}
   .s-cards{grid-template-columns:1fr;gap:36px;margin-top:44px}
-  .s-pic{padding:16px}
+  .s-pic{aspect-ratio:auto;display:block;padding:0;overflow:visible}
+  .s-picimg{position:static;aspect-ratio:1;border-radius:var(--f-r)}
+  .s-trust{width:100%;margin-top:16px}
+  .s-tc{box-shadow:none;background:var(--f-off)}
   .s-pbody{padding:32px 24px 28px}
   .s-panel{padding:36px 28px}
   .s-plans{margin-top:44px}
