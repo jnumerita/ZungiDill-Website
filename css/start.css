@@ -16,6 +16,8 @@
 .s-acts{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:36px}
 .s-price{margin-top:24px;font-size:15px;color:var(--f-grey30)}
 .s-price b{color:var(--f-ink)}
+.s-price.s-iphone{margin-top:20px}
+.s-price.s-iphone+.s-price{margin-top:6px}
 .s-art{position:relative}
 .s-art::before{content:"";position:absolute;right:-20px;top:-20px;width:62%;height:62%;background:var(--gold9);border-radius:var(--f-r)}
 .s-heroimg{position:relative;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:var(--f-r)}
