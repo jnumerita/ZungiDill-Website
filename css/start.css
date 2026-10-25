@@ -1,120 +1,94 @@
-/* /start landing page. Section layout inspired by a Landingfolio reference; the copy, colors (Fractal tokens),
-   type (Source Serif 4, IBM Plex Sans) and Fractal icons are ZungiDill's own; photos are from Unsplash (img/photos/CREDITS.txt).
-   Loaded after home.css, which supplies the header, buttons, footer, accordion and motion. */
-.p-start{--fern:#C5DAC9;--fern-d:#A1C3A8;--fern9:#E6EFE8;--gold7:#ECD2A0;--gold5:#D9A441;--gold9:#F7EDD9;--sage9:#E6EBE9}
+/* /start landing page: few sections, lots of space, one idea per section.
+   Type: Figtree (SIL Open Font License, fonts/OFL-Figtree.txt). Colors: Fractal green and gold.
+   Photos: Unsplash (img/photos/CREDITS.txt). Step icons: Cardpay "Line Rounded".
+   Loaded after home.css, which supplies the header, buttons, footer and motion. */
+@font-face{font-family:"Figtree";src:url(../fonts/Figtree-var.woff2) format("woff2");font-weight:300 900;font-style:normal;font-display:swap}
+.p-start{--fig:"Figtree",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;--gold9:#F7EDD9;--fern9:#E6EFE8;font-family:var(--fig)}
+.p-start h1,.p-start h2,.p-start h3,.p-start .brand span,.p-start nav a,.p-start .btn,.p-start footer h4,.p-start .s-amt b{font-family:var(--fig)}
+.p-start main a{font-weight:600}
 
-/* hero: deep green, words left, the 3D card over a tilted gold square right */
-.s-hero{background:var(--f-green);color:#fff;padding:96px 0 120px!important;overflow:hidden}
-.s-heroin{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
-.p-home .s-hero h1{color:#fff;font-size:clamp(44px,5.6vw,80px);line-height:.98;letter-spacing:-.03em}
-.p-home .s-hero h1 em{color:var(--f-gold)}
-.s-lede{margin-top:24px;font-size:clamp(18px,1.6vw,22px);line-height:1.45;color:rgba(255,255,255,.92);max-width:28em}
+/* hero */
+.s-hero{padding:72px 0 112px!important}
+.s-heroin{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center}
+.p-start .s-hero h1{font-size:clamp(44px,5.2vw,72px);line-height:1.04;letter-spacing:-.03em;font-weight:700}
+.p-start .s-hero h1 em{font-style:normal;color:var(--f-green);box-shadow:inset 0 -.16em 0 var(--gold9)}
+.s-lede{margin-top:24px;font-size:clamp(19px,1.6vw,22px);line-height:1.45;color:var(--f-grey30);max-width:28em}
 .s-acts{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:36px}
-.p-home main .s-hero .btn.light{background:#fff;color:var(--f-green)}
-.p-home main .s-hero .btn.light:hover{background:var(--gold9)}
-.s-price{margin-top:24px;font-size:15px;color:rgba(255,255,255,.88)}
-.s-price b{color:#fff}
-.p-home main .s-price a{color:#fff;text-decoration:underline}
-.s-art{position:relative;display:grid;place-items:center;padding:24px}
-.s-square{position:absolute;inset:0 6% 6% 0;background:var(--f-gold);border-radius:var(--f-r);transform:rotate(-4deg)}
-.s-heroimg{position:relative;width:100%;max-width:540px;height:auto;aspect-ratio:1;object-fit:cover;border-radius:var(--f-r);box-shadow:0 30px 60px -30px rgba(0,0,0,.45)}
+.s-price{margin-top:24px;font-size:15px;color:var(--f-grey30)}
+.s-price b{color:var(--f-ink)}
+.s-art{position:relative}
+.s-art::before{content:"";position:absolute;right:-24px;bottom:-24px;width:62%;height:62%;background:var(--gold9);border-radius:var(--f-r)}
+.s-heroimg{position:relative;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:var(--f-r)}
 
-/* shared section parts */
+/* shared */
 .s-sec{padding:120px 0!important}
 .s-alt{background:var(--f-off)}
-.s-split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .s-center{text-align:center}
 .s-center .s-p{margin-left:auto;margin-right:auto}
-.s-h2{font-size:clamp(40px,4.6vw,64px);line-height:1;letter-spacing:-.03em}
-.s-badge+.s-h2{margin-top:20px}
-.s-p{margin-top:20px;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:var(--f-grey30);max-width:34em}
+.p-start .s-h2{font-size:clamp(36px,3.8vw,52px);line-height:1.08;letter-spacing:-.025em;font-weight:700}
+.s-p{margin-top:18px;font-size:clamp(17px,1.35vw,19px);line-height:1.6;color:var(--f-grey30);max-width:36em}
 .s-p b{color:var(--f-ink)}
-.s-acc{margin-top:28px;display:grid;gap:4px}
-.s-qwrap .s-acc{margin-top:0}
 
-/* privacy: two trust cards on a pale green square, words and three questions beside it */
-.s-pic{position:relative;aspect-ratio:1/1;border-radius:var(--f-r);overflow:hidden;display:flex;align-items:flex-end;padding:28px}
-.s-picimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.s-trust{position:relative;display:grid;gap:12px;width:min(100%,400px)}
-.s-tc{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:20px;padding:22px 24px;box-shadow:0 22px 44px -26px rgba(23,63,52,.5)}
-.s-tc svg{width:26px;height:26px;flex:none;color:var(--f-green)}
-.s-tc p{font-size:16px;line-height:1.45;color:var(--f-ink)}
-.s-tc b{display:block;font-size:18px;font-weight:600}
-.s-badge{display:inline-grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--gold9);color:var(--f-green)}
-.s-badge svg{width:26px;height:26px}
+/* how it works: four steps with line icons, no boxes */
+.s-steps{list-style:none;padding:0;margin:72px 0 0;display:grid;grid-template-columns:repeat(4,1fr);gap:48px}
+.s-ic{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--fern9);color:var(--f-green)}
+.s-ic svg{width:28px;height:28px}
+.s-n{margin-top:24px;font-size:14px;font-weight:600;color:var(--f-green);letter-spacing:.02em}
+.p-start .s-steps h3{margin-top:6px;font-size:22px;line-height:1.25;font-weight:700}
+.s-steps h3+p{margin-top:10px;color:var(--f-grey30);font-size:16px;line-height:1.6}
+.s-timing{margin:72px auto 0;max-width:780px;text-align:center;font-size:18px;line-height:1.55;color:var(--f-grey30)}
+.s-timing b{color:var(--f-ink)}
 
-/* how it works: four cards, each 3D object on its own tinted tile */
-.s-cards{list-style:none;padding:0;margin:64px 0 0;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.s-tile{aspect-ratio:1/1;border-radius:24px;overflow:hidden;background:var(--sage9)}
-.s-photo{width:100%;height:100%;object-fit:cover;display:block}
-.s-n{margin-top:22px;font:700 15px/1 var(--sans);color:var(--f-green)}
-.s-card h3{margin-top:8px;font-size:clamp(22px,1.9vw,26px);line-height:1.15}
-.s-card h3+p{margin-top:10px;color:var(--f-grey30);font-size:16px;line-height:1.55}
+/* privacy: one photo, one message */
+.s-split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.s-pimg{width:100%;height:auto;aspect-ratio:5/4;object-fit:cover;border-radius:var(--f-r)}
+.s-facts{list-style:none;padding:0;margin:32px 0 0;display:grid;gap:16px}
+.s-facts li{display:flex;gap:14px;align-items:flex-start;font-size:16px;line-height:1.5;color:var(--f-grey30)}
+.s-facts b{color:var(--f-ink)}
+.s-facts svg{width:24px;height:24px;flex:none;color:var(--f-green)}
 
-/* who it helps: list left, the timing line on deep green right */
-.s-whowrap{align-items:stretch}
-.s-list{list-style:none;padding:0;margin:36px 0 0;display:grid;gap:28px}
-.s-list li{display:flex;gap:16px}
-.s-list svg{width:30px;height:30px;flex:none;margin-top:1px;padding:4px;border-radius:50%;background:var(--fern9);color:var(--f-green)}
-.s-list h3{font-size:22px;line-height:1.2}
-.s-list p{margin-top:6px;color:var(--f-grey30);line-height:1.55}
-.s-panel{background:var(--f-green);border-radius:var(--f-r);padding:64px 56px;display:flex;align-items:flex-end}
-.s-panel p{font:700 clamp(28px,2.8vw,40px)/1.15 var(--serif);letter-spacing:-.02em;color:#fff}
-.s-panel b{display:block;color:var(--f-gold);margin-bottom:12px}
+/* prices: two clean cards */
+.s-plans{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:960px;margin:64px auto 0}
+.s-plan{display:flex;flex-direction:column;border:1px solid var(--f-grey90);border-radius:var(--f-r);padding:44px}
+.s-plan2{background:var(--f-green);border-color:var(--f-green);color:#fff}
+.p-start .s-plan h3{font-size:22px;font-weight:700}
+.p-start .s-plan2 h3,.p-start .s-plan2 .s-amt b,.s-plan2 .s-amt span,.s-plan2 .s-then,.s-plan2 .s-then b{color:#fff}
+.s-amt{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;margin-top:14px}
+.p-start .s-amt b{font-size:clamp(48px,4.4vw,60px);line-height:1;font-weight:700;letter-spacing:-.02em;color:var(--f-ink)}
+.s-amt>span{font-size:16px;color:var(--f-grey30)}
+.s-then{margin:14px 0 32px;font-size:16px;line-height:1.55;color:var(--f-grey30)}
+.s-then b{color:var(--f-ink)}
+.s-plan .btn{margin-top:auto;align-self:flex-start}
+.p-start main .s-plan2 .btn{background:#fff;color:var(--f-green)}
+.p-start main .s-plan2 .btn:hover{background:var(--gold9)}
+.s-fine{margin:28px auto 0;max-width:760px;text-align:center;font-size:14px;line-height:1.6;color:var(--f-grey30)}
+.s-fine a{margin-left:10px}
 
-/* prices: two solid color blocks with a full width button band */
-.s-plans{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1040px;margin:64px auto 0;align-items:stretch}
-.s-plan{display:flex;flex-direction:column;border-radius:var(--f-r);overflow:hidden;color:var(--f-ink)}
-.s-fern{background:var(--fern)}.s-gold{background:var(--gold7)}
-.s-pbody{padding:48px 48px 36px;flex:1}
-.s-picon{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:14px;background:#fff;color:var(--f-green)}
-.s-picon svg{width:26px;height:26px}
-.s-plan h3{margin-top:22px;font-size:28px}
-.s-opt{margin-top:6px;font-size:15px}
-.s-amt{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 12px;margin-top:16px}
-.s-amt b{font:700 clamp(56px,5vw,76px)/1 var(--serif);letter-spacing:-.02em}
-.s-amt>span{font-size:17px}
-.s-then{margin-top:12px;font-size:16px;line-height:1.55}
-.s-plan ul{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:10px}
-.s-plan li{display:flex;gap:10px;font-size:16px;line-height:1.5}
-.s-plan li svg{width:22px;height:22px;flex:none;margin-top:1px}
-.s-terms{margin-top:20px;font-size:14px;color:var(--f-grey30)}
-.p-home main .s-band{display:flex;align-items:center;justify-content:center;min-height:68px;font:600 18px var(--sans);color:var(--f-ink);text-decoration:none;transition:background-color .2s ease}
-.s-fern .s-band{background:var(--fern-d)}.s-fern .s-band:hover{background:#8FB797}
-.s-gold .s-band{background:var(--gold5)}.s-gold .s-band:hover{background:#C99535}
-.s-fine{margin:28px auto 0;max-width:760px;text-align:center;font-size:14px;color:var(--f-grey30)}
-
-/* iPhone list form, centered */
-.s-formwrap .notify{max-width:640px;margin:40px auto 0;text-align:left}
-
-/* questions */
-.s-qwrap{grid-template-columns:5fr 7fr;align-items:start}
-.s-more{list-style:none;padding:0;margin:24px 0 0;display:flex;flex-wrap:wrap;gap:12px 28px}
+/* contact */
+.s-cacts{justify-content:center}
+.s-soon{margin-top:24px;font-size:15px;color:var(--f-grey30)}
 
 @media (max-width:1100px){
-  .s-cards{grid-template-columns:1fr 1fr}
-  .s-pbody{padding:40px 36px 32px}
+  .s-steps{grid-template-columns:1fr 1fr;gap:48px 40px}
 }
 @media (max-width:900px){
-  .s-heroin,.s-split,.s-qwrap{grid-template-columns:1fr;gap:48px}
-  .s-art{padding:16px 12px 24px}
-  .s-plans{grid-template-columns:1fr}
-  .s-hero{padding:64px 0 80px!important}
+  .s-heroin,.s-split{grid-template-columns:1fr;gap:48px}
+  .s-art::before{right:-12px;bottom:-12px}
+  .s-hero{padding:48px 0 88px!important}
   .s-sec{padding:88px 0!important}
-  .s-panel{padding:48px 40px}
+}
+@media (max-width:760px){
+  .s-plans{grid-template-columns:1fr}
 }
 @media (max-width:640px){
-  .s-hero h1{font-size:clamp(40px,11.5vw,52px)!important}
+  .p-start .s-hero h1{font-size:clamp(38px,10.5vw,48px)}
   .s-acts{flex-direction:column;align-items:stretch}
   .s-acts .btn{width:100%}
   .s-acts .h-badge img{margin:0 auto}
   .s-sec{padding:72px 0!important}
-  .s-cards{grid-template-columns:1fr;gap:36px;margin-top:44px}
-  .s-pic{aspect-ratio:auto;display:block;padding:0;overflow:visible}
-  .s-picimg{position:static;aspect-ratio:1;border-radius:var(--f-r)}
-  .s-trust{width:100%;margin-top:16px}
-  .s-tc{box-shadow:none;background:var(--f-off)}
-  .s-pbody{padding:32px 24px 28px}
-  .s-panel{padding:36px 28px}
-  .s-plans{margin-top:44px}
+  .s-steps{grid-template-columns:1fr;gap:40px;margin-top:48px}
+  .s-plan{padding:32px 24px}
+  .s-plan .btn{align-self:stretch}
+  .s-timing{margin-top:48px}
+  .s-fine a{display:inline-block;margin:6px 6px 0}
 }
