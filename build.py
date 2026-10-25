@@ -15,8 +15,8 @@ def page(slug, title, desc, body, current=''):
         return f'<li{c}><a href="{href}"{cur}>{label}</a></li>'
     canon = SITE + ('/' if slug == 'index' else '/' + slug)
     styled = slug in ('index', 'who-its-for', 'questions', 'prices', 'iphone', 'start')
-    HOMECSS = ('\n<link rel="stylesheet" href="/css/home.css">' if styled else '') + ('\n<link rel="preload" href="/fonts/Figtree-var.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/css/start.css">' if slug == 'start' else '')
-    BODYCLS = (' class="p-home p-start"' if slug == 'start' else ' class="p-home"') if styled else ''
+    HOMECSS = ('\n<link rel="stylesheet" href="/css/home.css">' if styled else '') + ('\n<link rel="stylesheet" href="/css/start.css">' if slug in ('start', 'index') else '')
+    BODYCLS = (' class="p-home p-start"' if slug in ('start', 'index') else ' class="p-home"') if styled else ''
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -41,9 +41,9 @@ def page(slug, title, desc, body, current=''):
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" type="image/png" sizes="32x32" href="/img/logo-32.png">
 <link rel="apple-touch-icon" href="/img/logo-180.png">
-<link rel="preload" href="/fonts/SourceSerif4-700.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/IBMPlexSans-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/site.css">{HOMECSS}
+<link rel="preload" href="/fonts/Figtree-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/theme.css">{HOMECSS}
 </head>
 <body{BODYCLS}>
 <a class="skip" href="#main">Skip to content</a>
@@ -159,86 +159,8 @@ FAQ = [
 ]
 
 def index():
-    IC = _icons()
-    steps = [
-        ('1', 'Add your credit report', 'Get your free report and open it in ZungiDill. A photo of a paper copy works too.', _obj('step-report', 711, 846, 'h-obj rv'), _obj('num-1', 220, 365, 'h-num rv')),
-        ('2', 'Check each item', "Go through your report one item at a time and mark anything that isn't right.", _obj('step-magnifier', 717, 602, 'h-obj rv'), _obj('num-2', 255, 368, 'h-num rv')),
-        ('3', 'Read and mail your letter', 'ZungiDill writes the letter from what you marked. You read it, then print and mail it.', _obj('step-envelope', 804, 762, 'h-obj rv'), _obj('num-3', 261, 371, 'h-num rv')),
-        ('4', 'Track the 30 days', "Enter the date it was delivered. We'll remind you when the bureau's 30 days are up.", _obj('step-calendar', 726, 770, 'h-obj rv'), _obj('num-4', 273, 365, 'h-num rv')),
-    ]
-    rows = ''.join(f'''
-    <li class="h-row{' h-band' if n == '3' else ''}"><div class="h-wrap h-rowin">
-      <div class="h-vis" aria-hidden="true">{num}{o}</div>
-      <div class="h-txt"><h3>{h}</h3><p>{t}</p></div>
-    </div></li>''' for n, h, t, o, num in steps)
-    body = f"""
-<section class="h-hero" aria-labelledby="hero-h">
-  <div class="h-wrap">
-    <div class="h-float" aria-hidden="true">{_obj('hero-card', 1246, 1051, 'h-herocard', lazy=False)}</div>
-    <h1 id="hero-h">Find mistakes on your credit report and dispute them <em>yourself.</em></h1>
-    <p class="h-lede">You mark what's wrong. ZungiDill writes the letter.</p>
-    <div class="h-acts">
-      <a class="btn" href="/app/">Open the web app</a>
-      <a class="h-badge" href="https://play.google.com/store/apps/details?id=com.numerita.zungidil" aria-label="Get it on Google Play"><img src="/img/badge-google-play.png" alt="Get it on Google Play" width="183" height="54"></a>
-    </div>
-    <ul class="h-facts">
-      <li>{IC['lockfile']}<span>Your report stays on your phone. No account. We never ask for your Social Security number.</span></li>
-      <li>{IC['card']}<span>Payments by Stripe on the web and Google Play in the app.</span></li>
-      <li>{IC['doc']}<span>Your right to dispute: <a href="https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-an-error-on-my-credit-report-en-314/">15 U.S.C. 1681i</a></span></li>
-    </ul>
-  </div>
-</section>
-
-<section id="how" class="h-how" aria-labelledby="how-h">
-  <div class="h-wrap h-head">
-    <h2 id="how-h" class="h-big">How it works</h2>
-    <p>You do each step yourself, on your phone or computer. Your letters go to the credit bureaus: Equifax, Experian and TransUnion, the companies that keep your report.</p>
-  </div>
-  <ol class="h-rows">{rows}
-  </ol>
-  <div class="h-wrap h-after">
-    <p class="h-timing"><b>How long does it take?</b> Bureaus usually have 30 days to answer. If you're planning to apply for something, start now.</p>
-    <p class="h-who"><a href="/who-its-for">Who it's for</a></p>
-  </div>
-</section>
-
-<section id="prices" class="h-prices" aria-labelledby="prices-h">
-  <div class="h-wrap">
-    <h2 id="prices-h" class="h-big">What it costs</h2>
-    <div class="h-plans h-simple">
-      <div class="h-plan">
-        <h3>One letter</h3>
-        <p class="h-amt"><b><span class="launch">$4.99</span><span class="after" hidden>$9.99</span></b><span>per letter</span></p>
-        <p class="h-then launch">That price runs through Dec 31, 2026. After that, a letter is <b>$9.99</b>.</p>
-        <a class="btn" href="/app/">Get one letter</a>
-      </div>
-      <div class="h-plan">
-        <h3>ZungiDill Monthly</h3>
-        <p class="h-amt"><b>$19.99</b><span>a month for your first 3 months</span></p>
-        <p class="h-then">Then <b>$39.99 a month</b>. The first price is for new subscribers.<br>It renews every month until you cancel.</p>
-        <a class="btn" href="/app/">Start Monthly</a>
-      </div>
-    </div>
-    <p class="h-seeprices"><a href="/prices">See prices</a></p>
-  </div>
-</section>
-
-<section id="contact" class="h-contact" aria-labelledby="contact-h">
-  <div class="h-wrap h-head">
-    <div>
-      <h2 id="contact-h" class="h-big">Talk to a real person</h2>
-      <p>A person reads every message. We reply within two business days.</p>
-    </div>
-    <div class="h-cbtns">
-      <a class="btn" href="https://tally.so/r/Zj479y" target="_blank" rel="noopener">Send us a message</a>
-      <a class="btn quiet" href="mailto:{EMAIL}">{EMAIL}</a>
-      <p class="h-soon">iPhone app coming soon. <a href="/iphone">Get notified</a></p>
-    </div>
-  </div>
-</section>
-"""
-    return page('index', 'Fix Your Credit Report Yourself | ZungiDill Dispute App',
-        'Tired of hearing no? ZungiDill helps you check your credit report free on your phone and send your own dispute letters. No account, no Social Security number.', body)
+    # The home page uses the /start design (start_page); /start redirects here (_redirects).
+    return start_page('index')
 
 def _sub(h1, intro, inner):
     # Simple pages in the home page style: big title, optional line, content.
@@ -311,7 +233,7 @@ def _photo(name, alt, w, h, cls='', lazy=True):
     l = ' loading="lazy"' if lazy else ' fetchpriority="high"'
     return f'<img class="{cls}" src="/img/photos/{name}.webp" alt="{alt}" width="{w}" height="{h}" decoding="async"{l}>'
 
-def start_page():
+def start_page(slug='start'):
     # Landing page at /start: few sections, one idea each. Photos are from Unsplash (img/photos/CREDITS.txt);
     # step icons are Cardpay "Line Rounded" icons; type is Figtree (SIL Open Font License).
     IC = _icons()
@@ -401,7 +323,7 @@ def start_page():
   </div>
 </section>
 """
-    return page('start', 'Fix Your Credit Report Yourself | ZungiDill Dispute App',
+    return page(slug, 'Fix Your Credit Report Yourself | ZungiDill Dispute App',
         'Tired of hearing no? ZungiDill helps you check your credit report free on your phone and send your own dispute letters. No account, no Social Security number.', body)
 
 def doc(title, meta, toc, content):
@@ -669,7 +591,7 @@ def notfound():
     c = f'''<div class="doc"><div class="wrap narrow"><h1>That page is not here.</h1><p class="lede" style="margin-top:20px">The link may be old. Everything you need is one tap away.</p><p style="margin-top:28px"><a class="btn" href="/">Go to the home page</a></p></div></div>'''
     return page('404', 'Page not found · ZungiDill', 'Page not found.', c)
 
-files = {'index.html': index(), 'guide.html': guide(), 'learn/index.html': learn_hub(), **{f"learn/{a['slug']}.html": article(a) for a in L.ARTICLES}, 'support.html': support(), 'about.html': about(), 'terms.html': terms(), 'privacy.html': privacy(), 'legal.html': legal(), 'thanks.html': thanks(), '404.html': notfound(), 'who-its-for.html': who_page(), 'questions.html': questions_page(), 'prices.html': prices_page(), 'iphone.html': iphone_page(), 'start.html': start_page()}
+files = {'index.html': index(), 'guide.html': guide(), 'learn/index.html': learn_hub(), **{f"learn/{a['slug']}.html": article(a) for a in L.ARTICLES}, 'support.html': support(), 'about.html': about(), 'terms.html': terms(), 'privacy.html': privacy(), 'legal.html': legal(), 'thanks.html': thanks(), '404.html': notfound(), 'who-its-for.html': who_page(), 'questions.html': questions_page(), 'prices.html': prices_page(), 'iphone.html': iphone_page()}
 def rel(html):
     def fix(m):
         attr,path=m.group(1),m.group(2)

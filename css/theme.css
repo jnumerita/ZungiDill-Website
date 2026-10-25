@@ -1,0 +1,42 @@
+/* Sitewide look for every page (loaded right after site.css): Figtree type and the home page's header and footer.
+   Figtree: SIL Open Font License (fonts/OFL-Figtree.txt). Colors are the Fractal tokens. */
+@font-face{font-family:"Figtree";src:url(../fonts/Figtree-var.woff2) format("woff2");font-weight:300 900;font-style:normal;font-display:swap}
+:root{
+  --serif:"Figtree",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --sans:"Figtree",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --t-green:#2F5D50;--t-ink:#1F2A24;--t-gold:#D9A441;
+}
+body{font-family:var(--sans)}
+h1,h2,h3,h4{font-family:var(--serif);letter-spacing:-.02em}
+
+/* header: white, wide, quiet */
+header{background:rgba(255,255,255,.96);box-shadow:none}
+header .wrap.bar{max-width:1440px;padding:0 80px;height:88px}
+.brand span{font:700 24px/1 var(--serif);letter-spacing:-.015em;color:var(--t-ink)}
+nav a{color:var(--t-ink)}
+nav .navbtn a{border-radius:8px;background:var(--t-green);color:#fff;transition:transform .2s ease,box-shadow .2s ease}
+nav .navbtn a:hover{background:#264D42;color:#fff;transform:translateY(-2px);box-shadow:0 10px 22px -10px rgba(23,63,52,.55)}
+
+/* buttons: same shape as the home page */
+.btn{border-radius:8px;background:var(--t-green)}
+.btn:hover{background:#264D42}
+
+/* footer: deep ink green */
+footer{background:var(--t-ink);color:rgba(255,255,255,.82);padding:64px 0 48px}
+footer .wrap{max-width:1440px;padding:0 80px}
+footer h4{color:var(--t-gold)}
+footer a,footer .brand span{color:#fff}
+footer .made{color:rgba(255,255,255,.82)}
+.disc{color:rgba(255,255,255,.7)}
+
+@media (max-width:1100px){
+  header .wrap.bar,footer .wrap{padding:0 40px}
+}
+@media (max-width:640px){
+  header .wrap.bar{padding:0 16px;height:64px}
+  footer .wrap{padding:0 16px}
+  footer{padding:48px 0 120px}
+}
+@media (prefers-reduced-motion:reduce){
+  nav .navbtn a,nav .navbtn a:hover{transition:none;transform:none}
+}
